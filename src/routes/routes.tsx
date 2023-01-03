@@ -8,9 +8,9 @@ import { Register } from "../pages/Register";
 export const RoutesComponents = () => {
   return (
     <Routes>
-      <Route path="/" element={<Dashboard />} />
+      <Route path="/" element={<Home />} />
       <Route path="register" element={<Register />} />
-      <Route path="home" element={<Home />} />
+      <Route path="dashboard" element={<Dashboard />} />
       <Route path="login" element={<Login />} />
     </Routes>
   );
