@@ -5,7 +5,7 @@ export const Home = () => {
   return (
     <div>
       <button>
-        <Link to="/">Sair</Link>
+        <Link to="dashboard">Sair</Link>
       </button>
     </div>
   );

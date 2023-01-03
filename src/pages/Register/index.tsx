@@ -6,7 +6,7 @@ export const Register = () => {
     <div>
       <h1>Register</h1>
       <button>
-        <Link to="/">Login</Link>
+        <Link to="login">Login</Link>
       </button>
     </div>
   );
