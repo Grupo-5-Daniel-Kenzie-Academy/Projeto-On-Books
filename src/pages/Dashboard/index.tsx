@@ -9,7 +9,7 @@ export const Dashboard = () => {
       <Link to="register">Cadastro</Link>
     </button>
     <button>
-      <Link to="login">Login</Link>
+      <Link to="login">LoginTeste</Link>
     </button>
   </div>
   )
