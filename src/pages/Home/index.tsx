@@ -1,12 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Header } from "../../components/Header";
 
 export const Home = () => {
   return (
-    <div>
-      <button>
-        <Link to="dashboard">Sair</Link>
-      </button>
-    </div>
+    <>
+      <Header
+        route1={"/login"}
+        route2={"/register"}
+        nameRoute1={"Login"}
+        nameRoute2={"Cadastro"}
+      />
+      <div>
+        <button>
+          <Link to="dashboard">Sair</Link>
+        </button>
+      </div>
+    </>
   );
 };
