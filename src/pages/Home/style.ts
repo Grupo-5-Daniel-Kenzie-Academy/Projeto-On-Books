@@ -12,7 +12,9 @@ export const Main = styled.main`
     border-radius: 8px;
     background-image: url("https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/e1a4dd124126853.Y3JvcCwzNTA4LDI3NDMsMCwyNDky.jpg");
     background-repeat: no-repeat;
+    background-size: cover;
 
+    
     display: flex;
     justify-content: center;
     align-items: center;

@@ -16,7 +16,8 @@ export const StyledFieldset = styled.fieldset`
 
 export const Input = styled.input`
   box-sizing: border-box;
-  width: 235px;
+  width: 100%;
+  max-width: 235px;
   height: 34px;
   padding-left: 12px;
 
