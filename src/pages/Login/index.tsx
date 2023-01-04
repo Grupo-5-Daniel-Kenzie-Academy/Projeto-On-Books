@@ -40,6 +40,7 @@ export interface iUser {
 export function Login (){
   const { register, handleSubmit, formState: {errors} } = useForm<iData>({
     resolver: yupResolver(LoginSchema),
+    mode: "onBlur"
   });
   const [data, setData] = useState([]);
   const navigate = useNavigate();
@@ -117,6 +118,7 @@ export function Login (){
                   register={register}
                   nameError="email"
                 />
+                {errors.email && <span className="error">{errors.email.message}</span>}
               </div>
               <div className="input">
                 <Input
@@ -126,6 +128,7 @@ export function Login (){
                   register={register}
                   nameError="password"
                 />
+                {errors.password && <span className="error">{errors.password.message}</span>}
               </div>
               <button className="button">Logar</button>
             </form>
