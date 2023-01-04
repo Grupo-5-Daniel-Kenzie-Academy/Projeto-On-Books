@@ -16,11 +16,11 @@ export function BookList({ ListBooks }: iBookList) {
           ))}
         </S.Ul>
       ) : ( */}
-      <ul>
+      <S.StyleUlBooks>
         {ListBooks.map((element) => (
           <Book key={element.id} element={element} />
         ))}
-      </ul>
+      </S.StyleUlBooks>
     </>
   );
 }

@@ -6,7 +6,7 @@ import * as S from "./style";
 export function Book({ element }: { element: IBooks }) {
   console.log(element);
   return (
-    <li>
+    <S.StyleLi>
       <figure>
         <img src={element.img} alt="" />
       </figure>
@@ -16,10 +16,10 @@ export function Book({ element }: { element: IBooks }) {
       <p>{element.title}</p>
       <div>
         <button>Exibir</button>
-        <button>
+        <button className="ButFavorite">
           <img src={iconHeart} alt="botão de favoritar" />
         </button>
       </div>
-    </li>
+    </S.StyleLi>
   );
 }
