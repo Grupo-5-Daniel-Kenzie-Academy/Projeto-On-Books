@@ -95,7 +95,7 @@ export function Login (){
   return (
     <SlyledDiv>
       <Header
-        route1="/home"
+        route1="/"
         route2="/register"
         nameRoute1="Home"
         nameRoute2="Register"

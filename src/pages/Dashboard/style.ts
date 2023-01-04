@@ -110,7 +110,8 @@ export const StyleSectionPesq = styled.section`
             }
 
             .divPesquisa{
-                width: 400px;
+                width: 100%;
+                max-width: 400px;
                 height: 30px;
                 background: #8099DA;
                 position: relative;

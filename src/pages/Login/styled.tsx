@@ -59,7 +59,7 @@ export const SlyledDiv = styled.div`
 
   .input {
     width: 80%;
-    max-width: 350px;
+    max-width: 400px;
 
     margin: 5px auto;
   }
@@ -67,7 +67,7 @@ export const SlyledDiv = styled.div`
   .button {
     width: 80%;
     height: 45px;
-    max-width: 350px;
+    max-width: 400px;
 
     margin: 10px auto;
     border-radius: 8px;
@@ -121,6 +121,10 @@ export const SlyledDiv = styled.div`
       margin: 35px auto 0px;
       align-items: center;
       justify-content: center;
+    }
+
+    input{
+      max-width: 400px;
     }
   }
 `;
