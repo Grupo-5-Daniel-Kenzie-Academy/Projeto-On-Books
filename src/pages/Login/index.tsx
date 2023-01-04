@@ -60,7 +60,7 @@ export function Login (){
           },
         });
 
-        // navigate("/dashboard");
+        navigate("/dashboard");
       } catch {
         return null;
       }
@@ -80,17 +80,13 @@ export function Login (){
       localStorage.setItem("@Token", accessToken);
       setData(user);
 
-      // setTimeout(() => {
-      //   navigate("/dashboard");
-      // }, 2000);
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
     } catch {
       toast.error("Email ou senha incorreto! ");
     }
   }
-
-  // function submit (data : SubmitHandler<iData> )  {
-  //    loginUser(data)
-  // }
 
   const submit: SubmitHandler<iData> = (data) =>{
     loginUser(data)
