@@ -25,7 +25,6 @@ interface iResponseData {
     id: string;
   };
 }
-
 export const Register = () => {
   const navigate = useNavigate();
 
