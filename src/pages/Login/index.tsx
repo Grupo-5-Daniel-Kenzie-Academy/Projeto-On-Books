@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 export const Login = () => {
@@ -6,10 +5,10 @@ export const Login = () => {
     <div>
       <h1>Login</h1>
       <button>
-        <Link to="register">Cadastro</Link>
+        <Link to="/register">Cadastro</Link>
       </button>
       <button>
-        <Link to="dashboard">Home</Link>
+        <Link to="/">Home</Link>
       </button>
     </div>
   );
