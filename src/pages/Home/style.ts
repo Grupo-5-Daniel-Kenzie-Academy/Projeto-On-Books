@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Main = styled.main`
   background-color: #a15858;
-  height: 100vh;
+  min-height: 91vh;
   padding: 34px;
   div {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -11,14 +11,19 @@ export const Main = styled.main`
     width: 90%;
     border-radius: 8px;
     background-image: url("https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/e1a4dd124126853.Y3JvcCwzNTA4LDI3NDMsMCwyNDky.jpg");
+    background-repeat: no-repeat;
 
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    padding: 15px 0;
+
 
     @media (min-width: 700px) {
-      height: 90%;
+      height: 500px;
       width: 60%;
+     
     }
   }
 `;
@@ -43,7 +48,7 @@ export const articleInfo = styled.article`
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 1rem;
   line-height: 22px;
   span {
     display: flex;
@@ -53,7 +58,10 @@ export const articleInfo = styled.article`
 
   @media (min-width: 700px) {
     width: 90%;
-    height: 220px;
-    font-size: 18px;
+    max-width: 500px;
+    height: 250px;
+
+    padding: 0 25px;
+    
   }
 `;
