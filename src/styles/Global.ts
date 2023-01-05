@@ -29,6 +29,12 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
   }
   
+  :root{
+    --color-modal: #9DD8F9;
+    --grey-1: #E0DDDD;
 
+    --radius-6: 6px;
+    --radius-10: 10px;
+  }
 
 `;
