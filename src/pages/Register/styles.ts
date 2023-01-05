@@ -3,16 +3,16 @@ import bgImg from "../../assets/img/livros-hp.png";
 
 export const StyledRegisterPage = styled.main`
   width: 100%;
-  height: 100vh;
+  min-height: 94vh;
 
-  padding: 1.5rem;
+  padding: 2rem;
 
   background-color: #a15858;
 
   display: flex;
 
   @media (min-width: 800px) {
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
   }
 

@@ -14,13 +14,13 @@ import { api } from "../../api/api";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
 
 export const Dashboard = () => {
-
-  const [favoritModal, setFavoritModal] = useState(false)
-  const [descriptionModal, setDescriptionModal] = useState(false)
+  const [favoritModal, setFavoritModal] = useState(false);
+  const [descriptionModal, setDescriptionModal] = useState(false);
   const [dados, definirDados] = useState(null);
   const navigate = useNavigate();
 
-  const { searchFilter } = useContext(DashContext);
+  const { searchFilter, setCategoryFilter, filterCategoryFunction } =
+    useContext(DashContext);
 
   interface iResponseLogin {
     accessToken: string;
@@ -55,7 +55,7 @@ export const Dashboard = () => {
     }
     protejerRotas();
   });
-  
+
   return (
     <>
       <StyleReader>
@@ -74,22 +74,57 @@ export const Dashboard = () => {
           <div>
             <h4>Filtrar por categoria:</h4>
             <ul>
-              <button>Ação</button>
-              <button>Guerra</button>
-              <button>Deuses</button>
-              <button>Romance</button>
-              <button>Mistério</button>
-              <button>Fantasia</button>
-              <button>Magia</button>
-              <button>Comédia</button>
-              <button>Investigação</button>
-              <button>Religião</button>
-              <button>Luta</button>
-              <button>Mitologia</button>
-              <button>Sexo</button>
-              <button>Aventura</button>
-              <button>Estratégia</button>
-              <button>Terror</button>
+              <button onClick={() => setCategoryFilter("todos")}>Todos</button>
+              <button
+                onClick={() => {
+                  setCategoryFilter("Ação");
+                }}
+              >
+                Ação
+              </button>
+              <button
+                onClick={() => {
+                  setCategoryFilter("Guerra");
+                }}
+              >
+                Guerra
+              </button>
+              <button onClick={() => setCategoryFilter("Deuses")}>
+                Deuses
+              </button>
+              <button onClick={() => setCategoryFilter("Romance")}>
+                Romance
+              </button>
+              <button onClick={() => setCategoryFilter("Mistério")}>
+                Mistério
+              </button>
+              <button onClick={() => setCategoryFilter("Fantasia")}>
+                Fantasia
+              </button>
+              <button onClick={() => setCategoryFilter("Magia")}>Magia</button>
+              <button onClick={() => setCategoryFilter("Comédia")}>
+                Comédia
+              </button>
+              <button onClick={() => setCategoryFilter("Investigação")}>
+                Investigação
+              </button>
+              <button onClick={() => setCategoryFilter("Religião")}>
+                Religião
+              </button>
+              <button onClick={() => setCategoryFilter("Luta")}>Luta</button>
+              <button onClick={() => setCategoryFilter("Mitologia")}>
+                Mitologia
+              </button>
+              <button onClick={() => setCategoryFilter("Sexo")}>Sexo</button>
+              <button onClick={() => setCategoryFilter("Aventura")}>
+                Aventura
+              </button>
+              <button onClick={() => setCategoryFilter("Estratégia")}>
+                Estratégia
+              </button>
+              <button onClick={() => setCategoryFilter("Terror")}>
+                Terror
+              </button>
             </ul>
           </div>
           <form
@@ -115,10 +150,12 @@ export const Dashboard = () => {
         </section>
       </StyleMain>
       <button onClick={() => setFavoritModal(true)}>favoritar livro</button>
-      {favoritModal? <ModalFavorit /> : null}
+      {favoritModal ? <ModalFavorit /> : null}
 
-      <button onClick={() => setDescriptionModal(true)}>descrição do livro</button>
-      {descriptionModal? <ModalDescription /> : null}
+      <button onClick={() => setDescriptionModal(true)}>
+        descrição do livro
+      </button>
+      {descriptionModal ? <ModalDescription /> : null}
     </>
   );
 };
