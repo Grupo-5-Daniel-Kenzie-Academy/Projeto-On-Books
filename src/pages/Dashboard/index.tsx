@@ -4,14 +4,20 @@ import fotoRosto from "../../assets/img/rostinho.jpeg";
 import icone from "../../assets/img/iconeLogout.svg";
 import iconeLupa from "../../assets/img/iconeLupa.svg";
 import { StyleMain, StyleReader, StyleSectionPesq } from "./style";
-import { useContext } from "react";
+import { useState } from "react";
 import { ListBooks } from "../../testeDB";
 import { BookList } from "../../components/BookList";
+import { ModalFavorit } from "../../components/ModalFavorit";
+import { ModalDescription } from "../../components/ModalDescription";
+import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { api } from "../../api/api";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
 
 export const Dashboard = () => {
+
+  const [favoritModal, setFavoritModal] = useState(false)
+  const [descriptionModal, setDescriptionModal] = useState(false)
   const [dados, definirDados] = useState(null);
   const navigate = useNavigate();
 
@@ -50,7 +56,7 @@ export const Dashboard = () => {
     }
     protejerRotas();
   });
-
+  
   return (
     <>
       <StyleReader>
@@ -109,6 +115,11 @@ export const Dashboard = () => {
           <BookList ListBooks={ListBooks} />
         </section>
       </StyleMain>
+      <button onClick={() => setFavoritModal(true)}>favoritar livro</button>
+      {favoritModal? <ModalFavorit /> : null}
+
+      <button onClick={() => setDescriptionModal(true)}>descrição do livro</button>
+      {descriptionModal? <ModalDescription /> : null}
     </>
   );
 };
