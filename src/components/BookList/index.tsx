@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { DashContext } from "../../contexts/DashboardContext/DashContext";
 import { IBooks } from "../../testeDB";
 import { Book } from "./Book";
 import * as S from "./style";
@@ -7,20 +9,22 @@ interface iBookList {
 }
 
 export function BookList({ ListBooks }: iBookList) {
+  const { filteredBooks } = useContext(DashContext);
   return (
     <>
-      {/* {filteredProducts.length > 0 ? (
-        <S.Ul>
-          {filteredProducts.map((element) => (
-            <Product key={element.id} element={element} />
+      {filteredBooks.length > 0 ? (
+        <S.StyleUlBooks>
+          {filteredBooks.map((element) => (
+            <Book key={element.id} element={element} />
           ))}
-        </S.Ul>
-      ) : ( */}
-      <S.StyleUlBooks>
-        {ListBooks.map((element) => (
-          <Book key={element.id} element={element} />
-        ))}
-      </S.StyleUlBooks>
+        </S.StyleUlBooks>
+      ) : (
+        <S.StyleUlBooks>
+          {ListBooks.map((element) => (
+            <Book key={element.id} element={element} />
+          ))}
+        </S.StyleUlBooks>
+      )}
     </>
   );
 }
