@@ -1,4 +1,4 @@
-function ModalDescription (){
+export function ModalDescription (){
     return (
         <section>
             <div className="cardModalDescription">
@@ -10,4 +10,3 @@ function ModalDescription (){
     )
 }
 
-export {ModalDescription}

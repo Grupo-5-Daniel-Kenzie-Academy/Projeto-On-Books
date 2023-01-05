@@ -1,6 +1,6 @@
 import { StyledSection } from "./Styled"
 
-function ModalFavorit (){
+export function ModalFavorit (){
     return (
         <StyledSection>
             <div className="cardModalFavorit">
@@ -19,5 +19,3 @@ function ModalFavorit (){
         </StyledSection>
     )
 }
-
-export {ModalFavorit}
