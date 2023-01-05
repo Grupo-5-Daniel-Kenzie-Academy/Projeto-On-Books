@@ -3,9 +3,10 @@ import bgImg from "../../assets/img/livros-hp.png";
 
 export const StyledRegisterPage = styled.main`
   width: 100%;
+
   min-height: 90vh;
 
-  padding: 1.5rem;
+  padding: 2rem;
 
   background-color: var(--grey-3);
 

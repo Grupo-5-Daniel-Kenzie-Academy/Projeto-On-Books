@@ -4,7 +4,6 @@ import { liCategorie } from "../../Categories";
 import * as S from "./style";
 
 export function Book({ element }: { element: IBooks }) {
-  console.log(element);
   return (
     <S.StyleLi >
       <figure>
