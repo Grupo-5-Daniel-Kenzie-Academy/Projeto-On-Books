@@ -4,31 +4,33 @@ import fotoRosto from "../../assets/img/rostinho.jpeg";
 import icone from "../../assets/img/iconeLogout.svg";
 import iconeLupa from "../../assets/img/iconeLupa.svg";
 import { StyleMain, StyleReader, StyleSectionPesq } from "./style";
-
+import { useContext } from "react";
 import { ListBooks } from "../../testeDB";
 import { BookList } from "../../components/BookList";
 import { useEffect, useState } from "react";
 import { api } from "../../api/api";
+import { DashContext } from "../../contexts/DashboardContext/DashContext";
 
 export const Dashboard = () => {
   const [dados, definirDados] = useState(null);
   const navigate = useNavigate();
 
+  const { searchFilter } = useContext(DashContext);
+
   interface iResponseLogin {
-    accessToken: string
-    user: iUser
+    accessToken: string;
+    user: iUser;
   }
 
   interface iUser {
-    email: string
-    firstname: string
-    lastname: string
-    age: number
-    id: number
+    email: string;
+    firstname: string;
+    lastname: string;
+    age: number;
+    id: number;
   }
 
   useEffect(() => {
-
     async function protejerRotas() {
       const token = localStorage.getItem("@Token");
 
@@ -40,13 +42,13 @@ export const Dashboard = () => {
         const response = await api.get("/livros", {
           headers: {
             authorization: `Bearer ${token}`,
-          }
+          },
         });
       } catch {
         navigate("/login");
       }
     }
-    protejerRotas()
+    protejerRotas();
   });
 
   return (
@@ -85,10 +87,22 @@ export const Dashboard = () => {
               <button>Terror</button>
             </ul>
           </div>
-          <div className="divPesquisa">
-            <input type="text" placeholder="Pesquise um livro" />
-            <img src={iconeLupa} alt="imagem de uma lupa" />
-          </div>
+          <form
+            className="divPesquisa"
+            onSubmit={(event) => {
+              event.preventDefault();
+              searchFilter(event, ListBooks);
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Pesquise um livro"
+              id="InputSearch"
+            />
+            <button type="submit">
+              <img src={iconeLupa} alt="imagem de uma lupa" />
+            </button>
+          </form>
         </StyleSectionPesq>
 
         <section>
