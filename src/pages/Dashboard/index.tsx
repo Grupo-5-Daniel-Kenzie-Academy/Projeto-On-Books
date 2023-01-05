@@ -1,10 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logoTitle from "../../assets/img/Logo.svg";
 import fotoRosto from "../../assets/img/rostinho.jpeg";
 import icone from "../../assets/img/iconeLogout.svg";
 import iconeLupa from "../../assets/img/iconeLupa.svg";
 import { StyleMain, StyleReader, StyleSectionPesq } from "./style";
-import { useState } from "react";
 import { ListBooks } from "../../testeDB";
 import { BookList } from "../../components/BookList";
 import { ModalFavorit } from "../../components/ModalFavorit";
