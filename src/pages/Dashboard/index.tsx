@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logoTitle from "../../assets/img/Logo.svg";
 import fotoRosto from "../../assets/img/rostinho.jpeg";
 import icone from "../../assets/img/iconeLogout.svg";
@@ -7,8 +7,48 @@ import { StyleMain, StyleReader, StyleSectionPesq } from "./style";
 
 import { ListBooks } from "../../testeDB";
 import { BookList } from "../../components/BookList";
+import { useEffect, useState } from "react";
+import { api } from "../../api/api";
 
 export const Dashboard = () => {
+  const [dados, definirDados] = useState(null);
+  const navigate = useNavigate();
+
+  interface iResponseLogin {
+    accessToken: string
+    user: iUser
+  }
+
+  interface iUser {
+    email: string
+    firstname: string
+    lastname: string
+    age: number
+    id: number
+  }
+
+  useEffect(() => {
+
+    async function protejerRotas() {
+      const token = localStorage.getItem("@Token");
+
+      if (!token) {
+        navigate("/login");
+      }
+
+      try {
+        const response = await api.get("/livros", {
+          headers: {
+            authorization: `Bearer ${token}`,
+          }
+        });
+      } catch {
+        navigate("/login");
+      }
+    }
+    protejerRotas()
+  });
+
   return (
     <>
       <StyleReader>
