@@ -128,8 +128,8 @@ export function Login (){
               </div>
               <button className="button">Logar</button>
             </form>
-            <span>Ainda não possui cadastro</span>
-            <Link className="button" to="/register">
+            <span className="messageRegister">Ainda não possui cadastro</span>
+            <Link className="registerButton" to="/register">
               Cadastrar-se
             </Link>
           </div>
@@ -140,3 +140,5 @@ export function Login (){
     </SlyledDiv>
   );
 };
+
+
