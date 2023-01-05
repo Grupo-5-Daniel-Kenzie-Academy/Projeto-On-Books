@@ -6,7 +6,7 @@ import * as S from "./style";
 export function Book({ element }: { element: IBooks }) {
   console.log(element);
   return (
-    <S.StyleLi>
+    <S.StyleLi >
       <figure>
         <img className="imgBook" src={element.img} alt="" />
       </figure>
