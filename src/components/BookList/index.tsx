@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
 import { IBooks } from "../../testeDB";
 import { Book } from "./Book";
@@ -9,7 +9,18 @@ interface iBookList {
 }
 
 export function BookList({ ListBooks }: iBookList) {
-  const { filteredBooks } = useContext(DashContext);
+  const {
+    filteredBooks,
+    categoryBooks,
+    categoryFilter,
+    filterCategoryFunction,
+  } = useContext(DashContext);
+  console.log(categoryFilter, categoryBooks);
+
+  useEffect(() => {
+    filterCategoryFunction();
+  }, [categoryFilter]);
+
   return (
     <>
       {filteredBooks.length > 0 ? (
@@ -18,9 +29,15 @@ export function BookList({ ListBooks }: iBookList) {
             <Book key={element.id} element={element} />
           ))}
         </S.StyleUlBooks>
-      ) : (
+      ) : categoryFilter === "todos" && categoryBooks.length == 0 ? (
         <S.StyleUlBooks>
           {ListBooks.map((element) => (
+            <Book key={element.id} element={element} />
+          ))}
+        </S.StyleUlBooks>
+      ) : (
+        <S.StyleUlBooks>
+          {categoryBooks.map((element) => (
             <Book key={element.id} element={element} />
           ))}
         </S.StyleUlBooks>
