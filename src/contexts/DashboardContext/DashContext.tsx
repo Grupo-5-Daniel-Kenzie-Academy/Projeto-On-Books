@@ -30,8 +30,6 @@ export function DashProvider({ children }: IDashProviderProps) {
   const [filteredBooks, setFilteredBooks] = useState<IBooks[]>([]);
   const [categoryFilter, setCategoryFilter] = useState<string>("todos");
 
-  const [categoryBooks, setCategoryBooks] = useState<IBooks[]>([]);
-
   const [read, setRead] = useState<IBooks[]>([]);
   const [noRead, setNoRead] = useState([]);
   const [allReadBook, setAllReadBook] = useState([]);
@@ -214,10 +212,10 @@ export function DashProvider({ children }: IDashProviderProps) {
         read,
         AllBooks,
         library,
-        favoritModal,
+        /* favoritModal,
         setFavoritModal,
         descriptionModal,
-        setDescriptionModal,
+        setDescriptionModal,*/
       }}
     >
       {children}
