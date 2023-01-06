@@ -4,7 +4,7 @@ import fotoRosto from "../../assets/img/rostinho.jpeg";
 import icone from "../../assets/img/iconeLogout.svg";
 import iconeLupa from "../../assets/img/iconeLupa.svg";
 import { StyleMain, StyleReader, StyleSectionPesq } from "./style";
-
+import "animate.css";
 import { ListBooks } from "../../testeDB";
 import { BookList } from "../../components/BookList";
 
