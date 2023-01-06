@@ -15,7 +15,6 @@ export function BookList({ ListBooks }: iBookList) {
     categoryFilter,
     filterCategoryFunction,
   } = useContext(DashContext);
-  console.log(categoryFilter, categoryBooks);
 
   useEffect(() => {
     filterCategoryFunction();

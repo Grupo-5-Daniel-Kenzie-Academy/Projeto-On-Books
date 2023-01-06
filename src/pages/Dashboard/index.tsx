@@ -13,20 +13,29 @@ import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { api } from "../../api/api";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
+import { AuthContext } from "../../contexts/UserContext/AuthContext";
+import { ToastContainer } from "react-toastify";
+import { BookListRead } from "../../components/BookListRead";
 
 export const Dashboard = () => {
   const [favoritModal, setFavoritModal] = useState(false);
   const [descriptionModal, setDescriptionModal] = useState(false);
   const [dados, definirDados] = useState(null);
-  const navigate = useNavigate();
 
-  const { searchFilter, setCategoryFilter, filterCategoryFunction } =
+  const { searchFilter, setCategoryFilter, filterCategoryFunction, readBooks, read, AllBooks, library } =
     useContext(DashContext);
+
+  const { protectRoutes } = useContext(AuthContext);
 
   interface iResponseLogin {
     accessToken: string;
     user: iUser;
   }
+  useEffect(() => {
+    AllBooks();
+    readBooks();
+  }, []);
+  console.log(read)
 
   interface iUser {
     email: string;
@@ -37,25 +46,8 @@ export const Dashboard = () => {
   }
 
   useEffect(() => {
-    async function protejerRotas() {
-      const token = localStorage.getItem("@Token");
-
-      if (!token) {
-        navigate("/login");
-      }
-
-      try {
-        const response = await api.get("/livros", {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        });
-      } catch {
-        navigate("/login");
-      }
-    }
-    protejerRotas();
-  });
+    protectRoutes();
+  }, []);
 
   return (
     <>
@@ -72,6 +64,7 @@ export const Dashboard = () => {
       </StyleReader>
       <StyleMain>
         <StyleSectionPesq>
+        <BookListRead/>
           <div>
             <h4>Filtrar por categoria:</h4>
             <ul>
@@ -157,6 +150,7 @@ export const Dashboard = () => {
         descrição do livro
       </button>
       {descriptionModal ? <ModalDescription /> : null}
+      <ToastContainer position="top-center" autoClose={1000} />
     </>
   );
 };

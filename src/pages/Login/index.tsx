@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {  useForm } from "react-hook-form";
 import { SubmitHandler } from "react-hook-form/dist/types/form";
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ import { Header } from "../../components/Header";
 import { LoginSchema } from "../../schema/LoginSchema";
 import { yupResolver } from "@hookform/resolvers/yup"
 import logo from "../../assets/img/livros.svg"
+import { AuthContext } from "../../contexts/UserContext/AuthContext";
 
 interface iData{
   email: string,
@@ -42,51 +43,14 @@ export function Login (){
     resolver: yupResolver(LoginSchema),
     mode: "onBlur"
   });
+  const { loginUser, autoLogin } = useContext(AuthContext)
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function autoLogin() {
-      const token = localStorage.getItem("@Token");
-
-      if (!token) {
-        return null;
-      }
-
-      try {
-        const response = await api.get<iResponseLogin>("/livros", {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        });
-
-        navigate("/dashboard");
-      } catch {
-        return null;
-      }
-    }
     autoLogin();
   }, []);
 
-  async function loginUser(data : iData ) {
-    console.log(data);
-
-    try {
-      const response = await api.post("/login", data);
-      toast.success("Usuário Logado! 😎");
-      console.log(response);
-
-      const { accessToken, user } = response.data;
-      localStorage.setItem("@Token", accessToken);
-      setData(user);
-
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 2000);
-    } catch {
-      toast.error("Email ou senha incorreto! ");
-    }
-  }
 
   const submit: SubmitHandler<iData> = (data) =>{
     loginUser(data)
