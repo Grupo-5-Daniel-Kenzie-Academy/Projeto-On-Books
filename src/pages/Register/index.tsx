@@ -7,6 +7,8 @@ import { registerSchema } from "../../schema/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../api/api";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/UserContext/AuthContext";
 /* import { toast } from "react-toastify"; */
 
 interface iRegisterData {
@@ -17,32 +19,8 @@ interface iRegisterData {
   confirmed_password?: string;
 }
 
-interface iResponseData {
-  accessToken: string;
-  user: {
-    email: string;
-    name: string;
-    id: string;
-  };
-}
 export const Register = () => {
-  const navigate = useNavigate();
-
-  const userRegister = async (formData: iRegisterData) => {
-    try {
-      await api.post<iResponseData>("/users", formData);
-
-      /*   toast.success("Cadastro realizado com sucesso!", {
-        autoClose: 3000,
-      });
- */
-      setTimeout(() => {
-        navigate("/login");
-      }, 3000);
-    } catch (error) {
-      /*   toast.error("Oops, algo deu errado..."); */
-    }
-  };
+  const { userRegister } = useContext(AuthContext)
 
   const {
     register,
