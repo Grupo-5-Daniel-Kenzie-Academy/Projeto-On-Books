@@ -3,8 +3,11 @@ import styled from "styled-components";
 export const Main = styled.main`
   background-color: var(--grey-3);
 
-  min-height: 91vh;
+  min-height: 100vh;
   padding: 34px;
+
+  display: flex;
+  align-items: center;
 
   div {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
