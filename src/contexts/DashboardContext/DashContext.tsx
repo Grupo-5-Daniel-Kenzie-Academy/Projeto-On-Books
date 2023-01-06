@@ -27,14 +27,13 @@ export const DashContext = createContext<IDashContext>({} as IDashContext);
 export function DashProvider({ children }: IDashProviderProps) {
   const token = localStorage.getItem("@Token");
   const id = localStorage.getItem("@id");
-
   const [filteredBooks, setFilteredBooks] = useState<IBooks[]>([]);
-
   const [categoryFilter, setCategoryFilter] = useState<string>("todos");
+
+  const [categoryBooks, setCategoryBooks] = useState<IBooks[]>([]);
 
   const [read, setRead] = useState<IBooks[]>([]);
   const [noRead, setNoRead] = useState([]);
-
   const [allReadBook, setAllReadBook] = useState([]);
   const [noAllReadBook, setNoAllReadBook] = useState([]);
   const [library, setLibrary] = useState<IBooks[]>([]);
@@ -215,6 +214,10 @@ export function DashProvider({ children }: IDashProviderProps) {
         read,
         AllBooks,
         library,
+        favoritModal,
+        setFavoritModal,
+        descriptionModal,
+        setDescriptionModal,
       }}
     >
       {children}
