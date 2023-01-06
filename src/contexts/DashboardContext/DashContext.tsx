@@ -38,7 +38,9 @@ export function DashProvider({ children }: IDashProviderProps) {
   const [ noAllReadBook, setNoAllReadBook ] = useState([])
   const [ library, setLibrary ] = useState([])
 
-  console.log(allReadBook)
+  const [favoritModal, setFavoritModal] = useState(false);
+  const [descriptionModal, setDescriptionModal] = useState(false);
+
 
   function filterCategoryFunction() {
     const categoryFilteredBooks = ListBooks.filter((books) => {
@@ -100,7 +102,6 @@ export function DashProvider({ children }: IDashProviderProps) {
           authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data)
       setAllReadBook(response.data)
 
     } catch{
@@ -115,7 +116,6 @@ export function DashProvider({ children }: IDashProviderProps) {
           authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data)
       setLibrary(response.data)
 
     } catch{
@@ -125,8 +125,6 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   async function addReadBooks(element){
     element.userId = Number(id)
-    console.log(element.id)
-    console.log(allReadBook)
     const teste = Math.floor(Math.random() * (10000 - 1 + 1) + 1)
     let objetive = {
       "id": `${teste}`,
@@ -191,7 +189,6 @@ export function DashProvider({ children }: IDashProviderProps) {
 
 
   async function RemoveReadBooks(ids){
-    console.log(ids)
     try{
       const response = await api.delete(`/lidos/${ids}`, {
         headers: {
@@ -208,7 +205,6 @@ export function DashProvider({ children }: IDashProviderProps) {
   }
 
   async function RemoveNoReadBooks(ids){
-    console.log(ids)
     try{
       const response = await api.delete(`//${ids}`, {
         headers: {
@@ -238,7 +234,11 @@ export function DashProvider({ children }: IDashProviderProps) {
         addReadBooks,
         read,
         AllBooks,
-        library
+        library,
+        favoritModal,
+        setFavoritModal,
+        descriptionModal,
+        setDescriptionModal
       }}
     >
       {children}

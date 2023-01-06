@@ -40,12 +40,10 @@ export function AuthProvider({ children }: IAuthProviderProps) {
   const navigate = useNavigate();
 
   async function loginUser(data: iData) {
-    console.log(data);
 
     try {
       const response = await api.post("/login", data);
       toast.success("Usuário Logado! 😎");
-      console.log(response);
 
       const { accessToken, user } = response.data;
       localStorage.setItem("@Token", accessToken);
@@ -88,7 +86,6 @@ export function AuthProvider({ children }: IAuthProviderProps) {
           authorization: `Bearer ${token}`,
         },
       });
-      console.log(response)
       navigate("/dashboard");
     } catch {
       return null;

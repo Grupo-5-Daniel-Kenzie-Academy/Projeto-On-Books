@@ -17,8 +17,7 @@ import { ToastContainer } from "react-toastify";
 import { BookListRead } from "../../components/BookListRead";
 
 export const Dashboard = () => {
-  const [favoritModal, setFavoritModal] = useState(false);
-  const [descriptionModal, setDescriptionModal] = useState(false);
+  
   const [dados, definirDados] = useState(null);
 
   const { searchFilter, setCategoryFilter, filterCategoryFunction, readBooks, read, AllBooks, library } =
@@ -34,7 +33,6 @@ export const Dashboard = () => {
     AllBooks();
     readBooks();
   }, []);
-  console.log(read)
 
   interface iUser {
     email: string;
@@ -142,13 +140,6 @@ export const Dashboard = () => {
           <BookList ListBooks={ListBooks} />
         </section>
       </StyleMain>
-      <button onClick={() => setFavoritModal(true)}>favoritar livro</button>
-      {favoritModal ? <ModalFavorit /> : null}
-
-      <button onClick={() => setDescriptionModal(true)}>
-        descrição do livro
-      </button>
-      {descriptionModal ? <ModalDescription /> : null}
       <ToastContainer position="top-center" autoClose={1000} />
     </>
   );
