@@ -11,6 +11,12 @@ import { iResponseLogin } from "../../pages/Login";
 export interface IAuthProviderProps {
   children: ReactNode;
 }
+interface IAuthContext {
+  loginUser: (data: iData) => void;
+  userRegister: (formData: iRegisterData) => void;
+  autoLogin: () => void;
+  protectRoutes: () => void;
+}
 
 interface iData {
   email: string;
@@ -34,7 +40,7 @@ interface iRegisterData {
   confirmed_password?: string;
 }
 
-export const AuthContext = createContext({});
+export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 export function AuthProvider({ children }: IAuthProviderProps) {
   const navigate = useNavigate();
@@ -49,7 +55,7 @@ export function AuthProvider({ children }: IAuthProviderProps) {
 
       const { accessToken, user } = response.data;
       localStorage.setItem("@Token", accessToken);
-      localStorage.setItem("@id",user.id)
+      localStorage.setItem("@id", user.id);
 
       setTimeout(() => {
         navigate("/dashboard");
@@ -88,7 +94,7 @@ export function AuthProvider({ children }: IAuthProviderProps) {
           authorization: `Bearer ${token}`,
         },
       });
-      console.log(response)
+      console.log(response);
       navigate("/dashboard");
     } catch {
       return null;
@@ -114,7 +120,9 @@ export function AuthProvider({ children }: IAuthProviderProps) {
   }
 
   return (
-    <AuthContext.Provider value={{ loginUser, userRegister, autoLogin, protectRoutes }}>
+    <AuthContext.Provider
+      value={{ loginUser, userRegister, autoLogin, protectRoutes }}
+    >
       {children}
     </AuthContext.Provider>
   );

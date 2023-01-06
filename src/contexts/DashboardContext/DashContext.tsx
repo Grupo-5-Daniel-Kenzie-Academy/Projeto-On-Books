@@ -17,6 +17,10 @@ export interface IDashContext {
   categoryBooks: IBooks[];
   filterCategoryFunction: () => void;
   readBooks: () => Promise<void>;
+  addReadBooks: (element: IBooks) => void;
+  read: IBooks[];
+  AllBooks: () => void;
+  library: IBooks[];
 }
 
 export const DashContext = createContext<IDashContext>({} as IDashContext);
@@ -31,14 +35,12 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   const [categoryBooks, setCategoryBooks] = useState<IBooks[]>([]);
 
-  const [read, setRead] = useState([]);
+  const [read, setRead] = useState<IBooks[]>([]);
   const [noRead, setNoRead] = useState([]);
 
   const [allReadBook, setAllReadBook] = useState([]);
   const [noAllReadBook, setNoAllReadBook] = useState([]);
-  const [library, setLibrary] = useState([]);
-
-  console.log(allReadBook);
+  const [library, setLibrary] = useState<IBooks[]>([]);
 
   function filterCategoryFunction() {
     const categoryFilteredBooks = ListBooks.filter((books) => {
@@ -74,9 +76,7 @@ export function DashProvider({ children }: IDashProviderProps) {
       });
 
       setRead(response.data);
-    } catch {
-      console.log("eerro...");
-    }
+    } catch {}
   }
 
   async function noReadBooks() {
@@ -88,9 +88,7 @@ export function DashProvider({ children }: IDashProviderProps) {
       });
 
       setNoRead(response.data);
-    } catch {
-      console.log("eerro...");
-    }
+    } catch {}
   }
 
   async function AllBooks() {
@@ -100,11 +98,8 @@ export function DashProvider({ children }: IDashProviderProps) {
           authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data);
       setAllReadBook(response.data);
-    } catch {
-      console.log("eerro...");
-    }
+    } catch {}
   }
 
   async function All() {
@@ -114,17 +109,11 @@ export function DashProvider({ children }: IDashProviderProps) {
           authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data);
       setLibrary(response.data);
-    } catch {
-      console.log("eerro...");
-    }
+    } catch {}
   }
 
-  async function addReadBooks(element) {
-    element.userId = Number(id);
-    console.log(element.id);
-    console.log(allReadBook);
+  async function addReadBooks(element: IBooks) {
     const teste = Math.floor(Math.random() * (10000 - 1 + 1) + 1);
     let objetive = {
       id: `${teste}`,
@@ -149,9 +138,7 @@ export function DashProvider({ children }: IDashProviderProps) {
       });
       readBooks();
       AllBooks();
-    } catch {
-      console.log("eerro");
-    }
+    } catch {}
   }
 
   // async function noAddReadBooks(element){
@@ -187,8 +174,7 @@ export function DashProvider({ children }: IDashProviderProps) {
   //   }
   // }
 
-  async function RemoveReadBooks(ids) {
-    console.log(ids);
+  async function RemoveReadBooks(ids: number) {
     try {
       const response = await api.delete(`/lidos/${ids}`, {
         headers: {
@@ -204,8 +190,7 @@ export function DashProvider({ children }: IDashProviderProps) {
     }
   }
 
-  async function RemoveNoReadBooks(ids) {
-    console.log(ids);
+  async function RemoveNoReadBooks(ids: number) {
     try {
       const response = await api.delete(`//${ids}`, {
         headers: {
