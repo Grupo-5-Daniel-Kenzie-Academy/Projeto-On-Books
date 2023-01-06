@@ -14,7 +14,6 @@ export interface IDashContext {
   filteredBooks: IBooks[];
   setCategoryFilter: React.Dispatch<React.SetStateAction<string>>;
   categoryFilter: string;
-  categoryBooks: IBooks[];
   filterCategoryFunction: () => void;
   readBooks: () => Promise<void>;
   addReadBooks: (element: IBooks) => void;
@@ -33,8 +32,6 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   const [categoryFilter, setCategoryFilter] = useState<string>("todos");
 
-  const [categoryBooks, setCategoryBooks] = useState<IBooks[]>([]);
-
   const [read, setRead] = useState<IBooks[]>([]);
   const [noRead, setNoRead] = useState([]);
 
@@ -51,7 +48,7 @@ export function DashProvider({ children }: IDashProviderProps) {
         return books;
       }
     });
-    setCategoryBooks(categoryFilteredBooks);
+    setFilteredBooks(categoryFilteredBooks);
   }
 
   function searchFilter(event: any, books: IBooks[]) {
@@ -211,7 +208,6 @@ export function DashProvider({ children }: IDashProviderProps) {
         searchFilter,
         filteredBooks,
         setCategoryFilter,
-        categoryBooks,
         categoryFilter,
         filterCategoryFunction,
         readBooks,
