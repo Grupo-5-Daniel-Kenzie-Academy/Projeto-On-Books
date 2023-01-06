@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-const StyledSection = styled.section`
+export const StyledSection = styled.section`
 
 position: fixed;
 
@@ -65,4 +65,3 @@ h3{
 
 `
 
-export {StyledSection}

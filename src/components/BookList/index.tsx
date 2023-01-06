@@ -26,7 +26,9 @@ export function BookList({ ListBooks }: iBookList) {
         </S.StyleUlBooks>
       ) : (
         <S.StyleUlBooks>
-          {filteredBooks.map((element) => (
+
+          {categoryBooks.map((element) => (
+            
             <Book key={element.id} element={element} />
           ))}
         </S.StyleUlBooks>

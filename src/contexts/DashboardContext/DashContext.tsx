@@ -34,7 +34,11 @@ export function DashProvider({ children }: IDashProviderProps) {
   const [noRead, setNoRead] = useState([]);
   const [allReadBook, setAllReadBook] = useState([]);
   const [noAllReadBook, setNoAllReadBook] = useState([]);
-  const [library, setLibrary] = useState<IBooks[]>([]);
+  const [library, setLibrary] = useState([]);
+
+  const [favoritModal, setFavoritModal] = useState(false);
+  const [descriptionModal, setDescriptionModal] = useState(false);
+  const [itemModal, setItemModal] = useState([])
 
   function filterCategoryFunction() {
     const categoryFilteredBooks = ListBooks.filter((books) => {
@@ -92,8 +96,13 @@ export function DashProvider({ children }: IDashProviderProps) {
           authorization: `Bearer ${token}`,
         },
       });
-      setAllReadBook(response.data);
-    } catch {}
+      
+      setAllReadBook(response.data)
+
+    } catch{
+        console.log('eerro...')
+    }
+
   }
 
   async function All() {
@@ -103,12 +112,17 @@ export function DashProvider({ children }: IDashProviderProps) {
           authorization: `Bearer ${token}`,
         },
       });
-      setLibrary(response.data);
-    } catch {}
+
+      setLibrary(response.data)
+
+    } catch{
+        console.log('eerro...')
+    }
   }
 
-  async function addReadBooks(element: IBooks) {
-    const teste = Math.floor(Math.random() * (10000 - 1 + 1) + 1);
+  async function addReadBooks(element){
+    element.userId = Number(id)
+    const teste = Math.floor(Math.random() * (10000 - 1 + 1) + 1)
     let objetive = {
       id: `${teste}`,
       categories: `${element.categories}`,
@@ -168,6 +182,7 @@ export function DashProvider({ children }: IDashProviderProps) {
   //   }
   // }
 
+
   async function RemoveReadBooks(ids: number) {
     try {
       const response = await api.delete(`/lidos/${ids}`, {
@@ -183,6 +198,7 @@ export function DashProvider({ children }: IDashProviderProps) {
       window.scrollTo(0, 0);
     }
   }
+
 
   async function RemoveNoReadBooks(ids: number) {
     try {
@@ -212,10 +228,12 @@ export function DashProvider({ children }: IDashProviderProps) {
         read,
         AllBooks,
         library,
-        /* favoritModal,
+        favoritModal,
         setFavoritModal,
         descriptionModal,
-        setDescriptionModal,*/
+        setDescriptionModal, 
+        itemModal,
+        setItemModal
       }}
     >
       {children}
