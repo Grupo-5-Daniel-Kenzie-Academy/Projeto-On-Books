@@ -1,15 +1,17 @@
-import { useContext } from "react"
-import { DashContext } from "../../contexts/DashboardContext/DashContext"
-import { BooksRead } from "./Book"
-import { StyleUl } from "./style"
+import { useContext } from "react";
+import { DashContext } from "../../contexts/DashboardContext/DashContext";
+import { BooksRead } from "./Book";
+import { StyleUl } from "./style";
 
+export function BookListRead() {
+  const { read, noRead } = useContext(DashContext);
 
-export function BookListRead(){
-    const { read } = useContext(DashContext)
-
-    return(
-        <StyleUl>
-           {read && read.map((element) => <BooksRead element={element}/>)}    
-        </StyleUl>
-    )
+  return (
+    <div>
+      <h2>Livros Para ler</h2>
+      <StyleUl>
+        {read && read.map((element) => <BooksRead element={element} />)}
+      </StyleUl>
+    </div>
+  );
 }

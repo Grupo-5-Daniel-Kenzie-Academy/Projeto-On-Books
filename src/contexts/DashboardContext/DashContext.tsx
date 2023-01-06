@@ -36,6 +36,7 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   const [ allReadBook, setAllReadBook ] = useState([])
   const [ noAllReadBook, setNoAllReadBook ] = useState([])
+  const [ library, setLibrary ] = useState([])
 
   console.log(allReadBook)
 
@@ -107,6 +108,21 @@ export function DashProvider({ children }: IDashProviderProps) {
     }
   }
 
+  async function All(){
+    try{
+      const response = await api.get(`/livros`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response.data)
+      setLibrary(response.data)
+
+    } catch{
+        console.log('eerro...')
+    }
+  }
+
   async function addReadBooks(element){
     element.userId = Number(id)
     console.log(element.id)
@@ -138,13 +154,15 @@ export function DashProvider({ children }: IDashProviderProps) {
     } catch{
         console.log('eerro')
     }
-  }   
-
-  // async function addNoReadBooks(element){
+  }  
+  
+  // async function noAddReadBooks(element){
   //   element.userId = Number(id)
-
-  //   const objetive = {
-  //     "id": `${allReadBook.length}`,
+  //   console.log(element.id)
+  //   console.log(allReadBook)
+  //   const teste = Math.floor(Math.random() * (10000 - 1 + 1) + 1)
+  //   let objetive = {
+  //     "id": `${teste}`,
   //     "categories": `${element.categories}`,
   //     "img": `${element.img}`,
   //     "title": `${element.title}`,
@@ -153,13 +171,13 @@ export function DashProvider({ children }: IDashProviderProps) {
   //   const names = read.map((element) => element.title)
   //   const verification = names.indexOf(element.title)
 
-  //   // if(verification !== -1){
-  //   //   RemoveReadBooks(element.id)
-  //   //   return null;
-  //   // }
+  //   if(verification !== -1){
+  //     RemoveReadBooks(element.id)
+  //     return null;
+  //   }
 
   //   try{
-  //     const response = await api.post(`/semLer`, objetive,{
+  //     const response = await api.post(`/lidos`, objetive,{
   //       headers: {
   //         authorization: `Bearer ${token}`,
   //       },
@@ -170,6 +188,7 @@ export function DashProvider({ children }: IDashProviderProps) {
   //       console.log('eerro')
   //   }
   // }   
+
 
   async function RemoveReadBooks(ids){
     console.log(ids)
@@ -183,25 +202,28 @@ export function DashProvider({ children }: IDashProviderProps) {
       readBooks()
       AllBooks()
     } catch{
-      toast.error("Erro de Requisição, Tente novamente mais tarde")
+      toast("Item Já Adicionado no Seu Carrinho")
+      window.scrollTo(0, 0)
     }
   }
 
-  async function RemoveNoReadBooks(id){
-    console.log(id)
+  async function RemoveNoReadBooks(ids){
+    console.log(ids)
     try{
-      const response = await api.delete(`/semLer/${id}`, {
+      const response = await api.delete(`//${ids}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
       toast.info("Livro Removido Da Biblioteca dos Lidos 🗑️")
-      noReadBooks()
+      readBooks()
       AllBooks()
     } catch{
       toast.error("Erro de Requisição, Tente novamente mais tarde")
+
     }
   }
+
 
   return (
     <DashContext.Provider
@@ -215,7 +237,8 @@ export function DashProvider({ children }: IDashProviderProps) {
         readBooks,
         addReadBooks,
         read,
-        AllBooks
+        AllBooks,
+        library
       }}
     >
       {children}

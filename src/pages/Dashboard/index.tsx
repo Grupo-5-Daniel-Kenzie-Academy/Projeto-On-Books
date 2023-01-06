@@ -21,7 +21,7 @@ export const Dashboard = () => {
   const [descriptionModal, setDescriptionModal] = useState(false);
   const [dados, definirDados] = useState(null);
 
-  const { searchFilter, setCategoryFilter, filterCategoryFunction, readBooks, read, AllBooks } =
+  const { searchFilter, setCategoryFilter, filterCategoryFunction, readBooks, read, AllBooks, library } =
     useContext(DashContext);
 
   const { protectRoutes } = useContext(AuthContext);

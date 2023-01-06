@@ -7,7 +7,7 @@ import { DashContext } from "../../../contexts/DashboardContext/DashContext";
 
 export function Book({ element }: { element: IBooks }) {
   const { addReadBooks } = useContext(DashContext)
-
+console.log(element)
   return (
     <S.StyleLi >
       <figure>

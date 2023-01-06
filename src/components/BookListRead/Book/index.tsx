@@ -4,8 +4,8 @@ import { StyleLi } from "./style";
 
 export function BooksRead({element}) {
 
-    const { addReadBooks } = useContext(DashContext)
-  console.log(element);
+    const { addReadBooks, noAddReadBooks } = useContext(DashContext)
+//   console.log(element);
   return (
     <StyleLi key={element.title}>
       <figure>
