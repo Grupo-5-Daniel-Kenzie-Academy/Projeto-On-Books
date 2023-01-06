@@ -4,14 +4,14 @@ import { liCategorie } from "../../Categories";
 import * as S from "./style";
 
 export function Book({ element }: { element: IBooks }) {
-  console.log(element);
   return (
     <S.StyleLi>
       <figure>
-        <img src={element.img} alt="" />
+        <img className="imgBook" src={element.img} alt="" />
       </figure>
 
-      <ul>{element.categories.map((elem) => liCategorie({ elem }))}</ul>
+      {/* <ul>{element.categories.map((elem) => liCategorie({ elem }))}</ul> */}
+      {/* <p>{element.categories[0]}</p> */}
 
       <p>{element.title}</p>
       <div>

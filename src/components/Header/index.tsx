@@ -13,7 +13,7 @@ export function Header({ route1, route2, nameRoute1, nameRoute2 }: iRoutes) {
   return (
     <S.Header>
       <figure>
-        <img src={Logo} alt="" />
+        <img src={Logo} alt="Li-Marus" />
       </figure>
       <div>
         <Link to={route1}>{nameRoute1}</Link>

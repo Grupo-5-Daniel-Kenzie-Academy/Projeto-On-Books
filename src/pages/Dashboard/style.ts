@@ -1,7 +1,7 @@
 import styled from "styled-components";
 export const StyleMain = styled.main`
     min-height: 100vh;
-    background: #F8C1C1;
+    /* background: #F8C1C1; */
 `
 export const StyleReader = styled.header`
         width: 100%;
@@ -57,7 +57,6 @@ export const StyleSectionPesq = styled.section`
             padding-right: 10px;
 
 
-          border-bottom: 1px solid black;
 
             @media(max-width:949px){
                   flex-direction: column-reverse;

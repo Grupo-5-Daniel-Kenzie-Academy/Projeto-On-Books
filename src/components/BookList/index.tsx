@@ -1,3 +1,5 @@
+import { useContext, useEffect } from "react";
+import { DashContext } from "../../contexts/DashboardContext/DashContext";
 import { IBooks } from "../../testeDB";
 import { Book } from "./Book";
 import * as S from "./style";
@@ -7,20 +9,39 @@ interface iBookList {
 }
 
 export function BookList({ ListBooks }: iBookList) {
+  const {
+    filteredBooks,
+    categoryBooks,
+    categoryFilter,
+    filterCategoryFunction,
+  } = useContext(DashContext);
+  console.log(categoryFilter, categoryBooks);
+
+  useEffect(() => {
+    filterCategoryFunction();
+  }, [categoryFilter]);
+
   return (
     <>
-      {/* {filteredProducts.length > 0 ? (
-        <S.Ul>
-          {filteredProducts.map((element) => (
-            <Product key={element.id} element={element} />
+      {filteredBooks.length > 0 ? (
+        <S.StyleUlBooks>
+          {filteredBooks.map((element) => (
+            <Book key={element.id} element={element} />
           ))}
-        </S.Ul>
-      ) : ( */}
-      <S.StyleUlBooks>
-        {ListBooks.map((element) => (
-          <Book key={element.id} element={element} />
-        ))}
-      </S.StyleUlBooks>
+        </S.StyleUlBooks>
+      ) : categoryFilter === "todos" && categoryBooks.length == 0 ? (
+        <S.StyleUlBooks>
+          {ListBooks.map((element) => (
+            <Book key={element.id} element={element} />
+          ))}
+        </S.StyleUlBooks>
+      ) : (
+        <S.StyleUlBooks>
+          {categoryBooks.map((element) => (
+            <Book key={element.id} element={element} />
+          ))}
+        </S.StyleUlBooks>
+      )}
     </>
   );
 }

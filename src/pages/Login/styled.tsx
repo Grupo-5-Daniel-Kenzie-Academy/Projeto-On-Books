@@ -2,17 +2,24 @@ import styled from "styled-components";
 import logo from "../../assets/img/livros.svg";
 
 export const SlyledDiv = styled.div`
+
+  background-color: var(--grey-3);
+  min-height: 100vh;
+
   .divForm {
     width: 90%;
 
     margin: 0 auto;
-    border-radius: 8px;
+    border-radius: var(--radius-8);
 
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    background-color: #e9e0e0;
+    background-color: var(--white);
+
+    box-shadow: rgb(99 99 99 / 20%) 2px 5px 5px 0px;
+
   }
 
   .divBackground {
@@ -34,7 +41,8 @@ export const SlyledDiv = styled.div`
 
   h1 {
     padding: 13px 0px;
-    color: #edb24c;
+
+    font-size: var(--rem-16);
   }
 
   form {
@@ -44,18 +52,6 @@ export const SlyledDiv = styled.div`
     flex-direction: column;
   }
 
-  input {
-    width: 100%;
-    height: 45px;
-
-    font-size: 16px;
-    font-weight: 400;
-    border: 2px solid #edb24c;
-  }
-
-  label{
-    font-size:16px
-  }
 
   .input {
     width: 80%;
@@ -67,15 +63,39 @@ export const SlyledDiv = styled.div`
   .button {
     width: 80%;
     height: 45px;
-    max-width: 400px;
+    max-width: 500px;
 
     margin: 10px auto;
-    border-radius: 8px;
-    background: aliceblue;
+    border-radius: var(--radius-8);
+    background: var(--color-primary);
     
     display: flex;
     justify-content: center;
     align-items: center;
+
+    color: var(--white);
+  }
+
+  .messageRegister{
+    font-size: var(--rem-08);
+
+    color: var(--grey-5);
+  }
+
+  .registerButton{
+
+    padding: 8px 20px;
+
+    margin: 10px auto;
+    border-radius: var(--radius-8);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: var(--color-primary);
+    text-decoration: revert;
+
   }
 
   .flex {
@@ -88,13 +108,9 @@ export const SlyledDiv = styled.div`
   }
 
   @media (min-width: 800px) {
-    .flex {
-
-    }
 
     .divBackground {
       padding: 0;
-      background-color: #d60000;
       width: 45%;
       border-radius: 12px;
       margin: 0px 0px 0px 30px;
@@ -123,8 +139,6 @@ export const SlyledDiv = styled.div`
       justify-content: center;
     }
 
-    input{
-      max-width: 400px;
-    }
+    
   }
 `;

@@ -12,15 +12,15 @@ export const ListBooks: IBooks[] = [
     title: "God of war",
     description:
       "Um homem ou um deus? God of war é a ascenção de um novo deus! um homem que que foi a guerra por sua nação e diante da derrota e de sua morte ele chama por Ares o deus da guerra para lhe salvar e derrotar seus inimigos, a voz de Kratos é ouvida pelo deus e foi consedido a ele 2 laminas, as laminas do caos, com elas Kratos massacrou seus inimigos no campo de batalha e saiu vitorioso, mas tudo tem um preço, ao voltar para casa cego pelo ódio emprementados pelo deus da guerra, Kratos mata sua mulher e sua filha, ao se deparar com os corpos de sua filha e esposa em seus braços, Kratos jura vingar-se contra Ares.",
-    categories: ["ação", "Guerra", "Deuses", "Luta"],
-    img: "https://i.pinimg.com/564x/db/2f/a5/db2fa58bb4aa25122aa7452b095cf85a.jpg",
+    categories: ["Ação", "Guerra", "Deuses", "Luta"],
+    img: "https://http2.mlstatic.com/D_NQ_NP_738255-MLU50424321860_062022-W.jpg",
   },
   {
     id: 2,
     title: "Harry Potter e a pedra filosofal",
     description:
       "Em um mundo de magia, e bruxaria, fora da vista dos humanos não mágicos, existem bruxos e o maior bruxo das trevas que já existiu lança sua magia para aquilar seus inimigos, até o dia que ele se depara com uma criança, um bebe inofensivo ao qual também tem o mesmo destino de   seus inimigos, o bruxo lança sua magia contra a criança que sai ilesa apenas com uma cicatriz na testa, o bruxo desaparece do mundo após isso, alguns dizem que ele morreu, outros dizem que ele      apenas está fraco demais para voltar, e o menino? há de crescer e descobrir a lenda que se tornou.",
-    categories: ["ação", "Misterio", "Fantasia", "Magia"],
+    categories: ["Ação", "Misterio", "Fantasia", "Magia"],
     img: "https://i.pinimg.com/564x/59/36/15/593615c1b82617e6c24f9c8d1b912e5d.jpg",
   },
   {

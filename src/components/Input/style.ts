@@ -8,9 +8,12 @@ export const StyledFieldset = styled.fieldset`
     font-family: "Inter";
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-    color: #000000;
+    font-size: var(--rem-11);
+    margin-bottom: 6px;
+  }
+
+  input::placeholder{
+    color: var(--color-primary-50);
   }
 `;
 
@@ -20,14 +23,15 @@ export const Input = styled.input`
   height: 34px;
   padding-left: 12px;
 
-  background: #c4d3f1;
-  border: 1px solid #d62424;
-  border-radius: 4px;
+  background: var(--grey-4);
+  border: 1px solid var(--grey-3);
+  border-radius: var(--radius-4);
 
   font-family: "Inter";
   font-style: normal;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 16px;
-  color: rgba(193, 48, 48, 0.5);
+  font-weight: 500;
+  font-size: var(--rem-09);
+
+  margin-bottom: 6px;
+
 `;
