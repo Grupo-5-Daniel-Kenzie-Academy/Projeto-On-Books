@@ -8,6 +8,9 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   box-shadow: rgb(99 99 99 / 20%) 2px 4px 5px 0px;
 

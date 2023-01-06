@@ -6,18 +6,33 @@ export const SlyledDiv = styled.div`
   background-color: var(--grey-3);
   min-height: 100vh;
 
+  align-items: center;
+  
+
+  @media(min-width: 800px){
+    display: flex;
+    justify-content: center;
+
+  }
+ main{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+ }
+
   .divForm {
     width: 90%;
 
+    
     margin: 0 auto;
     border-radius: var(--radius-8);
-
+    
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    
     background-color: var(--white);
-
+    
     box-shadow: rgb(99 99 99 / 20%) 2px 5px 5px 0px;
 
   }
@@ -26,6 +41,7 @@ export const SlyledDiv = styled.div`
     width: 90%;
     height: max-content;
     max-width: 650px;
+
 
     margin: 0 auto;
     padding: 32px 15px;
@@ -41,7 +57,6 @@ export const SlyledDiv = styled.div`
 
   h1 {
     padding: 13px 0px;
-
     font-size: var(--rem-16);
   }
 
@@ -50,14 +65,8 @@ export const SlyledDiv = styled.div`
 
     display: flex;
     flex-direction: column;
-  }
-
-
-  .input {
-    width: 80%;
-    max-width: 400px;
-
-    margin: 5px auto;
+    gap: 15px;
+    padding: 0 10px;
   }
 
   .button {
@@ -97,11 +106,6 @@ export const SlyledDiv = styled.div`
     text-decoration: revert;
 
   }
-
-  .flex {
-    margin-top: 40px;
-  }
-
   .error{
     margin: 0 auto;
     display: table
