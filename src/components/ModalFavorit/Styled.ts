@@ -11,14 +11,15 @@ height: 100%;
 top: 0;
 left: 0;
 
-background-color: var(--grey-1);
+background-color: var(--grey-6);
 
 display: flex;
 align-items: center;
 justify-content: center;
 
 .cardModalFavorit{
-    background-color: var(--color-modal);
+    background-color: var(--color-primary-70);
+    color: var(--white);
 
     height: 140px;
     width: 85%;
