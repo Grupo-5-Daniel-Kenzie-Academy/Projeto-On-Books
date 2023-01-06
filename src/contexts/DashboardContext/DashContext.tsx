@@ -111,8 +111,9 @@ export function DashProvider({ children }: IDashProviderProps) {
     element.userId = Number(id)
     console.log(element.id)
     console.log(allReadBook)
+    const teste = Math.floor(Math.random() * (10000 - 1 + 1) + 1)
     let objetive = {
-      "id": `${allReadBook.length}`,
+      "id": `${teste}`,
       "categories": `${element.categories}`,
       "img": `${element.img}`,
       "title": `${element.title}`,
@@ -122,7 +123,7 @@ export function DashProvider({ children }: IDashProviderProps) {
     const verification = names.indexOf(element.title)
 
     if(verification !== -1){
-      RemoveReadBooks(element.id * 3)
+      RemoveReadBooks(element.id)
       return null;
     }
 
@@ -139,36 +140,36 @@ export function DashProvider({ children }: IDashProviderProps) {
     }
   }   
 
-  async function addNoReadBooks(element){
-    element.userId = Number(id)
+  // async function addNoReadBooks(element){
+  //   element.userId = Number(id)
 
-    const objetive = {
-      "id": `${allReadBook.length}`,
-      "categories": `${element.categories}`,
-      "img": `${element.img}`,
-      "title": `${element.title}`,
-      "userId": `${Number(id)}`
-    }    
-    const names = read.map((element) => element.title)
-    const verification = names.indexOf(element.title)
+  //   const objetive = {
+  //     "id": `${allReadBook.length}`,
+  //     "categories": `${element.categories}`,
+  //     "img": `${element.img}`,
+  //     "title": `${element.title}`,
+  //     "userId": `${Number(id)}`
+  //   }    
+  //   const names = read.map((element) => element.title)
+  //   const verification = names.indexOf(element.title)
 
-    // if(verification !== -1){
-    //   RemoveReadBooks(element.id)
-    //   return null;
-    // }
+  //   // if(verification !== -1){
+  //   //   RemoveReadBooks(element.id)
+  //   //   return null;
+  //   // }
 
-    try{
-      const response = await api.post(`/semLer`, objetive,{
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      noReadBooks()
-      AllBooks()
-    } catch{
-        console.log('eerro')
-    }
-  }   
+  //   try{
+  //     const response = await api.post(`/semLer`, objetive,{
+  //       headers: {
+  //         authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     noReadBooks()
+  //     AllBooks()
+  //   } catch{
+  //       console.log('eerro')
+  //   }
+  // }   
 
   async function RemoveReadBooks(ids){
     console.log(ids)
