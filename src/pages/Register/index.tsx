@@ -51,42 +51,40 @@ export const Register = () => {
               placeholder="Digite seu nome aqui"
               register={register}
               type="text"
+              msgerror={errors.name?.message}
             />
-            {errors.name && <p>{errors.name.message}</p>}
             <Input
               label="E-mail"
               nameError="email"
               placeholder="Digite seu email aqui"
               register={register}
               type="email"
+              msgerror={errors.email?.message}
             />
-            {errors.email && <p>{errors.email.message}</p>}
             <Input
               label="Imagem"
               nameError="image"
               placeholder="Adicione um avatar"
               register={register}
               type="text"
+              msgerror={errors.image?.message}
             />
-            {errors.image && <p>{errors.image.message}</p>}
             <Input
               label="Senha"
               nameError="password"
               placeholder="Digite sua senha aqui"
               register={register}
               type="password"
+              msgerror={errors.password?.message}
             />
-            {errors.password && <p>{errors.password.message}</p>}
             <Input
               label="Confirmar senha"
               nameError="confirmed_password"
               placeholder="Digite sua senha novamente"
               register={register}
               type="password"
+              msgerror={errors.confirmed_password?.message}
             />
-            {errors.confirmed_password && (
-              <p>{errors.confirmed_password.message}</p>
-            )}
             <button type="submit">Cadastrar</button>
           </form>
         </div>

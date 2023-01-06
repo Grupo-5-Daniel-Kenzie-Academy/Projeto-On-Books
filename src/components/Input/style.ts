@@ -4,6 +4,7 @@ export const StyledFieldset = styled.fieldset`
   border: none;
   display: flex;
   flex-direction: column;
+  position: relative;
   label {
     font-family: "Inter";
     font-style: normal;
@@ -14,6 +15,19 @@ export const StyledFieldset = styled.fieldset`
 
   input::placeholder{
     color: var(--color-primary-50);
+  }
+
+  span{
+    color: red;
+    position: absolute;
+    font-size: 14px;
+    right: 0;
+    top: 63px;
+
+    max-width: 100%;
+    white-space: nowrap; // Removendo quebra de linha
+    overflow: hidden; // Removendo a barra de rolagem
+    text-overflow: ellipsis; // Adicionando "..." ao final do texto
   }
 `;
 

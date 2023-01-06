@@ -3,24 +3,20 @@ import bgImg from "../../assets/img/livros-hp.png";
 
 export const StyledRegisterPage = styled.main`
   width: 100%;
-
-  min-height: 90vh;
+  margin-top: 15px;
+  min-height: 100vh;
 
   padding: 2rem;
 
   background-color: var(--grey-3);
 
   display: flex;
-
+  align-items: center;
   @media (min-width: 800px) {
     justify-content: center;
+    margin-top: 0px;
     gap: 50px;
   }
-
-  p{
-    padding: 5px 0;
-  }
-
   .registerContainer {
     width: 100%;
     padding: 1.5rem;
@@ -28,45 +24,32 @@ export const StyledRegisterPage = styled.main`
     justify-content: center;
     height: max-content;
     min-height: 600px;
-
+    
     background-image: url(${bgImg});
     background-size: cover;
-
+    
     margin-top: 30px;
-
+    
     border-radius: 30px;
-
+    
     @media (min-width: 800px) {
-      width: 40%;
+      width: 30%;
       background-color: var(--grey-3);
       background-image: none;
       border-radius: 16px;
-      margin-top: 0px;
-
+      margin-top: 0px;   
       min-height: 0px;
-    }
-  }
 
-  .registerImg {
-    display: none;
-
-    @media (min-width: 800px) {
       display: flex;
-      width: 40%;
-      height: 500px;
-
-      margin-top: 60px;
+      justify-content: flex-end;
     }
   }
-
   .registerForm {
     width: 90%;
     max-width: 350px;
-
     height: max-content;
-
+    
     background-color: var(--white);
-
     border-radius: 8px;
     padding: 0 20px;
 
@@ -74,14 +57,19 @@ export const StyledRegisterPage = styled.main`
     flex-direction: column;
     align-items: center;
 
+    gap: 15px;
+
     h2{
       margin-top: 15px;
     }
   }
+  .registerImg {
+    display: none;
 
-  @media(width > 700px){
-    .registerForm{
-      padding: 0 30px;
+    @media (min-width: 800px) {
+      display: flex;
+      width: 40%;
+      height: 500px;
     }
   }
 
