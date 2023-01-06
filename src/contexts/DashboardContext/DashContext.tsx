@@ -14,7 +14,6 @@ export interface IDashContext {
   filteredBooks: IBooks[];
   setCategoryFilter: React.Dispatch<React.SetStateAction<string>>;
   categoryFilter: string;
-  categoryBooks: IBooks[];
   filterCategoryFunction: () => void;
   readBooks: () => Promise<void>;
   addReadBooks: (element: IBooks) => void;
@@ -30,13 +29,12 @@ export function DashProvider({ children }: IDashProviderProps) {
   const id = localStorage.getItem("@id");
   const [filteredBooks, setFilteredBooks] = useState<IBooks[]>([]);
   const [categoryFilter, setCategoryFilter] = useState<string>("todos");
-  const [categoryBooks, setCategoryBooks] = useState<IBooks[]>([]);
+
   const [read, setRead] = useState<IBooks[]>([]);
   const [noRead, setNoRead] = useState([]);
   const [allReadBook, setAllReadBook] = useState([]);
   const [noAllReadBook, setNoAllReadBook] = useState([]);
   const [library, setLibrary] = useState<IBooks[]>([]);
-
 
   function filterCategoryFunction() {
     const categoryFilteredBooks = ListBooks.filter((books) => {
@@ -47,7 +45,7 @@ export function DashProvider({ children }: IDashProviderProps) {
         return books;
       }
     });
-    setCategoryBooks(categoryFilteredBooks);
+    setFilteredBooks(categoryFilteredBooks);
   }
 
   function searchFilter(event: any, books: IBooks[]) {
@@ -207,7 +205,6 @@ export function DashProvider({ children }: IDashProviderProps) {
         searchFilter,
         filteredBooks,
         setCategoryFilter,
-        categoryBooks,
         categoryFilter,
         filterCategoryFunction,
         readBooks,
@@ -215,11 +212,10 @@ export function DashProvider({ children }: IDashProviderProps) {
         read,
         AllBooks,
         library,
-        favoritModal,
+        /* favoritModal,
         setFavoritModal,
         descriptionModal,
-        setDescriptionModal
-
+        setDescriptionModal,*/
       }}
     >
       {children}
