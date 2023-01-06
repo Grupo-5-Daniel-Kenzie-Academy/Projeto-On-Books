@@ -10,8 +10,9 @@ import { ModalDescription } from "../../ModalDescription";
 export function Book({ element }: { element: IBooks }) {
   const { addReadBooks } = useContext(DashContext)
 
-  const {favoritModal,setFavoritModal} = useContext(DashContext)
+  const {favoritModal, setFavoritModal} = useContext(DashContext)
   const {descriptionModal, setDescriptionModal} = useContext(DashContext)
+  const {itemModal, setItemModal} = useContext(DashContext)
 
   return (
     <S.StyleLi >
@@ -23,10 +24,15 @@ export function Book({ element }: { element: IBooks }) {
       {/* <p>{element.categories[0]}</p> */}
 
       <p>{element.title}</p>
-      {/* {console.log(element)} */}
+      
       <div>
-        <button onClick={() => setDescriptionModal(true)}>Exibir</button>
-        {descriptionModal ? <ModalDescription /> : null}
+        <button onClick={() => {
+          setDescriptionModal(true)
+          setItemModal([...itemModal, element]) 
+
+        }}
+        >Exibir</button>
+        {descriptionModal ? <ModalDescription element={itemModal} /> : null}
 
         <button className="ButFavorite">
           <img src={iconHeart} alt="botão de favoritar" onClick={() => {

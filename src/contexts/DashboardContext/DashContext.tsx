@@ -16,14 +16,14 @@ export interface IDashContext {
   categoryFilter: string;
   categoryBooks: IBooks[];
   filterCategoryFunction: () => void;
-  readBooks: () => Promise<void>
+  readBooks: () => Promise<void>;
 }
 
 export const DashContext = createContext<IDashContext>({} as IDashContext);
 
 export function DashProvider({ children }: IDashProviderProps) {
   const token = localStorage.getItem("@Token");
-  const id= localStorage.getItem("@id")
+  const id = localStorage.getItem("@id");
 
   const [filteredBooks, setFilteredBooks] = useState<IBooks[]>([]);
 
@@ -31,16 +31,16 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   const [categoryBooks, setCategoryBooks] = useState<IBooks[]>([]);
 
-  const [ read, setRead ] = useState([])
-  const [ noRead, setNoRead ] = useState([])
+  const [read, setRead] = useState([]);
+  const [noRead, setNoRead] = useState([]);
 
-  const [ allReadBook, setAllReadBook ] = useState([])
-  const [ noAllReadBook, setNoAllReadBook ] = useState([])
-  const [ library, setLibrary ] = useState([])
+  const [allReadBook, setAllReadBook] = useState([]);
+  const [noAllReadBook, setNoAllReadBook] = useState([]);
+  const [library, setLibrary] = useState([]);
 
   const [favoritModal, setFavoritModal] = useState(false);
   const [descriptionModal, setDescriptionModal] = useState(false);
-
+  const [itemModal, setItemModal] = useState([])
 
   function filterCategoryFunction() {
     const categoryFilteredBooks = ListBooks.filter((books) => {
@@ -67,36 +67,36 @@ export function DashProvider({ children }: IDashProviderProps) {
     );
   }
 
-  async function readBooks(){
-    try{
+  async function readBooks() {
+    try {
       const response = await api.get(`/lidos?userId=${id}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
 
-      setRead(response.data)
-    } catch{
-        console.log('eerro...')
+      setRead(response.data);
+    } catch {
+      console.log("eerro...");
     }
   }
 
-  async function noReadBooks(){
-    try{
+  async function noReadBooks() {
+    try {
       const response = await api.get(`/semLer?userId=${id}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
 
-      setNoRead(response.data)
-    } catch{
-        console.log('eerro...')
+      setNoRead(response.data);
+    } catch {
+      console.log("eerro...");
     }
   }
 
-  async function AllBooks(){
-    try{
+  async function AllBooks() {
+    try {
       const response = await api.get(`/lidos`, {
         headers: {
           authorization: `Bearer ${token}`,
@@ -109,8 +109,8 @@ export function DashProvider({ children }: IDashProviderProps) {
     }
   }
 
-  async function All(){
-    try{
+  async function All() {
+    try {
       const response = await api.get(`/livros`, {
         headers: {
           authorization: `Bearer ${token}`,
@@ -127,33 +127,33 @@ export function DashProvider({ children }: IDashProviderProps) {
     element.userId = Number(id)
     const teste = Math.floor(Math.random() * (10000 - 1 + 1) + 1)
     let objetive = {
-      "id": `${teste}`,
-      "categories": `${element.categories}`,
-      "img": `${element.img}`,
-      "title": `${element.title}`,
-      "userId": `${Number(id)}`
-    }    
-    const names = read.map((element) => element.title)
-    const verification = names.indexOf(element.title)
+      id: `${teste}`,
+      categories: `${element.categories}`,
+      img: `${element.img}`,
+      title: `${element.title}`,
+      userId: `${Number(id)}`,
+    };
+    const names = read.map((element) => element.title);
+    const verification = names.indexOf(element.title);
 
-    if(verification !== -1){
-      RemoveReadBooks(element.id)
+    if (verification !== -1) {
+      RemoveReadBooks(element.id);
       return null;
     }
 
-    try{
-      const response = await api.post(`/lidos`, objetive,{
+    try {
+      const response = await api.post(`/lidos`, objetive, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      readBooks()
-      AllBooks()
-    } catch{
-        console.log('eerro')
+      readBooks();
+      AllBooks();
+    } catch {
+      console.log("eerro");
     }
-  }  
-  
+  }
+
   // async function noAddReadBooks(element){
   //   element.userId = Number(id)
   //   console.log(element.id)
@@ -165,7 +165,7 @@ export function DashProvider({ children }: IDashProviderProps) {
   //     "img": `${element.img}`,
   //     "title": `${element.title}`,
   //     "userId": `${Number(id)}`
-  //   }    
+  //   }
   //   const names = read.map((element) => element.title)
   //   const verification = names.indexOf(element.title)
 
@@ -185,7 +185,7 @@ export function DashProvider({ children }: IDashProviderProps) {
   //   } catch{
   //       console.log('eerro')
   //   }
-  // }   
+  // }
 
 
   async function RemoveReadBooks(ids){
@@ -195,12 +195,12 @@ export function DashProvider({ children }: IDashProviderProps) {
           authorization: `Bearer ${token}`,
         },
       });
-      toast.info("Livro Removido Da Biblioteca dos Lidos 🗑️")
-      readBooks()
-      AllBooks()
-    } catch{
-      toast("Item Já Adicionado no Seu Carrinho")
-      window.scrollTo(0, 0)
+      toast.info("Livro Removido Da Biblioteca dos Lidos 🗑️");
+      readBooks();
+      AllBooks();
+    } catch {
+      toast("Item Já Adicionado no Seu Carrinho");
+      window.scrollTo(0, 0);
     }
   }
 
@@ -211,15 +211,13 @@ export function DashProvider({ children }: IDashProviderProps) {
           authorization: `Bearer ${token}`,
         },
       });
-      toast.info("Livro Removido Da Biblioteca dos Lidos 🗑️")
-      readBooks()
-      AllBooks()
-    } catch{
-      toast.error("Erro de Requisição, Tente novamente mais tarde")
-
+      toast.info("Livro Removido Da Biblioteca dos Lidos 🗑️");
+      readBooks();
+      AllBooks();
+    } catch {
+      toast.error("Erro de Requisição, Tente novamente mais tarde");
     }
   }
-
 
   return (
     <DashContext.Provider
@@ -238,7 +236,9 @@ export function DashProvider({ children }: IDashProviderProps) {
         favoritModal,
         setFavoritModal,
         descriptionModal,
-        setDescriptionModal
+        setDescriptionModal, 
+        itemModal,
+        setItemModal
       }}
     >
       {children}
