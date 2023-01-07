@@ -5,7 +5,6 @@ import { StyledSection } from "./Styled"
 export function ModalFavorit (){
 
     const {favoritModal, setFavoritModal} = useContext(DashContext)
-
     return (
         <StyledSection>
             <div className="cardModalFavorit">

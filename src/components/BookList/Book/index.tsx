@@ -6,13 +6,13 @@ import { useContext } from "react";
 import { DashContext } from "../../../contexts/DashboardContext/DashContext";
 import { ModalFavorit } from "../../ModalFavorit";
 import { ModalDescription } from "../../ModalDescription";
+import { Link } from "react-router-dom";
 
 export function Book({ element }: { element: IBooks }) {
   const { addReadBooks } = useContext(DashContext)
-
   const {favoritModal, setFavoritModal} = useContext(DashContext)
   const {descriptionModal, setDescriptionModal} = useContext(DashContext)
-  const {itemModal, setItemModal} = useContext(DashContext)
+  const {item, setItem} = useContext(DashContext)
 
   return (
     <S.StyleLi >
@@ -26,13 +26,14 @@ export function Book({ element }: { element: IBooks }) {
       <p>{element.title}</p>
       
       <div>
-        <button onClick={() => {
-          setDescriptionModal(true)
-          setItemModal([...itemModal, element]) 
+        <Link to="/description" onClick={() => {
+          /* setDescriptionModal(true) */
+          setItem(element) 
+          
 
         }}
-        >Exibir</button>
-        {descriptionModal ? <ModalDescription element={itemModal} /> : null}
+        >Exibir</Link>
+        {descriptionModal ? <ModalDescription element={item} /> : null}
 
         <button className="ButFavorite">
           <img src={iconHeart} alt="botão de favoritar" onClick={() => {
