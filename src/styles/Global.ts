@@ -30,12 +30,12 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   :root{
-    --color-modal: #9DD8F9;
     --grey-1: #E0DDDD;
     --grey-2: #5F5F65;
     --grey-3: #DCDBDB;
     --grey-4: #EAEAFD;
     --grey-5: #A5A0A0;
+    --grey-6: rgba(224, 221, 221, 0.03);
     --color-primary: #181EBE;
     --color-primary-70: rgba(24, 29, 190, 0.7);
     --color-primary-50: rgba(24, 29, 190, 0.5);

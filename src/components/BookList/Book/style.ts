@@ -10,7 +10,9 @@ export const StyleLi = styled.li`
   height: max-content;
   padding-bottom: 10px;
   border-radius: 10px;
-  
+  animation: slideInUp;
+  animation-duration: 0.8s;
+
   ul {
     display: flex;
     gap: 12px;
@@ -30,12 +32,11 @@ export const StyleLi = styled.li`
     border-radius: 10px 10px 0px 0px;
   }
 
-  @media(min-width: 600px){
-    
+  @media (min-width: 600px) {
     .imgBook {
-    width: 100%;
-    height: 350px;
-    max-width: 229px;
-  }
+      width: 100%;
+      height: 350px;
+      max-width: 229px;
+    }
   }
 `;
