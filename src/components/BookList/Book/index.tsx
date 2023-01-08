@@ -14,6 +14,7 @@ export function Book({ element }: { element: IBooks }) {
   const {descriptionModal, setDescriptionModal} = useContext(DashContext)
   const {item, setItem} = useContext(DashContext)
 
+
   return (
     <S.StyleLi >
       <figure>
@@ -26,6 +27,7 @@ export function Book({ element }: { element: IBooks }) {
       <p>{element.title}</p>
       
       <div>
+      
         <Link to="/description" onClick={() => {
           /* setDescriptionModal(true) */
           setItem(element) 
@@ -34,7 +36,6 @@ export function Book({ element }: { element: IBooks }) {
         }}
         >Exibir</Link>
         {descriptionModal ? <ModalDescription element={item} /> : null}
-
         <button className="ButFavorite">
           <img src={iconHeart} alt="botão de favoritar" onClick={() => {
             addReadBooks(element)

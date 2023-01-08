@@ -110,13 +110,13 @@ export function DashProvider({ children }: IDashProviderProps) {
         },
       });
 
+
       setLibrary(response.data);
     } catch {}
   }
 
   async function addReadBooks(element: IBooks) {
     const teste = Math.floor(Math.random() * (10000 - 1 + 1) + 1);
-
     let objetive = {
       id: `${teste}`,
       categories: `${element.categories}`,
@@ -228,7 +228,6 @@ export function DashProvider({ children }: IDashProviderProps) {
         setDescriptionModal, 
         item,
         setItem
-
       }}
     >
       {children}
