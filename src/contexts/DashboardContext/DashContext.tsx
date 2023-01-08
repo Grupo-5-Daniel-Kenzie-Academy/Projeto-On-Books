@@ -38,7 +38,7 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   const [favoritModal, setFavoritModal] = useState(false);
   const [descriptionModal, setDescriptionModal] = useState(false);
-  const [itemModal, setItemModal] = useState([])
+  const [item, setItem] = useState({})
 
   function filterCategoryFunction() {
     const categoryFilteredBooks = ListBooks.filter((books) => {
@@ -96,12 +96,9 @@ export function DashProvider({ children }: IDashProviderProps) {
           authorization: `Bearer ${token}`,
         },
       });
-      
-      setAllReadBook(response.data)
 
-    } catch{
-        console.log('eerro...')
-    }
+      setAllReadBook(response.data);
+    } catch {}
 
   }
 
@@ -113,16 +110,13 @@ export function DashProvider({ children }: IDashProviderProps) {
         },
       });
 
-      setLibrary(response.data)
 
-    } catch{
-        console.log('eerro...')
-    }
+      setLibrary(response.data);
+    } catch {}
   }
 
-  async function addReadBooks(element){
-    element.userId = Number(id)
-    const teste = Math.floor(Math.random() * (10000 - 1 + 1) + 1)
+  async function addReadBooks(element: IBooks) {
+    const teste = Math.floor(Math.random() * (10000 - 1 + 1) + 1);
     let objetive = {
       id: `${teste}`,
       categories: `${element.categories}`,
@@ -232,8 +226,8 @@ export function DashProvider({ children }: IDashProviderProps) {
         setFavoritModal,
         descriptionModal,
         setDescriptionModal, 
-        itemModal,
-        setItemModal
+        item,
+        setItem
       }}
     >
       {children}

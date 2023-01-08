@@ -17,11 +17,11 @@ export function ModalDescription ({element}){
                     setItemModal([])
                 }} >X</button>
 
-                    <img src={element[0].img} />
+                    <img src={element.img} />
 
-                <h3>{element[0].title}</h3>
+                <h3>{element.title}</h3>
 
-                <p>{element[0].description}</p>
+                <p>{element.description}</p>
 
             </div>
 
