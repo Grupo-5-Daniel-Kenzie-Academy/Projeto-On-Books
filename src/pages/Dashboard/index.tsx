@@ -1,17 +1,12 @@
-import { useNavigate } from "react-router-dom";
 import logoTitle from "../../assets/img/Logo.svg";
 import fotoRosto from "../../assets/img/rostinho.jpeg";
 import icone from "../../assets/img/iconeLogout.svg";
 import iconeLupa from "../../assets/img/iconeLupa.svg";
 import { StyleMain, StyleReader, StyleSectionPesq } from "./style";
-
 import { ListBooks } from "../../testeDB";
 import { BookList } from "../../components/BookList";
-import { ModalFavorit } from "../../components/ModalFavorit";
-import { ModalDescription } from "../../components/ModalDescription";
 import { useContext } from "react";
 import { useEffect, useState } from "react";
-import { api } from "../../api/api";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
 import { AuthContext } from "../../contexts/UserContext/AuthContext";
 import { ToastContainer } from "react-toastify";
