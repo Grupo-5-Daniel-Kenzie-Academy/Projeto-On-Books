@@ -40,7 +40,7 @@ interface iRegisterData {
   confirmed_password?: string;
 }
 export interface iBookList {
-  alternative: string;
+  alternative: string; 
   categories: [];
   description: string;
   id: number;
