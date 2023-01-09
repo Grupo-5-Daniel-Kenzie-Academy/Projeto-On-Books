@@ -40,12 +40,7 @@ interface iRegisterData {
   confirmed_password?: string;
 }
 export interface iBookList {
-<<<<<<<<< Temporary merge branch 1
-  JSON(): string;
-  alternative: string; 
-=========
   alternative: string;
->>>>>>>>> Temporary merge branch 2
   categories: [];
   description: string;
   id: number;
