@@ -1,9 +1,14 @@
 import styled from "styled-components";
 export const StyleMain = styled.main`
   min-height: 100vh;
-  /* background: #F8C1C1; */
+
+  .sectonBook {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
-export const StyleReader = styled.header`
+export const StyleHeader = styled.header`
   width: 100%;
   min-height: 3.75rem;
   padding: 0 1.5rem 0 1.5rem;

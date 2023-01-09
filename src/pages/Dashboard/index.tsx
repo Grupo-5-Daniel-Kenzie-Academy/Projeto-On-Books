@@ -3,10 +3,10 @@ import logoTitle from "../../assets/img/Logo.svg";
 import fotoRosto from "../../assets/img/rostinho.jpeg";
 import icone from "../../assets/img/iconeLogout.svg";
 import iconeLupa from "../../assets/img/iconeLupa.svg";
-import { StyleMain, StyleReader, StyleSectionPesq } from "./style";
+import { StyleMain, StyleHeader, StyleSectionPesq } from "./style";
 
 import { ListBooks } from "../../testeDB";
-import { BookList } from "../../components/BookList";
+
 import { ModalFavorit } from "../../components/ModalFavorit";
 import { ModalDescription } from "../../components/ModalDescription";
 import { useContext } from "react";
@@ -16,13 +16,24 @@ import { DashContext } from "../../contexts/DashboardContext/DashContext";
 import { AuthContext } from "../../contexts/UserContext/AuthContext";
 import { ToastContainer } from "react-toastify";
 import { BookListRead } from "../../components/BookListRead";
+import { Book } from "../../components/Book";
 
 export const Dashboard = () => {
-  
+  const navigate = useNavigate();
   const [dados, definirDados] = useState(null);
 
-  const { searchFilter, setCategoryFilter, filterCategoryFunction, readBooks, read, AllBooks, library } =
-    useContext(DashContext);
+  const { userData } = useContext(AuthContext);
+
+  const {
+    searchFilter,
+    setCategoryFilter,
+    filterCategoryFunction,
+    readBooks,
+    read,
+    AllBooks,
+    library,
+    Filter,
+  } = useContext(DashContext);
 
   const { protectRoutes } = useContext(AuthContext);
 
@@ -47,74 +58,147 @@ export const Dashboard = () => {
     protectRoutes();
   }, []);
 
+  function LogoutUser() {
+    window.localStorage.clear();
+    navigate("/");
+  }
+
   return (
     <>
-      <StyleReader>
+      <StyleHeader>
         <figcaption>
           <img src={logoTitle} alt="imagem de uma logo" />
         </figcaption>
 
         <div>
-          <p>Nome do usuario</p>
-          <img className="foto" src={fotoRosto} alt="rostinho aleatŕio" />
-          <img src={icone} alt="Icone de logout" />
+          <p>{userData.name}</p>
+          <img className="foto" src={userData.image} alt="Usuario" />
+          <img onClick={() => LogoutUser()} src={icone} alt="Icone de logout" />
         </div>
-      </StyleReader>
+      </StyleHeader>
       <StyleMain>
         <StyleSectionPesq>
-        <BookListRead/>
+          <BookListRead />
           <div>
             <h4>Filtrar por categoria:</h4>
             <ul>
-              <button onClick={() => setCategoryFilter("todos")}>Todos</button>
               <button
-                onClick={() => {
-                  setCategoryFilter("Ação");
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
+                }}
+              >
+                Todos
+              </button>
+              <button
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
                 }}
               >
                 Ação
               </button>
               <button
-                onClick={() => {
-                  setCategoryFilter("Guerra");
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
                 }}
               >
                 Guerra
               </button>
-              <button onClick={() => setCategoryFilter("Deuses")}>
+              <button
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
+                }}
+              >
                 Deuses
               </button>
-              <button onClick={() => setCategoryFilter("Romance")}>
+              <button
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
+                }}
+              >
                 Romance
               </button>
-              <button onClick={() => setCategoryFilter("Mistério")}>
+              <button
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
+                }}
+              >
                 Mistério
               </button>
-              <button onClick={() => setCategoryFilter("Fantasia")}>
+              <button
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
+                }}
+              >
                 Fantasia
               </button>
-              <button onClick={() => setCategoryFilter("Magia")}>Magia</button>
-              <button onClick={() => setCategoryFilter("Comédia")}>
+              <button
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
+                }}
+              >
+                Magia
+              </button>
+              <button
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
+                }}
+              >
                 Comédia
               </button>
-              <button onClick={() => setCategoryFilter("Investigação")}>
+              <button
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
+                }}
+              >
                 Investigação
               </button>
-              <button onClick={() => setCategoryFilter("Religião")}>
+              <button
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
+                }}
+              >
                 Religião
               </button>
-              <button onClick={() => setCategoryFilter("Luta")}>Luta</button>
-              <button onClick={() => setCategoryFilter("Mitologia")}>
+              <button
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
+                }}
+              >
+                Luta
+              </button>
+              <button
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
+                }}
+              >
                 Mitologia
               </button>
-              <button onClick={() => setCategoryFilter("Sexo")}>Sexo</button>
-              <button onClick={() => setCategoryFilter("Aventura")}>
+              <button
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
+                }}
+              >
+                Sexo
+              </button>
+              <button
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
+                }}
+              >
                 Aventura
               </button>
-              <button onClick={() => setCategoryFilter("Estratégia")}>
+              <button
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
+                }}
+              >
                 Estratégia
               </button>
-              <button onClick={() => setCategoryFilter("Terror")}>
+              <button
+                onClick={(e) => {
+                  Filter(e.currentTarget.innerText);
+                }}
+              >
                 Terror
               </button>
             </ul>
@@ -137,8 +221,8 @@ export const Dashboard = () => {
           </form>
         </StyleSectionPesq>
 
-        <section>
-          <BookList ListBooks={ListBooks} />
+        <section className="sectonBook">
+          <Book />
         </section>
       </StyleMain>
       <ToastContainer position="top-center" autoClose={1000} />

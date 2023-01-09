@@ -1,10 +1,12 @@
 import e from "express";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
 import { ReactNode } from "react";
 import { toast } from "react-toastify";
+import { string } from "yup";
 import { api } from "../../api/api";
 import { IBooks, ListBooks } from "../../testeDB";
+import { AuthContext } from "../UserContext/AuthContext";
 
 export interface IDashProviderProps {
   children: ReactNode;
@@ -20,11 +22,14 @@ export interface IDashContext {
   read: IBooks[];
   AllBooks: () => void;
   library: IBooks[];
+  Filter: (name:string) => void;
 }
 
 export const DashContext = createContext<IDashContext>({} as IDashContext);
 
 export function DashProvider({ children }: IDashProviderProps) {
+  const {bookList, setFilterList} = useContext(AuthContext)
+
   const token = localStorage.getItem("@Token");
   const id = localStorage.getItem("@id");
   const [filteredBooks, setFilteredBooks] = useState<IBooks[]>([]);
@@ -143,6 +148,22 @@ export function DashProvider({ children }: IDashProviderProps) {
     } catch {}
   }
 
+   function Filter (name: string) {
+    if(name === "Todos"){
+      
+      return setFilterList(bookList)
+    }
+
+    const goFilter = bookList.filter((element) => {
+
+      if(element.categories.includes(name)){
+        return element
+      }
+     
+    })
+    setFilterList(goFilter)
+  }
+  
   // async function noAddReadBooks(element){
   //   element.userId = Number(id)
   //   console.log(element.id)
@@ -227,7 +248,8 @@ export function DashProvider({ children }: IDashProviderProps) {
         descriptionModal,
         setDescriptionModal, 
         item,
-        setItem
+        setItem,
+        Filter
       }}
     >
       {children}
