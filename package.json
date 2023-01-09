@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^14.4.3",
     "@types/axios": "^0.14.0",
     "@types/styled-components": "^5.1.26",
+    "add": "^2.0.6",
     "animate.css": "^4.1.1",
     "axios": "^1.2.2",
     "react": "^18.2.0",
