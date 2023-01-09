@@ -3,7 +3,6 @@ import fotoRosto from "../../assets/img/rostinho.jpeg";
 import icone from "../../assets/img/iconeLogout.svg";
 import iconeLupa from "../../assets/img/iconeLupa.svg";
 import { StyleMain, StyleHeader, StyleSectionPesq } from "./style";
-import { ListBooks } from "../../testeDB";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
@@ -28,14 +27,6 @@ export const Dashboard = () => {
     AllBooks();
     readBooks();
   }, []);
-
-  interface iUser {
-    email: string;
-    firstname: string;
-    lastname: string;
-    age: number;
-    id: number;
-  }
 
   useEffect(() => {
     protectRoutes();

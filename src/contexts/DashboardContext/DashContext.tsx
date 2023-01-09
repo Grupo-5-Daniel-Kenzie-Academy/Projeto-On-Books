@@ -4,9 +4,15 @@ import { ReactNode } from "react";
 import { toast } from "react-toastify";
 import { string } from "yup";
 import { api } from "../../api/api";
-import { IBooks } from "../../testeDB";
 import { AuthContext, iBookList } from "../UserContext/AuthContext";
 
+export interface IBooks {
+  id: number;
+  title: string;
+  description: string;
+  categories: string[];
+  img: string;
+}
 
 export interface IDashProviderProps {
   children: ReactNode;
@@ -30,6 +36,9 @@ export interface IDashContext {
 
   onModal:boolean;
   setOnModal:any;
+
+  infBook:IBooks,
+  setInfBook:React.Dispatch<React.SetStateAction<IBooks>>;
 }
 
 
@@ -37,6 +46,8 @@ export const DashContext = createContext<IDashContext>({} as IDashContext);
 
 export function DashProvider({ children }: IDashProviderProps) {
   const [onModal,setOnModal]=useState(false)
+
+  const [infBook, setInfBook]= useState<IBooks>({} as IBooks)
 
   const {bookList, setFilterList} = useContext(AuthContext)
 
@@ -46,6 +57,7 @@ export function DashProvider({ children }: IDashProviderProps) {
   const [categoryFilter, setCategoryFilter] = useState<string>("todos");
 
   const [read, setRead] = useState<IBooks[]>([]);
+  const [wantRead, setWantRead] = useState<IBooks[]>([]);
 
   const [allReadBook, setAllReadBook] = useState([]);
 
@@ -53,7 +65,7 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   const [favoritModal, setFavoritModal] = useState(false);
 
-  const [item, setItem] = useState<iBookList>({} as iBookList)
+  const [item, setItem] = useState<iBookList>({} as iBookList);
 
   async function readBooks() {
     try {
@@ -77,7 +89,6 @@ export function DashProvider({ children }: IDashProviderProps) {
 
       setAllReadBook(response.data);
     } catch {}
-
   }
 
   async function addReadBooks(element: IBooks) {
@@ -108,32 +119,34 @@ export function DashProvider({ children }: IDashProviderProps) {
     } catch {}
   }
 
-  function Filter (name:string) {
-   
-
-    if(name === "Todos"){
-      return setFilterList(bookList)
+  function Filter(name: string) {
+    if (name === "Todos") {
+      return setFilterList(bookList);
     }
-    
+
     const goFilter = bookList.filter((element) => {
-     const bolena = newIncludes(element.categories,name)
-     if(bolena){
-      return element
-     }
-    })
-    setFilterList(goFilter)
-  } 
-  function FilterInput (name:string) {
-    if(name === ""){
-      return setFilterList(bookList)
+      const bolena = newIncludes(element.categories, name);
+      if (bolena) {
+        return element;
+      }
+    });
+    setFilterList(goFilter);
+  }
+  function FilterInput(name: string) {
+    if (name === "") {
+      return setFilterList(bookList);
     }
-    
-    const goFilter = bookList.filter((element) => element.title.toLowerCase().includes(name.toLowerCase())||element.alternative.toLowerCase().includes(name.toLowerCase()))
 
-    setFilterList(goFilter)
-  } 
+    const goFilter = bookList.filter(
+      (element) =>
+        element.title.toLowerCase().includes(name.toLowerCase()) ||
+        element.alternative.toLowerCase().includes(name.toLowerCase())
+    );
 
-  function newIncludes(arr:[], item:any, startFrom = 0) {
+    setFilterList(goFilter);
+  }
+
+  function newIncludes(arr: [], item: any, startFrom = 0) {
     let res = false;
     for (let i = startFrom; i < arr.length; i++) {
       if (arr[i] == item) {
@@ -142,7 +155,7 @@ export function DashProvider({ children }: IDashProviderProps) {
     }
     return res;
   }
-  
+
   async function RemoveReadBooks(ids: number) {
     try {
       const response = await api.delete(`/lidos/${ids}`, {
@@ -175,7 +188,10 @@ export function DashProvider({ children }: IDashProviderProps) {
         favoritModal,
         FilterInput,
         onModal,
-        setOnModal
+        setOnModal,
+        infBook,
+        setInfBook,
+
       }}
     >
       {children}

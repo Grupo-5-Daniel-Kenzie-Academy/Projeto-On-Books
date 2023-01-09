@@ -15,8 +15,8 @@ interface IAuthContext {
   userRegister: (formData: iRegisterData) => void;
   autoLogin: () => void;
   protectRoutes: () => void;
-  bookList:iBookList[];
-  filterList:iBookList[];
+  bookList: iBookList[];
+  filterList: iBookList[];
   setFilterList: React.Dispatch<React.SetStateAction<iBookList[]>>;
 }
 interface iData {
@@ -41,7 +41,7 @@ interface iRegisterData {
   confirmed_password?: string;
 }
 export interface iBookList {
-  alternative: string; 
+  alternative: string;
   categories: [];
   description: string;
   id: number;
@@ -52,13 +52,11 @@ export interface iBookList {
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 export function AuthProvider({ children }: IAuthProviderProps) {
-  const [bookList, setBookList]= useState<iBookList[]>
-  ([] as iBookList[]);
-  const [filterList, setFilterList]= useState<iBookList[]>([] as iBookList[]);
+  const [bookList, setBookList] = useState<iBookList[]>([] as iBookList[]);
+  const [filterList, setFilterList] = useState<iBookList[]>([] as iBookList[]);
   const navigate = useNavigate();
 
   async function loginUser(data: iData) {
-
     try {
       const response = await api.post("/login", data);
       toast.success("Usuário Logado! 😎");
@@ -77,7 +75,7 @@ export function AuthProvider({ children }: IAuthProviderProps) {
 
   async function userRegister(formData: iRegisterData) {
     try {
-     await api.post<iResponseData>("/users", formData);
+      await api.post<iResponseData>("/users", formData);
 
       toast.success("Cadastro realizado com sucesso!", {
         autoClose: 3000,
@@ -89,7 +87,7 @@ export function AuthProvider({ children }: IAuthProviderProps) {
       toast.error("Oops, algo deu errado...");
     }
   }
-  
+
   async function autoLogin() {
     const token = localStorage.getItem("@Token");
 
@@ -113,7 +111,7 @@ export function AuthProvider({ children }: IAuthProviderProps) {
     const token = localStorage.getItem("@Token");
 
     if (!token) {
-      navigate("/login");
+      navigate("/");
     }
 
     try {
@@ -122,9 +120,8 @@ export function AuthProvider({ children }: IAuthProviderProps) {
           authorization: `Bearer ${token}`,
         },
       });
-      setBookList(response.data)
-      setFilterList(response.data)
-
+      setBookList(response.data);
+      setFilterList(response.data);
     } catch {
       navigate("/login");
     }
@@ -132,7 +129,15 @@ export function AuthProvider({ children }: IAuthProviderProps) {
 
   return (
     <AuthContext.Provider
-      value={{ loginUser, userRegister, autoLogin, protectRoutes, bookList, filterList, setFilterList }}
+      value={{
+        loginUser,
+        userRegister,
+        autoLogin,
+        protectRoutes,
+        bookList,
+        filterList,
+        setFilterList,
+      }}
     >
       {children}
     </AuthContext.Provider>
