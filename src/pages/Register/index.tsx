@@ -5,8 +5,6 @@ import { Input } from "../../components/Input";
 import { useForm } from "react-hook-form";
 import { registerSchema } from "../../schema/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router-dom";
-import { api } from "../../api/api";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/UserContext/AuthContext";
 /* import { toast } from "react-toastify"; */

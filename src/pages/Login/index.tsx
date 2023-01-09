@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import {  useForm } from "react-hook-form";
 import { SubmitHandler } from "react-hook-form/dist/types/form";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import { api } from "../../api/api";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { Input } from "../../components/Input";
 import { SlyledDiv } from "./styled";
 import "react-toastify/dist/ReactToastify.css";
