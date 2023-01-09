@@ -1,65 +1,53 @@
-import e from "express";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { createContext } from "react";
 import { ReactNode } from "react";
 import { toast } from "react-toastify";
+import { string } from "yup";
 import { api } from "../../api/api";
-import { IBooks, ListBooks } from "../../testeDB";
+import { IBooks } from "../../testeDB";
+import { AuthContext, iBookList } from "../UserContext/AuthContext";
+
 
 export interface IDashProviderProps {
   children: ReactNode;
 }
 export interface IDashContext {
-  searchFilter: (event: any, books: IBooks[]) => void;
   filteredBooks: IBooks[];
   setCategoryFilter: React.Dispatch<React.SetStateAction<string>>;
   categoryFilter: string;
-  filterCategoryFunction: () => void;
   readBooks: () => Promise<void>;
   addReadBooks: (element: IBooks) => void;
   read: IBooks[];
   AllBooks: () => void;
   library: IBooks[];
+
+  favoritModal: boolean;
+
+  Filter:(name:string) => void;
+  item: {},
+  setItem:React.Dispatch<React.SetStateAction<iBookList>>
+  FilterInput:(name:string)=>void;
 }
 
 export const DashContext = createContext<IDashContext>({} as IDashContext);
 
 export function DashProvider({ children }: IDashProviderProps) {
+  const {bookList, setFilterList} = useContext(AuthContext)
+
   const token = localStorage.getItem("@Token");
   const id = localStorage.getItem("@id");
   const [filteredBooks, setFilteredBooks] = useState<IBooks[]>([]);
   const [categoryFilter, setCategoryFilter] = useState<string>("todos");
 
   const [read, setRead] = useState<IBooks[]>([]);
-  const [noRead, setNoRead] = useState([]);
+
   const [allReadBook, setAllReadBook] = useState([]);
-  const [noAllReadBook, setNoAllReadBook] = useState([]);
-  const [library, setLibrary] = useState<IBooks[]>([]);
 
-  function filterCategoryFunction() {
-    const categoryFilteredBooks = ListBooks.filter((books) => {
-      const filterCategories = books.categories.some(
-        (category) => categoryFilter === category
-      );
-      if (filterCategories) {
-        return books;
-      }
-    });
-    setFilteredBooks(categoryFilteredBooks);
-  }
+  const [library, setLibrary] = useState([]);
 
-  function searchFilter(event: any, books: IBooks[]) {
-    const valueInput = event.target.querySelector("#InputSearch").value;
-    setFilteredBooks(
-      books.filter((item) => {
-        if (!valueInput) {
-          return item;
-        } else {
-          return item.title.toLowerCase().includes(valueInput.toLowerCase());
-        }
-      })
-    );
-  }
+  const [favoritModal, setFavoritModal] = useState(false);
+
+  const [item, setItem] = useState<iBookList>({} as iBookList)
 
   async function readBooks() {
     try {
@@ -73,18 +61,6 @@ export function DashProvider({ children }: IDashProviderProps) {
     } catch {}
   }
 
-  async function noReadBooks() {
-    try {
-      const response = await api.get(`/semLer?userId=${id}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-
-      setNoRead(response.data);
-    } catch {}
-  }
-
   async function AllBooks() {
     try {
       const response = await api.get(`/lidos`, {
@@ -92,19 +68,10 @@ export function DashProvider({ children }: IDashProviderProps) {
           authorization: `Bearer ${token}`,
         },
       });
+
       setAllReadBook(response.data);
     } catch {}
-  }
 
-  async function All() {
-    try {
-      const response = await api.get(`/livros`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      setLibrary(response.data);
-    } catch {}
   }
 
   async function addReadBooks(element: IBooks) {
@@ -135,39 +102,41 @@ export function DashProvider({ children }: IDashProviderProps) {
     } catch {}
   }
 
-  // async function noAddReadBooks(element){
-  //   element.userId = Number(id)
-  //   console.log(element.id)
-  //   console.log(allReadBook)
-  //   const teste = Math.floor(Math.random() * (10000 - 1 + 1) + 1)
-  //   let objetive = {
-  //     "id": `${teste}`,
-  //     "categories": `${element.categories}`,
-  //     "img": `${element.img}`,
-  //     "title": `${element.title}`,
-  //     "userId": `${Number(id)}`
-  //   }
-  //   const names = read.map((element) => element.title)
-  //   const verification = names.indexOf(element.title)
+  function Filter (name:string) {
+   
 
-  //   if(verification !== -1){
-  //     RemoveReadBooks(element.id)
-  //     return null;
-  //   }
+    if(name === "Todos"){
+      return setFilterList(bookList)
+    }
+    
+    const goFilter = bookList.filter((element) => {
+     const bolena = newIncludes(element.categories,name)
+     if(bolena){
+      return element
+     }
+    })
+    setFilterList(goFilter)
+  } 
+  function FilterInput (name:string) {
+    if(name === ""){
+      return setFilterList(bookList)
+    }
+    
+    const goFilter = bookList.filter((element) => element.title.toLowerCase().includes(name.toLowerCase())||element.alternative.toLowerCase().includes(name.toLowerCase()))
 
-  //   try{
-  //     const response = await api.post(`/lidos`, objetive,{
-  //       headers: {
-  //         authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     noReadBooks()
-  //     AllBooks()
-  //   } catch{
-  //       console.log('eerro')
-  //   }
-  // }
+    setFilterList(goFilter)
+  } 
 
+  function newIncludes(arr:[], item:any, startFrom = 0) {
+    let res = false;
+    for (let i = startFrom; i < arr.length; i++) {
+      if (arr[i] == item) {
+        return (res = true);
+      }
+    }
+    return res;
+  }
+  
   async function RemoveReadBooks(ids: number) {
     try {
       const response = await api.delete(`/lidos/${ids}`, {
@@ -183,39 +152,22 @@ export function DashProvider({ children }: IDashProviderProps) {
       window.scrollTo(0, 0);
     }
   }
-
-  async function RemoveNoReadBooks(ids: number) {
-    try {
-      const response = await api.delete(`//${ids}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      toast.info("Livro Removido Da Biblioteca dos Lidos 🗑️");
-      readBooks();
-      AllBooks();
-    } catch {
-      toast.error("Erro de Requisição, Tente novamente mais tarde");
-    }
-  }
-
   return (
     <DashContext.Provider
       value={{
-        searchFilter,
         filteredBooks,
         setCategoryFilter,
         categoryFilter,
-        filterCategoryFunction,
         readBooks,
         addReadBooks,
         read,
         AllBooks,
         library,
-        /* favoritModal,
-        setFavoritModal,
-        descriptionModal,
-        setDescriptionModal,*/
+        item,
+        setItem,
+        Filter,
+        favoritModal,
+        FilterInput
       }}
     >
       {children}

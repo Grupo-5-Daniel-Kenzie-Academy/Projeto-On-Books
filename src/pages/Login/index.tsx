@@ -1,26 +1,23 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import {  useForm } from "react-hook-form";
 import { SubmitHandler } from "react-hook-form/dist/types/form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Input } from "../../components/Input";
 import { SlyledDiv } from "./styled";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
-import { useState } from "react";
+
 import { Header } from "../../components/Header";
-import { LoginSchema } from "../../schema/LoginSchema";
+
 import { yupResolver } from "@hookform/resolvers/yup"
 import logo from "../../assets/img/livros.svg"
 import { AuthContext } from "../../contexts/UserContext/AuthContext";
+import { LoginSchema } from "../../schema/schema";
 
 interface iData{
   email: string,
   password: string
-}
-
-interface iLoginUser{
-  loginUser: (data: iData) => void
 }
 
 export interface iResponseLogin {
@@ -43,8 +40,6 @@ export function Login (){
     mode: "onBlur"
   });
   const { loginUser, autoLogin } = useContext(AuthContext)
-  const [data, setData] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     autoLogin();
@@ -63,7 +58,7 @@ export function Login (){
         nameRoute1="Home"
         nameRoute2="Register"
       />
-      <div className="flex">
+      <main className="flex">
         <img className="image" src={logo} />
         <div className="divBackground">
           <div className="divForm">
@@ -76,8 +71,8 @@ export function Login (){
                   placeholder="Digite seu Email"
                   register={register}
                   nameError="email"
+                  msgerror={errors.email?.message}
                 />
-                {errors.email && <span className="error">{errors.email.message}</span>}
               </div>
               <div className="input">
                 <Input
@@ -86,8 +81,8 @@ export function Login (){
                   placeholder="Digite sua Senha"
                   register={register}
                   nameError="password"
+                  msgerror={errors.password?.message}
                 />
-                {errors.password && <span className="error">{errors.password.message}</span>}
               </div>
               <button className="button">Logar</button>
             </form>
@@ -97,7 +92,7 @@ export function Login (){
             </Link>
           </div>
         </div>
-      </div>
+      </main>
 
       <ToastContainer autoClose={1000} />
     </SlyledDiv>

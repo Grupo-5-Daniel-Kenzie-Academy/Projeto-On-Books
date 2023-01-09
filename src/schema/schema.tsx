@@ -3,32 +3,36 @@ import * as yup from "yup";
 export const registerSchema = yup.object().shape({
   name: yup
     .string()
-    .required("O nome é obrigatório")
-    .min(3, "O nome precisa ter no mínimo 3 caracteres"),
+    .required("Nome obrigatório")
+    .min(3, "Mínimo 3 caracteres"),
   email: yup
     .string()
-    .required("O e-mail é obrigatório")
-    .email("O email digitado é inválido"),
-  image: yup.string().required("Coloque uma url da imagem"),
+    .required("Email obrigatório")
+    .email("O email inválido"),
+  image: yup.string().required("Url obrigatória"),
   password: yup
     .string()
-    .required("A senha é obrigatória")
+    .required("Senha obrigatória")
     .matches(
       /(?=.*?[A-Z])/,
-      "A senha precisa ter pelo menos uma letra maiúscula"
+      "Deve conter uma letra maiúscula"
     )
     .matches(
       /(?=.*?[a-z])/,
-      "A senha precisa ter pelo menos uma letra minúscula"
+      "Deve conter uma letra minúscula"
     )
-    .matches(/(?=.*?[0-9])/, "A senha precisa ter pelo menos um dígito")
+    .matches(/(?=.*?[0-9])/, "Deve conter um Dígito")
     .matches(
       /(?=.*?[#?!@$%^&*-])/,
-      "A senha precisa ter pelo menos um caractere especial"
+      "Deve conter um caractere especial(#?!@$%^&*-)"
     )
-    .min(8, "A senha precisa ter pelo menos oito caracteres"),
+    .min(8, "Deve conter mínimo oito caracteres"),
   confirmed_password: yup
     .string()
-    .required("Confirme a senha")
+    .required("Confirmação obrigatória")
     .oneOf([yup.ref("password")], "As senhas devem ser iguais."),
+});
+export const LoginSchema = yup.object().shape({
+  email: yup.string().required("O e-mail é obrigatório."),
+  password: yup.string().required("A senha é obrigatória."),
 });
