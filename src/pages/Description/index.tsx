@@ -1,4 +1,5 @@
 import { useContext } from "react"
+import { NewComments } from "../../components/Comments/NewComent"
 import { DashContext } from "../../contexts/DashboardContext/DashContext"
 
 export function Description (){
@@ -9,6 +10,7 @@ export function Description (){
         <>
             <header></header>
             <main>teste</main>
+            <NewComments/>
         </>
     )
 }

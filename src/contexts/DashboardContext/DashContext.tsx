@@ -11,6 +11,13 @@ import { AuthContext, iBookList } from "../UserContext/AuthContext";
 export interface IDashProviderProps {
   children: ReactNode;
 }
+
+interface iComments {
+  author: string,
+  titulo: string,
+  description: string
+}
+
 export interface IDashContext {
   filteredBooks: IBooks[];
   setCategoryFilter: React.Dispatch<React.SetStateAction<string>>;
@@ -27,6 +34,10 @@ export interface IDashContext {
   item: {},
   setItem:React.Dispatch<React.SetStateAction<iBookList>>
   FilterInput:(name:string)=>void;
+
+  addComments:(data: iComments) => void;
+  // comments: {},
+  // setComments:React.Dispatch<React.SetStateAction<string[]>>
 }
 
 export const DashContext = createContext<IDashContext>({} as IDashContext);
@@ -48,6 +59,8 @@ export function DashProvider({ children }: IDashProviderProps) {
   const [favoritModal, setFavoritModal] = useState(false);
 
   const [item, setItem] = useState<iBookList>({} as iBookList)
+
+  const [comments, setComments] = useState("")
 
   async function readBooks() {
     try {
@@ -152,6 +165,25 @@ export function DashProvider({ children }: IDashProviderProps) {
       window.scrollTo(0, 0);
     }
   }
+
+  async function addComments(data: iComments){
+    console.log(data)
+    try {
+
+      const response = await api.post("/comentarios", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log(response)
+      toast.success("Tecnologia adicionada.");
+
+      // setComments([...comments, response.data]);
+    } catch (error) {
+      toast.error("Ops! Algo deu errado");
+    } 
+  }
   return (
     <DashContext.Provider
       value={{
@@ -167,7 +199,8 @@ export function DashProvider({ children }: IDashProviderProps) {
         setItem,
         Filter,
         favoritModal,
-        FilterInput
+        FilterInput,
+        addComments,
       }}
     >
       {children}
