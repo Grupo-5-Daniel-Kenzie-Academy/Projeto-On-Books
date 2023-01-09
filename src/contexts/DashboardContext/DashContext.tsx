@@ -4,8 +4,15 @@ import { ReactNode } from "react";
 import { toast } from "react-toastify";
 import { string } from "yup";
 import { api } from "../../api/api";
-import { IBooks } from "../../testeDB";
 import { AuthContext, iBookList } from "../UserContext/AuthContext";
+
+export interface IBooks {
+  id: number;
+  title: string;
+  description: string;
+  categories: string[];
+  img: string;
+}
 
 export interface IDashProviderProps {
   children: ReactNode;
@@ -22,16 +29,27 @@ export interface IDashContext {
 
   favoritModal: boolean;
 
-  Filter: (name: string) => void;
-  item: {};
-  setItem: React.Dispatch<React.SetStateAction<iBookList>>;
-  FilterInput: (name: string) => void;
+  Filter:(name:string) => void;
+  item: {},
+  setItem:React.Dispatch<React.SetStateAction<iBookList>>
+  FilterInput:(name:string)=>void; 
+
+  onModal:boolean;
+  setOnModal:any;
+
+  infBook:IBooks,
+  setInfBook:React.Dispatch<React.SetStateAction<IBooks>>;
 }
+
 
 export const DashContext = createContext<IDashContext>({} as IDashContext);
 
 export function DashProvider({ children }: IDashProviderProps) {
-  const { bookList, setFilterList } = useContext(AuthContext);
+  const [onModal,setOnModal]=useState(false)
+
+  const [infBook, setInfBook]= useState<IBooks>({} as IBooks)
+
+  const {bookList, setFilterList} = useContext(AuthContext)
 
   const token = localStorage.getItem("@Token");
   const id = localStorage.getItem("@id");
@@ -169,6 +187,11 @@ export function DashProvider({ children }: IDashProviderProps) {
         Filter,
         favoritModal,
         FilterInput,
+        onModal,
+        setOnModal,
+        infBook,
+        setInfBook,
+
       }}
     >
       {children}

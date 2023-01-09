@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { api } from "../../api/api";
-import { iResponseLogin } from "../../pages/Login";
+import { iResponseLogin } from "../../components/ModalLogin";
+
 
 export interface IAuthProviderProps {
   children: ReactNode;
@@ -80,7 +81,7 @@ export function AuthProvider({ children }: IAuthProviderProps) {
         autoClose: 3000,
       });
       setTimeout(() => {
-        navigate("/login");
+        navigate("/");
       }, 3000);
     } catch (error) {
       toast.error("Oops, algo deu errado...");
@@ -110,7 +111,7 @@ export function AuthProvider({ children }: IAuthProviderProps) {
     const token = localStorage.getItem("@Token");
 
     if (!token) {
-      navigate("/login");
+      navigate("/");
     }
 
     try {

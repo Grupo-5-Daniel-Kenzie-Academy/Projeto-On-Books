@@ -1,11 +1,8 @@
 import { Link } from "react-router-dom";
 import { IoIosLogOut } from "@react-icons/all-files/io/IoIosLogOut";
-import { IBooks } from "../../testeDB";
-
 export function Description() {
   const item = JSON.parse(localStorage.getItem("book") || "{}");
-  console.log(item);
-
+ 
   return (
     <>
       <header>
@@ -21,8 +18,8 @@ export function Description() {
       <main>
         <img src={item.img} alt="livro" />
         <h2>{item.title}</h2>
-        {item.categories.map((element: string) => {
-          return <p>{element}</p>;
+        {item.categories.map((element: string , index:string) => {
+          return <p key={index}>{element}</p>;
         })}
         <h3>{item.description}</h3>
         <button>Já li</button>
@@ -36,8 +33,7 @@ export function Description() {
           id=""
           cols={30}
           rows={10}
-          placeholder="Deixe seu comentario"
-          value=""
+          placeholder="Deixe seu comentario" 
         ></textarea>
         <button>Enviar</button>
       </section>

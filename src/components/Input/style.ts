@@ -5,16 +5,36 @@ export const StyledFieldset = styled.fieldset`
   display: flex;
   flex-direction: column;
   position: relative;
+
+  div{
+    background-color: red;
+    position: relative;
+
+    height: 50px;
+    border: 1px solid #6B7280;
+    border-radius: 8px;
+
+  }
   label {
     font-family: "Inter";
     font-style: normal;
     font-weight: 500;
     font-size: var(--rem-11);
     margin-bottom: 6px;
-  }
 
-  input::placeholder{
-    color: var(--color-primary-50);
+    position: absolute;
+    top: -15px;
+    left: 20px;
+
+    padding-left: 5px;
+    padding-right: 5px;
+
+    background-color: white;
+
+    font-size: 16px;
+    line-height: 29px;
+    color: #6B7280;
+
   }
 
   span{
@@ -22,7 +42,7 @@ export const StyledFieldset = styled.fieldset`
     position: absolute;
     font-size: 14px;
     right: 0;
-    top: 63px;
+    top: 55px;
 
     max-width: 100%;
     white-space: nowrap; // Removendo quebra de linha
@@ -34,10 +54,9 @@ export const StyledFieldset = styled.fieldset`
 export const Input = styled.input`
   box-sizing: border-box;
   width: 100%;
-  height: 34px;
+  height: 100%;
   padding-left: 12px;
 
-  background: var(--grey-4);
   border: 1px solid var(--grey-3);
   border-radius: var(--radius-4);
 
@@ -45,7 +64,10 @@ export const Input = styled.input`
   font-style: normal;
   font-weight: 500;
   font-size: var(--rem-09);
-
   margin-bottom: 6px;
+  
+  :focus{
+    border: 1px solid #22C55E;
+  }
 
 `;
