@@ -24,7 +24,9 @@ export function Book() {
               to="/description"
               onClick={() => {
                 /* setDescriptionModal(true) */
-                setItem(element);
+                //setItem(element)
+                
+                localStorage.setItem("book", JSON.stringify(element))
               }}
             >
               Exibir
