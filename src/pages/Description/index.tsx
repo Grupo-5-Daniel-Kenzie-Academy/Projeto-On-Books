@@ -1,5 +1,6 @@
-import { useContext } from "react"
-import { DashContext } from "../../contexts/DashboardContext/DashContext"
+<<<<<<<<< Temporary merge branch 1
+import { Link } from "react-router-dom"
+import { IoIosLogOut } from "@react-icons/all-files/io/IoIosLogOut"
 
 export function Description (){
 
