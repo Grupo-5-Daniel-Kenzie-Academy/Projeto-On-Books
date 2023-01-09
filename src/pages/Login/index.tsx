@@ -1,27 +1,23 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import {  useForm } from "react-hook-form";
 import { SubmitHandler } from "react-hook-form/dist/types/form";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import { api } from "../../api/api";
+import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { Input } from "../../components/Input";
 import { SlyledDiv } from "./styled";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
-import { useState } from "react";
+
 import { Header } from "../../components/Header";
-import { LoginSchema } from "../../schema/LoginSchema";
+
 import { yupResolver } from "@hookform/resolvers/yup"
 import logo from "../../assets/img/livros.svg"
 import { AuthContext } from "../../contexts/UserContext/AuthContext";
+import { LoginSchema } from "../../schema/schema";
 
 interface iData{
   email: string,
   password: string
-}
-
-interface iLoginUser{
-  loginUser: (data: iData) => void
 }
 
 export interface iResponseLogin {
@@ -44,8 +40,6 @@ export function Login (){
     mode: "onBlur"
   });
   const { loginUser, autoLogin } = useContext(AuthContext)
-  const [data, setData] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     autoLogin();

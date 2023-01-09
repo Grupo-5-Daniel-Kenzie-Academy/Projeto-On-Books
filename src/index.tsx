@@ -13,11 +13,11 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <GlobalStyle />
-      <DashProvider>
-        <AuthProvider>
+      <AuthProvider>
+        <DashProvider>
           <App />
-        </AuthProvider>
-      </DashProvider>
+        </DashProvider>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -11,9 +11,10 @@ export const Header = styled.header`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 99;
 
   box-shadow: rgb(99 99 99 / 20%) 2px 4px 5px 0px;
-
+  display: flex;
 
   @media (max-width: 250px) {
     flex-wrap: wrap;
