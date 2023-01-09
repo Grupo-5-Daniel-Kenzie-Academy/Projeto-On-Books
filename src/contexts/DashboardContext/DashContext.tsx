@@ -26,12 +26,18 @@ export interface IDashContext {
   Filter:(name:string) => void;
   item: {},
   setItem:React.Dispatch<React.SetStateAction<iBookList>>
-  FilterInput:(name:string)=>void;
+  FilterInput:(name:string)=>void; 
+
+  onModal:boolean;
+  setOnModal:any;
 }
+
 
 export const DashContext = createContext<IDashContext>({} as IDashContext);
 
 export function DashProvider({ children }: IDashProviderProps) {
+  const [onModal,setOnModal]=useState(false)
+
   const {bookList, setFilterList} = useContext(AuthContext)
 
   const token = localStorage.getItem("@Token");
@@ -167,7 +173,9 @@ export function DashProvider({ children }: IDashProviderProps) {
         setItem,
         Filter,
         favoritModal,
-        FilterInput
+        FilterInput,
+        onModal,
+        setOnModal
       }}
     >
       {children}

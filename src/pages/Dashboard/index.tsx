@@ -18,11 +18,11 @@ export const Dashboard = () => {
 
   const [value, setValue] = useState("");
 
-  const { readBooks, read, AllBooks, library, Filter } =
+  const { readBooks, AllBooks, Filter } =
     useContext(DashContext);
 
   const { protectRoutes } = useContext(AuthContext);
-  const { FilterInput } = useContext(DashContext);
+  const { FilterInput  } = useContext(DashContext);
 
   useEffect(() => {
     AllBooks();

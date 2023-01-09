@@ -1,12 +1,13 @@
-import { Header } from "../../components/Header";
-import { StyledRegisterPage } from "./styles";
-import bgImg from "../../assets/img/livros-hp.png";
+import Logo from "../../assets/img/mewLogo.png";
+import { StyledRegisterPage, StyleFormRegister, StyleHeader } from "./styles";
 import { Input } from "../../components/Input";
 import { useForm } from "react-hook-form";
 import { registerSchema } from "../../schema/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/UserContext/AuthContext";
+import { Link } from "react-router-dom";
+import { DashContext } from "../../contexts/DashboardContext/DashContext";
 /* import { toast } from "react-toastify"; */
 
 interface iRegisterData {
@@ -19,6 +20,7 @@ interface iRegisterData {
 
 export const Register = () => {
   const { userRegister } = useContext(AuthContext)
+  const {setOnModal,onModal} = useContext(DashContext)
 
   const {
     register,
@@ -38,11 +40,24 @@ export const Register = () => {
 
   return (
     <>
-      <Header route1="/" route2="/login" nameRoute1="Home" nameRoute2="Login" />
+      <StyleHeader>
+        <figure>
+          <img src={Logo} alt="on book" />
+        </figure>
+        <div>
+          <Link to='/'>Inicio</Link>
+        </div>
+      </StyleHeader>
       <StyledRegisterPage>
-        <div className="registerContainer">
-          <form className="registerForm" onSubmit={handleSubmit(submit)}>
-            <h2>Cadastrar</h2>
+
+          <div className="divText">
+                <h3><strong>Conecte-se</strong> <br/> aos livros</h3>
+              <p>Aqui você vai encontrar <br /> o melhor da literatura. </p>
+          </div>     
+          <StyleFormRegister className="registerForm" onSubmit={handleSubmit(submit)}>
+            <div className="divheader">
+            <h2>Cadastra-se</h2>
+            </div>
             <Input
               label="Nome"
               nameError="name"
@@ -83,10 +98,11 @@ export const Register = () => {
               type="password"
               msgerror={errors.confirmed_password?.message}
             />
-            <button type="submit">Cadastrar</button>
-          </form>
-        </div>
-        <img src={bgImg} alt="books" className="registerImg" />
+            <button className="btnRegister" type="submit">Confirmar</button>
+            <h5>Já é cadastrado? Faça o login  <Link onClick={()=>{setOnModal(!onModal)}} to='/'>Aqui</Link></h5>
+          </StyleFormRegister>
+    
+       
       </StyledRegisterPage>
     </>
   );
