@@ -63,7 +63,7 @@ export function Login (){
         nameRoute1="Home"
         nameRoute2="Register"
       />
-      <div className="flex">
+      <main className="flex">
         <img className="image" src={logo} />
         <div className="divBackground">
           <div className="divForm">
@@ -76,8 +76,8 @@ export function Login (){
                   placeholder="Digite seu Email"
                   register={register}
                   nameError="email"
+                  msgerror={errors.email?.message}
                 />
-                {errors.email && <span className="error">{errors.email.message}</span>}
               </div>
               <div className="input">
                 <Input
@@ -86,8 +86,8 @@ export function Login (){
                   placeholder="Digite sua Senha"
                   register={register}
                   nameError="password"
+                  msgerror={errors.password?.message}
                 />
-                {errors.password && <span className="error">{errors.password.message}</span>}
               </div>
               <button className="button">Logar</button>
             </form>
@@ -97,7 +97,7 @@ export function Login (){
             </Link>
           </div>
         </div>
-      </div>
+      </main>
 
       <ToastContainer autoClose={1000} />
     </SlyledDiv>
