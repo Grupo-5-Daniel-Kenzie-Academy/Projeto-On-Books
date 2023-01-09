@@ -5,21 +5,15 @@ export const Home = () => {
   return (
     <>
       <Header
-        route1={"/login"}
-        route2={"/register"}
-        nameRoute1={"Login"}
-        nameRoute2={"Cadastro"}
+        route1={"/register"}
+        route2={"/login"}
+        nameRoute1={"Cadastrar"}
+        nameRoute2={"Login"}
       />
       <S.Main>
         <div>
-          <S.articleInfo>
-            Em uma era onde a tecnologia é extremamente presente, é dificil
-            ficar longe do computador e do celular, e ler um bom livro acaba
-            sendo apenas um sonho em meio a rotina, então criamos a Li-Marus
-            onde recomendamos você leitor a conhecer livros e se aventurar em
-            suas páginas.
-            <span>Deixe a imaginação fluir.</span>
-          </S.articleInfo>
+         <h3><strong>Conecte-se</strong> <br/> aos livros</h3>
+         <p>Aqui você vai encontrar <br /> o melhor da literatura. </p>
         </div>
       </S.Main>
     </>

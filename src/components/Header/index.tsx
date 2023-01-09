@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Logo from "../../assets/img/Logo.svg";
+import Logo from "../../assets/img/mewLogo.png";
 import * as S from "./style";
 
 interface iRoutes {
@@ -17,7 +17,7 @@ export function Header({ route1, route2, nameRoute1, nameRoute2 }: iRoutes) {
       </figure>
       <div>
         <Link to={route1}>{nameRoute1}</Link>
-        <Link to={route2}>{nameRoute2}</Link>
+        <Link className="btnLogin" to={route2}>{nameRoute2}</Link>
       </div>
     </S.Header>
   );

@@ -1,75 +1,57 @@
 import styled from "styled-components";
 
 export const Main = styled.main`
-  background-color: var(--grey-3);
-
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
   min-height: 100vh;
-  padding: 34px;
+  padding: 15px;
+
 
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 
-  div {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  div{
 
-    margin: 0 auto;
-    height: 90%;
-    width: 90%;
-
-    border-radius: 8px;
-
-    background-image: url("https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/e1a4dd124126853.Y3JvcCwzNTA4LDI3NDMsMCwyNDky.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    
-    display: flex;
-    align-items: center;
-    
-    padding: 15px 0;
-
-
-    @media (min-width: 700px) {
-      height: 500px;
-      width: 60%;
-     
+    h3{
+      font-weight: 700;
+      font-size: 128px;
+      line-height: 155px;
+ 
+      strong{
+        color: #22C55E;
+      }
+      @media(max-width: 740px){
+        font-size: 100px;
+  }
+  @media(max-width: 563px){
+        font-size: 80px;
+  }
+  @media(max-width: 453px){
+        font-size: 60px;
+  }
+  @media(max-width: 355px){
+        font-size: 40px;
+        line-height: 200%;
+  }
     }
+    p{
+      font-weight: 700;
+      font-size: 64px;
+      line-height: 150%;
+      @media(max-width: 740px){
+        font-size: 50px;
   }
-`;
-export const articleInfo = styled.article`
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  margin: 0 auto;
-  width: 90%;
-  height: 330px;
-  padding: 12px;
-
-  background: var(--color-primary-70);
-  color: var(--white);
-  border-radius: var(--radius-20);
-
-  transform: rotate(-0.12deg);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 12px;
-
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 22px;
-  span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  @media(max-width: 563px){
+        font-size: 40px;
   }
-
-  @media (min-width: 700px) {
-    width: 90%;
-    max-width: 500px;
-    height: 250px;
-
-    padding: 0 25px;
-    
+  @media(max-width: 453px){
+        font-size: 30px;
+  }
+  @media(max-width: 355px){
+        font-size: 25px;
+  }
+    }
   }
 `;
