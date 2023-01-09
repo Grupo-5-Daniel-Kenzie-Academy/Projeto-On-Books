@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "https://api-li-maurus-w7g8.onrender.com",
+    baseURL: "http://localhost:4001",
     timeout: 7000
 })

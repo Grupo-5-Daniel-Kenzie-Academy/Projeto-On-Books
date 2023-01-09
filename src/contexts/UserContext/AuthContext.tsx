@@ -1,5 +1,3 @@
-import { element } from "prop-types";
-import { useEffect } from "react";
 import { createContext } from "react";
 import { ReactNode } from "react";
 import { useState } from "react";
@@ -16,18 +14,10 @@ interface IAuthContext {
   userRegister: (formData: iRegisterData) => void;
   autoLogin: () => void;
   protectRoutes: () => void;
-  userData: iUserData;
   bookList:iBookList[];
   filterList:iBookList[];
   setFilterList: React.Dispatch<React.SetStateAction<iBookList[]>>;
 }
-
-interface iUserData {
-  name: string;
-  email: string;
-  image: string;
-}
-
 interface iData {
   email: string;
   password: string;
@@ -49,7 +39,7 @@ interface iRegisterData {
   password: string;
   confirmed_password?: string;
 }
-interface iBookList {
+export interface iBookList {
   alternative: string; 
   categories: [];
   description: string;
@@ -61,7 +51,6 @@ interface iBookList {
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 export function AuthProvider({ children }: IAuthProviderProps) {
-  const [userData, setUserData]= useState([])
   const [bookList, setBookList]= useState<iBookList[]>
   ([] as iBookList[]);
   const [filterList, setFilterList]= useState<iBookList[]>([] as iBookList[]);
@@ -76,8 +65,6 @@ export function AuthProvider({ children }: IAuthProviderProps) {
       const { accessToken, user } = response.data;
       localStorage.setItem("@Token", accessToken);
       localStorage.setItem("@id", user.id);
-
-      setUserData(response.data.user)
 
       setTimeout(() => {
         navigate("/dashboard");
@@ -144,7 +131,7 @@ export function AuthProvider({ children }: IAuthProviderProps) {
 
   return (
     <AuthContext.Provider
-      value={{ loginUser, userRegister, autoLogin, protectRoutes, userData, bookList, filterList, setFilterList }}
+      value={{ loginUser, userRegister, autoLogin, protectRoutes, bookList, filterList, setFilterList }}
     >
       {children}
     </AuthContext.Provider>

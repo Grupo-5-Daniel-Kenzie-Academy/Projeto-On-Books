@@ -10,7 +10,7 @@ const labels: { [index: string]: string } = {
   5: "5 Estrelas",
 };
 
-export function Ranking() {
+/* export function Ranking() {
   const [value, setValue] = useState(0);
   const [hover, setHover] = useState(-1);
 
@@ -31,3 +31,4 @@ export function Ranking() {
     </Box>
   );
 }
+ */
