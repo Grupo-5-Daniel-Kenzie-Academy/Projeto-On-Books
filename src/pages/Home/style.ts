@@ -10,7 +10,11 @@ export const Main = styled.main`
 
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+ justify-content: center;
+
+ @media(max-width: 586px){
+       align-items: baseline;
+  }
 
   div{
 

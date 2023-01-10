@@ -8,11 +8,7 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 99;
-
+  
   @media(max-width: 584px){
     padding: 20px;
     flex-direction: column;

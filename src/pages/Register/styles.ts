@@ -7,10 +7,6 @@ export  const StyleHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 99;
 
   @media(max-width: 584px){
     padding: 20px;
@@ -66,10 +62,7 @@ export const StyledRegisterPage = styled.main`
   justify-content: space-between;
 
  
- @media(max-width: 585px){
-      margin-top: 30px;
-        
-  }
+
 
 
     @media(max-width: 865px){
