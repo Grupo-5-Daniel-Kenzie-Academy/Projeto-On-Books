@@ -1,14 +1,19 @@
+import { useContext } from "react";
 import { Header } from "../../components/Header";
+import { LoginModal } from "../../components/ModalLogin";
+import { DashContext } from "../../contexts/DashboardContext/DashContext";
 import * as S from "./style";
 
 export const Home = () => {
+  const {onModal,setOnModal}=useContext(DashContext)
+
   return (
     <>
       <Header
         route1={"/register"}
-        route2={"/login"}
         nameRoute1={"Cadastrar"}
         nameRoute2={"Login"}
+        onclick={()=>{setOnModal(!onModal)}}
       />
       <S.Main>
         <div>
@@ -16,6 +21,8 @@ export const Home = () => {
          <p>Aqui você vai encontrar <br /> o melhor da literatura. </p>
         </div>
       </S.Main>
+
+      {onModal?<LoginModal/>:null}
     </>
   );
 };

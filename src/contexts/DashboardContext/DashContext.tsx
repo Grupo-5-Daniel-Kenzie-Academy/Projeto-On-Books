@@ -1,11 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
 import { ReactNode } from "react";
 import { toast } from "react-toastify";
-import { string } from "yup";
 import { api } from "../../api/api";
-import { IBooks } from "../../testeDB";
 import { AuthContext, iBookList } from "../UserContext/AuthContext";
+
+export interface IBooks {
+  id: number;
+  title: string;
+  description: string;
+  categories: string[];
+  img: string;
+}
 
 export interface IDashProviderProps {
   children: ReactNode;
@@ -13,8 +19,15 @@ export interface IDashProviderProps {
 
 interface iComments {
   author: string,
-  titulo: string,
+  titulo: any,
+  description: any
+}
+
+export interface iGetComments {
+  author: string
+  titulo: string
   description: string
+  id: number
 }
 
 export interface IDashContext {
@@ -32,22 +45,49 @@ export interface IDashContext {
   Filter:(name:string) => void;
   item: {},
   setItem:React.Dispatch<React.SetStateAction<iBookList>>
-  FilterInput:(name:string)=>void;
 
   addComments:(data: iComments) => void;
+
+  getComments: () => void;
+
+  FilterInput:(name:string)=>void;
+  
+  comments: iGetComments[];
+
+  setComments: React.Dispatch<React.SetStateAction<iGetComments[]>>
+
+  filteredComments: iGetComments[];
+
+  onModal:boolean;
+
+  setOnModal:any;
+
+  infBook:IBooks,
+
+  setInfBook:React.Dispatch<React.SetStateAction<IBooks>>;
 }
+
 
 export const DashContext = createContext<IDashContext>({} as IDashContext);
 
 export function DashProvider({ children }: IDashProviderProps) {
-  const { bookList, setFilterList } = useContext(AuthContext);
+
+  const [onModal,setOnModal]=useState(false)
+
+  const [infBook, setInfBook]= useState<IBooks>({} as IBooks)
+
+  const {bookList, setFilterList} = useContext(AuthContext)
 
   const token = localStorage.getItem("@Token");
+
   const id = localStorage.getItem("@id");
+
   const [filteredBooks, setFilteredBooks] = useState<IBooks[]>([]);
+
   const [categoryFilter, setCategoryFilter] = useState<string>("todos");
 
   const [read, setRead] = useState<IBooks[]>([]);
+
   const [wantRead, setWantRead] = useState<IBooks[]>([]);
 
   const [allReadBook, setAllReadBook] = useState([]);
@@ -57,6 +97,10 @@ export function DashProvider({ children }: IDashProviderProps) {
   const [favoritModal, setFavoritModal] = useState(false);
 
   const [item, setItem] = useState<iBookList>({} as iBookList);
+
+  const [comments, setComments] = useState<iGetComments[]>([])
+
+  const [filteredComments, setFilteredComments] = useState<iGetComments[]>([])
 
   async function readBooks() {
     try {
@@ -164,7 +208,7 @@ export function DashProvider({ children }: IDashProviderProps) {
   }
 
   async function addComments(data: iComments){
-    console.log(data)
+    
     try {
 
       const response = await api.post("/comentarios", data, {
@@ -173,12 +217,33 @@ export function DashProvider({ children }: IDashProviderProps) {
         },
       });
 
-      console.log(response)
-
     } catch (error) {
       toast.error("Ops! Algo deu errado");
     } 
   }
+
+    async function getComments(){
+      try {
+  
+        const response = await api.get("/comentarios");
+  
+        setComments([...comments, response.data])
+  
+        filterComments(response.data)
+  
+      } catch (error) {
+        toast.error("Ops! Algo deu errado");
+      } 
+    }
+
+  function filterComments(data: iGetComments) {
+
+    const filterComment = comments.filter((element) => element.titulo === data.titulo)
+
+    setFilteredComments(filterComment)
+
+  } 
+
   return (
     <DashContext.Provider
       value={{
@@ -196,6 +261,14 @@ export function DashProvider({ children }: IDashProviderProps) {
         favoritModal,
         FilterInput,
         addComments,
+        onModal,
+        setOnModal,
+        infBook,
+        setInfBook,
+        getComments,
+        comments,
+        setComments,
+        filteredComments
       }}
     >
       {children}

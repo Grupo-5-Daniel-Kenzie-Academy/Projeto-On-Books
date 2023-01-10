@@ -7,8 +7,9 @@ import { AuthContext } from "../../contexts/UserContext/AuthContext";
 
 
 export function Book() {
-  const { addReadBooks , setItem , favoritModal } = useContext(DashContext);
+  const { addReadBooks ,setInfBook } = useContext(DashContext);
   const { filterList,  } = useContext(AuthContext);
+
 
   return (
     <S.StyleUl>
@@ -22,10 +23,9 @@ export function Book() {
           <div>
             <Link
               to="/description"
-              onClick={() => {
+              onClick={() => {setInfBook(element)
                 /* setDescriptionModal(true) */
                 //setItem(element)
-                
                 localStorage.setItem("book", JSON.stringify(element))
               }}
             >

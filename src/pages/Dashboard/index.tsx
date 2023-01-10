@@ -3,7 +3,6 @@ import fotoRosto from "../../assets/img/rostinho.jpeg";
 import icone from "../../assets/img/iconeLogout.svg";
 import iconeLupa from "../../assets/img/iconeLupa.svg";
 import { StyleMain, StyleHeader, StyleSectionPesq } from "./style";
-import { ListBooks } from "../../testeDB";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
@@ -18,24 +17,16 @@ export const Dashboard = () => {
 
   const [value, setValue] = useState("");
 
-  const { readBooks, read, AllBooks, library, Filter } =
+  const { readBooks, AllBooks, Filter } =
     useContext(DashContext);
 
   const { protectRoutes } = useContext(AuthContext);
-  const { FilterInput } = useContext(DashContext);
+  const { FilterInput  } = useContext(DashContext);
 
   useEffect(() => {
     AllBooks();
     readBooks();
   }, []);
-
-  interface iUser {
-    email: string;
-    firstname: string;
-    lastname: string;
-    age: number;
-    id: number;
-  }
 
   useEffect(() => {
     protectRoutes();

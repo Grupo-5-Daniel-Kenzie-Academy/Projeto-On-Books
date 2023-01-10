@@ -4,7 +4,7 @@ import { IoIosLogOut } from "@react-icons/all-files/io/IoIosLogOut";
 
 export function Description() {
   const item = JSON.parse(localStorage.getItem("book") || "{}");
-
+ 
   return (
     <>
       <header>
@@ -20,8 +20,8 @@ export function Description() {
       <main>
         <img src={item.img} alt="livro" />
         <h2>{item.title}</h2>
-        {item.categories.map((element: string) => {
-          return <p>{element}</p>;
+        {item.categories.map((element: string , index:string) => {
+          return <p key={index}>{element}</p>;
         })}
         <h3>{item.description}</h3>
         <button>Já li</button>
