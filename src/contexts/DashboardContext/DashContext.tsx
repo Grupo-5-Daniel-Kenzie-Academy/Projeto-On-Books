@@ -217,6 +217,20 @@ export function DashProvider({ children }: IDashProviderProps) {
         },
       });
 
+      (async function getComments(){
+        try {
+    
+          const response = await api.get("/comentarios");
+    
+          setComments(response.data)
+    
+          filterComments(response.data)
+    
+        } catch (error) {
+          toast.error("Ops! Algo deu errado");
+        } 
+      })()
+
     } catch (error) {
       toast.error("Ops! Algo deu errado");
     } 

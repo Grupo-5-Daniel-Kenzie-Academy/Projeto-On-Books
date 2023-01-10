@@ -27,6 +27,7 @@ export function Book() {
                 /* setDescriptionModal(true) */
                 //setItem(element)
                 localStorage.setItem("book", JSON.stringify(element))
+                getComments()
               }}
             >
               Exibir

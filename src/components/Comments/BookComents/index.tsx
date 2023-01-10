@@ -1,8 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { DashContext } from '../../../contexts/DashboardContext/DashContext'
 
 export const BookComments = () => {
-    const { comments } = useContext(DashContext)
+    const { comments, getComments } = useContext(DashContext)
+
+    useEffect(() => {
+      getComments()
+    }, [])
 
   return (
     <>
