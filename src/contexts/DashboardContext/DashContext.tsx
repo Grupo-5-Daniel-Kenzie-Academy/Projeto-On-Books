@@ -58,21 +58,29 @@ export interface IDashContext {
 
   filteredComments: iGetComments[];
 
-  onModal:boolean;
-
-  setOnModal:any;
-
   infBook:IBooks,
 
   setInfBook:React.Dispatch<React.SetStateAction<IBooks>>;
+
+  userInfo: IuserInfo,
+
+  setUserInfo: React.Dispatch<React.SetStateAction<IuserInfo>>
 }
+
+export interface IuserInfo{
+ 
+  email: string,
+  id: number,
+  image: string,
+  name: string,
+  password: string
+
+} 
 
 
 export const DashContext = createContext<IDashContext>({} as IDashContext);
 
 export function DashProvider({ children }: IDashProviderProps) {
-
-  const [onModal,setOnModal]=useState(false)
 
   const [infBook, setInfBook]= useState<IBooks>({} as IBooks)
 
@@ -101,6 +109,8 @@ export function DashProvider({ children }: IDashProviderProps) {
   const [comments, setComments] = useState<iGetComments[]>([])
 
   const [filteredComments, setFilteredComments] = useState<iGetComments[]>([])
+
+  const [userInfo, setUserInfo] = useState<IuserInfo>({} as IuserInfo)
 
   async function readBooks() {
     try {
@@ -260,6 +270,29 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   } 
 
+  useEffect( () => {
+
+    async function userData (){
+
+      try {
+    
+        const response = await api.get(`/users/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        })
+        setUserInfo(response.data)
+
+      } catch (error) {
+
+      } 
+    }
+    userData ()
+
+  }, [token, id])
+
+  
+
   return (
     <DashContext.Provider
       value={{
@@ -277,14 +310,14 @@ export function DashProvider({ children }: IDashProviderProps) {
         favoritModal,
         FilterInput,
         addComments,
-        onModal,
-        setOnModal,
         infBook,
         setInfBook,
         getComments,
         comments,
         setComments,
-        filteredComments
+        filteredComments,
+        userInfo,
+        setUserInfo
       }}
     >
       {children}

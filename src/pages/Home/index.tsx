@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { Header } from "../../components/Header";
 import { LoginModal } from "../../components/ModalLogin";
-import { DashContext } from "../../contexts/DashboardContext/DashContext";
+import { AuthContext } from "../../contexts/UserContext/AuthContext";
 import * as S from "./style";
 
 export const Home = () => {
-  const {onModal,setOnModal}=useContext(DashContext)
+  const {onModal,setOnModal}=useContext(AuthContext)
 
   return (
     <>
