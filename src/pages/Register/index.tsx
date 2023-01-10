@@ -7,7 +7,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/UserContext/AuthContext";
 import { Link } from "react-router-dom";
-import { DashContext } from "../../contexts/DashboardContext/DashContext";
 /* import { toast } from "react-toastify"; */
 
 interface iRegisterData {
@@ -20,7 +19,7 @@ interface iRegisterData {
 
 export const Register = () => {
   const { userRegister } = useContext(AuthContext)
-  const {setOnModal,onModal} = useContext(DashContext)
+  const {setOnModal,onModal} = useContext(AuthContext)
 
   const {
     register,

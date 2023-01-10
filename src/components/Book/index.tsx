@@ -8,7 +8,7 @@ import  iconHeart from '../../assets/img/iconeHeart.svg'
 
 
 export function Book() {
-  const { addReadBooks ,setInfBook } = useContext(DashContext);
+  const { addReadBooks ,setInfBook, getComments } = useContext(DashContext);
   const { filterList,  } = useContext(AuthContext);
 
 

@@ -42,8 +42,13 @@ export const Dashboard = () => {
    
     FilterInput(value)
   }
+
+  const {userInfo} = useContext(DashContext)
+  console.log(userInfo)
+
   return (
     <>
+    
       <StyleHeader>
         <figcaption>
           <img src={logoTitle} alt="imagem de uma logo" />
@@ -56,8 +61,8 @@ export const Dashboard = () => {
         </div>
 
         <div className="infUser">
-          <p>Alison Junho</p>
-          <img className="foto" src={fotoRosto} alt="Usuario"  />
+          <p>{userInfo?.name}</p>
+          <img className="foto" src={userInfo?.image} alt="Usuario"  />
           <img className="logout" onClick={() => LogoutUser()} src={icone} alt="Icone de logout" />
         </div>
       </StyleHeader>

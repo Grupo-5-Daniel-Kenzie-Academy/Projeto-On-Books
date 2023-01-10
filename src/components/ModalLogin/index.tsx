@@ -6,8 +6,6 @@ import { LoginSchema } from "../../schema/schema";
 import {  useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/UserContext/AuthContext";
-import { DashContext } from "../../contexts/DashboardContext/DashContext";
-
 
 interface iData{
     email: string,
@@ -25,7 +23,7 @@ export interface iUser {
     id: number
   }
 export const LoginModal =()=>{
-    const {setOnModal,onModal}=useContext(DashContext)
+    const {setOnModal,onModal}=useContext(AuthContext)
     const { loginUser, autoLogin } = useContext(AuthContext)
     const { register, handleSubmit, formState: {errors} } = useForm<iData>({
     resolver: yupResolver(LoginSchema),

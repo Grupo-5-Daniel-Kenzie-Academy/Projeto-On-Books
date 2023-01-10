@@ -4,6 +4,9 @@ import { StyleHeader, StyleMain, StyleSecComents, StyleSecinpu } from "./style";
 import fotoRosto from "../../assets/img/rostinho.jpeg";
 import icone from "../../assets/img/logoutIcon.svg";
 import logoTitle from "../../assets/img/mewLogo.png";
+import { BookComments } from "../../components/Comments/BookComents";
+import { NewComments } from "../../components/Comments/NewComent";
+
 export function Description() {
   const item = JSON.parse(localStorage.getItem("book") || "{}");
   
@@ -56,73 +59,22 @@ export function Description() {
         </div>
 
         <StyleSecinpu>
-          <h2>Comentar:</h2>
-
-          <div className="divTextArea">
-            <textarea name=""
-              id=""
-              cols={30}
-              rows={10}
-              placeholder="Deixe seu comentario"
-            ></textarea>
-            <button>Enviar</button>
-          </div>
+          <NewComments />
         </StyleSecinpu>
 
 
         <StyleSecComents>
           <h3>Todos os comentários</h3>
+          
           <ul>
-            <li>
-              <img src={fotoRosto} alt="imagem do usuario" />
-                <div>
-                  <h4>nome do usuário</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
-                    repellat sequi sed, delectus, nemo in minima distinctio ratione
-                    velit reiciendis id laboriosam! Nam voluptatum explicabo ipsa
-                    reiciendis, odio fugiat a!
-                  </p>
-                </div>
-            </li>
-
-            <li>
-              <img src={fotoRosto} alt="imagem do usuario" />
-                <div>
-                  <h4>nome do usuário</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
-                    repellat sequi sed, delectus, nemo in minima distinctio ratione
-                    velit reiciendis id laboriosam! Nam voluptatum explicabo ipsa
-                    reiciendis, odio fugiat a!
-                  </p>
-                </div>
-            </li>
-            
-            <li>
-              <img src={fotoRosto} alt="imagem do usuario" />
-                <div>
-                  <h4>nome do usuário</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
-                    repellat sequi sed, delectus, nemo in minima distinctio ratione
-                    velit reiciendis id laboriosam! Nam voluptatum explicabo ipsa
-                    reiciendis, odio fugiat a!
-                  </p>
-                </div>
-            </li>
+            <BookComments />
           </ul>
+
         </StyleSecComents>
 
 
 
       </StyleMain>
-
-
-
-
-
-
 
     </>
   );
