@@ -41,6 +41,7 @@ export const StyleHeader = styled.header`
   .logout{
     width: 30px;
     height: 30px;
+    cursor: pointer;
   }
   .inputHeader{
     position: relative;
@@ -111,12 +112,15 @@ export const StyleMain = styled.main`
     gap: 15px;
 
     position: sticky;
+    z-index: 99;
     top: 5px;
+
+    background-color: white;
 
     @media(max-width:500px){
       max-height: 100px;
       width: 100%;
-
+      position: relative;
       margin-left: 0px;
     }
     
@@ -168,6 +172,10 @@ export const StyleMain = styled.main`
  
     display: flex;
     justify-content: center;
+   
+   padding: 50px;
+
+   
     
   }
 `;

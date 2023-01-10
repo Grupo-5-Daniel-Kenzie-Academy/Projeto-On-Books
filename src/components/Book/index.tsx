@@ -21,7 +21,6 @@ export function Book() {
           {/* <Ranking /> */}
           <div className="divInfoBO">
             <p>{element.alternative}</p>
-              <div className="divRest">
                 <Link
                   to="/description"
                   onClick={() => {setInfBook(element)
@@ -32,17 +31,6 @@ export function Book() {
                 >
                   Exibir
                 </Link>
-                <button className="ButFavorite">
-                  <img
-                    src={iconHeart}
-                    alt="botão de favoritar"
-                    onClick={() => {
-                      addReadBooks(element);
-                    }}
-                  />
-                {/*  {favoritModal ? <ModalFavorit /> : null} */}
-                </button>
-              </div>
           </div>
         </li>
       ))}

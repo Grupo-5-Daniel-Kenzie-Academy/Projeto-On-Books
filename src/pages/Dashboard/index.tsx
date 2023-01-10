@@ -61,7 +61,6 @@ export const Dashboard = () => {
           <img className="logout" onClick={() => LogoutUser()} src={icone} alt="Icone de logout" />
         </div>
       </StyleHeader>
-
       <StyleMain> 
           <aside className="asideDash">
             <h4>Categorias</h4>
@@ -187,13 +186,10 @@ export const Dashboard = () => {
               </button>
             </ul>
           </aside>
-
-
         <section className="sectonBook">
           <Book />
         </section>
       </StyleMain>
-      <ToastContainer position="top-center" autoClose={1000} />
     </>
   );
 };
