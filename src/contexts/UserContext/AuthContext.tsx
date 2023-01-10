@@ -18,6 +18,9 @@ interface IAuthContext {
   bookList: iBookList[];
   filterList: iBookList[];
   setFilterList: React.Dispatch<React.SetStateAction<iBookList[]>>;
+
+  onModal:boolean;
+  setOnModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 interface iData {
   email: string;
@@ -55,6 +58,8 @@ export function AuthProvider({ children }: IAuthProviderProps) {
   const [bookList, setBookList] = useState<iBookList[]>([] as iBookList[]);
   const [filterList, setFilterList] = useState<iBookList[]>([] as iBookList[]);
   const navigate = useNavigate();
+
+  const [onModal,setOnModal]=useState(false)
 
   async function loginUser(data: iData) {
     try {
@@ -137,6 +142,8 @@ export function AuthProvider({ children }: IAuthProviderProps) {
         bookList,
         filterList,
         setFilterList,
+        onModal,
+        setOnModal,
       }}
     >
       {children}
