@@ -1,14 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
-import { IoIosLogOut } from "@react-icons/all-files/io/IoIosLogOut";
 import { StyleHeader, StyleMain, StyleSecComents, StyleSecinpu } from "./style";
 import fotoRosto from "../../assets/img/rostinho.jpeg";
 import icone from "../../assets/img/logoutIcon.svg";
 import logoTitle from "../../assets/img/mewLogo.png";
 import { BookComments } from "../../components/Comments/BookComents";
 import { NewComments } from "../../components/Comments/NewComent";
+import { useContext } from "react";
+import { DashContext } from "../../contexts/DashboardContext/DashContext";
 
 export function Description() {
   const item = JSON.parse(localStorage.getItem("book") || "{}");
+
+  const {userInfo}=useContext(DashContext)
   
   const navigate = useNavigate();
 
@@ -27,8 +30,8 @@ export function Description() {
         <Link to={'/dashboard'}>Inicio</Link>
 
         <div className="infUser">
-          <p>Alison Junho</p>
-          <img className="foto" src={fotoRosto} alt="Usuario"  />
+          <p>{userInfo.name}</p>
+          <img className="foto" src={userInfo.image} alt="Usuario"  />
           <img className="logout" onClick={() => LogoutUser()} src={icone} alt="Icone de logout" />
         </div>
       </StyleHeader>
@@ -64,12 +67,8 @@ export function Description() {
 
 
         <StyleSecComents>
-          <h3>Todos os comentários</h3>
-          
-          <ul>
+          <h3>Todos os comentários</h3> 
             <BookComments />
-          </ul>
-
         </StyleSecComents>
 
 

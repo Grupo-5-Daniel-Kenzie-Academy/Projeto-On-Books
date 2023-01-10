@@ -227,12 +227,14 @@ export const StyleSecinpu = styled.section`
             width: 100%;
             height: 100%;
 
-            padding-left: 10px;
-            padding-top: 10px;
+            padding: 15px 100px 15px 15px;
+            
 
             border-radius: 8px;
             border: none;
             resize: none;
+            text-align: start;
+
 
         }
         button{
@@ -267,20 +269,22 @@ export const StyleSecComents = styled.section`
     }
 
     ul{ 
+        width: 100%;
         display: flex;
         flex-direction: column;
-
+ 
         gap: 15px;
         padding-top: 30px;
 
     }
     li{
+        
+        max-width: 800px;
         display: flex;
         gap: 15px;
-        
+     
         padding: 30px 10px  30px 10px;
         border-bottom: 3px solid #D1D5DB;
-
 
         img{    
 
@@ -289,18 +293,24 @@ export const StyleSecComents = styled.section`
             border-radius: 50%;
 
         }
-        div{
+        .testeDiv{   
             h4{
                 font-weight: 700;
                 font-size: 24px;
                 line-height: 29px;
                 color: #16A34A;
+               
             }
             p{
+                width: 100%;
+                max-width: 800px;
+                
+
                 font-weight: 400;
                 font-size: 18px;
                 line-height: 24px;
-                color: #1F2937;
+
+                color: #1F2937; 
             }
         }
     }

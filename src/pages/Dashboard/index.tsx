@@ -44,7 +44,6 @@ export const Dashboard = () => {
   }
 
   const {userInfo} = useContext(DashContext)
-  console.log(userInfo)
 
   return (
     <>
