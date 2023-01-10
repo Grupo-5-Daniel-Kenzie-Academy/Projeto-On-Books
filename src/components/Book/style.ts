@@ -2,46 +2,90 @@ import styled from "styled-components";
 
 export const StyleUl = styled.ul`
   width: 100%;
-  max-width: 1120px;
-
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  justify-content: flex-start;
+
+  gap: 25px;
+
+  @media(max-width: 500px){
+   
+    justify-content: center;
+  }
   
   li {
+    width:200px;
+    height: 280px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px 25px;
+    justify-content: center;
+
+    gap: 15px;
+
+    border-radius: 8px;
+    border: 0.5px solid  #D1D5DB ;
+
+
+   :hover{
+    transition: all 0.5s ease;
+    transform: scale(1.1);
+    
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    width: max-content;
-    height: max-content;
-    padding-bottom: 10px;
-    border-radius: 10px;
+   }
+    
     animation: slideInUp;
     animation-duration: 0.8s;
-  }
 
-  div {
-    display: flex;
-    gap: 16px;
-    .ButFavorite {
-      background: transparent;
+    background: #FFFFFF;
+
+    a{
+      color:  #22C55E;
+      font-weight: bold;
+
+      
+      :hover{
+        text-decoration: underline;
+      }
     }
-  }
 
-  .imgBook {
-    width: 100%;
-    height: 350px;
-    max-width: 229px;
-    border-radius: 10px 10px 0px 0px;
-  }
-
-  @media (min-width: 600px) {
-    .imgBook {
+    .imgBook{
+      width: 100px;
+      height: 150px;
+    }
+    .divInfoBO{
       width: 100%;
-      height: 350px;
-      max-width: 229px;
+      height: 90px;
+      
+
+      display: flex;
+      flex-direction: column;
+     
+      align-items: center;
+      justify-content: center;
+     
+
+      
+
+      border-top: 2px solid #D1D5DB ;
+    
+      gap: 5px;
+      p{
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 29px;
+        color: #1F2937;
+        width: 100%;
+
+        text-align: center;
+        
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis
+      }
     }
   }
+
+
 `;

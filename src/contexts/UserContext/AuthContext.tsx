@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { api } from "../../api/api";
-import { iResponseLogin } from "../../pages/Login";
+import { iResponseLogin } from "../../components/ModalLogin";
+
 
 export interface IAuthProviderProps {
   children: ReactNode;
@@ -17,6 +18,9 @@ interface IAuthContext {
   bookList: iBookList[];
   filterList: iBookList[];
   setFilterList: React.Dispatch<React.SetStateAction<iBookList[]>>;
+
+  onModal:boolean;
+  setOnModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 interface iData {
   email: string;
@@ -55,6 +59,8 @@ export function AuthProvider({ children }: IAuthProviderProps) {
   const [filterList, setFilterList] = useState<iBookList[]>([] as iBookList[]);
   const navigate = useNavigate();
 
+  const [onModal,setOnModal]=useState(false)
+
   async function loginUser(data: iData) {
     try {
       const response = await api.post("/login", data);
@@ -80,7 +86,7 @@ export function AuthProvider({ children }: IAuthProviderProps) {
         autoClose: 3000,
       });
       setTimeout(() => {
-        navigate("/login");
+        navigate("/");
       }, 3000);
     } catch (error) {
       toast.error("Oops, algo deu errado...");
@@ -110,7 +116,7 @@ export function AuthProvider({ children }: IAuthProviderProps) {
     const token = localStorage.getItem("@Token");
 
     if (!token) {
-      navigate("/login");
+      navigate("/");
     }
 
     try {
@@ -136,6 +142,8 @@ export function AuthProvider({ children }: IAuthProviderProps) {
         bookList,
         filterList,
         setFilterList,
+        onModal,
+        setOnModal,
       }}
     >
       {children}

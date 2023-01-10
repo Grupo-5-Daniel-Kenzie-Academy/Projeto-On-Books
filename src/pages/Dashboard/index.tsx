@@ -1,9 +1,8 @@
-import logoTitle from "../../assets/img/Logo.svg";
+import logoTitle from "../../assets/img/mewLogo.png";
 import fotoRosto from "../../assets/img/rostinho.jpeg";
-import icone from "../../assets/img/iconeLogout.svg";
+import icone from "../../assets/img/logoutIcon.svg";
 import iconeLupa from "../../assets/img/iconeLupa.svg";
-import { StyleMain, StyleHeader, StyleSectionPesq } from "./style";
-import { ListBooks } from "../../testeDB";
+import { StyleMain, StyleHeader } from "./style";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
@@ -18,8 +17,7 @@ export const Dashboard = () => {
 
   const [value, setValue] = useState("");
 
-  const { readBooks, read, AllBooks, library, Filter } =
-    useContext(DashContext);
+  const { readBooks, AllBooks, Filter } = useContext(DashContext);
 
   const { protectRoutes } = useContext(AuthContext);
   const { FilterInput } = useContext(DashContext);
@@ -28,14 +26,6 @@ export const Dashboard = () => {
     AllBooks();
     readBooks();
   }, []);
-
-  interface iUser {
-    email: string;
-    firstname: string;
-    lastname: string;
-    age: number;
-    id: number;
-  }
 
   useEffect(() => {
     protectRoutes();
@@ -48,9 +38,12 @@ export const Dashboard = () => {
 
   function FilInput(event: any) {
     event.preventDefault();
-   
-    FilterInput(value)
+
+    FilterInput(value);
   }
+
+  const { userInfo } = useContext(DashContext);
+
   return (
     <>
       <StyleHeader>
@@ -58,162 +51,183 @@ export const Dashboard = () => {
           <img src={logoTitle} alt="imagem de uma logo" />
         </figcaption>
 
-        <div>
-          <p>Usuario</p>
-          <img className="foto" src={fotoRosto} alt="Usuario" />
-          <img onClick={() => LogoutUser()} src={icone} alt="Icone de logout" />
+        <div className="inputHeader">
+          <input
+            type="text"
+            placeholder="Buscar por um livro..."
+            onKeyUp={(event) => {
+              FilterInput(event.currentTarget.value);
+            }}
+            onChange={(event) => {
+              setValue(event.target.value);
+            }}
+          />
+          <img src={iconeLupa} alt="imagem de uma lupa" />
+        </div>
+
+        <div className="infUser">
+          <p>{userInfo?.name}</p>
+          <img
+            className="foto"
+            src={userInfo?.image}
+            alt="Usuario"
+            onClick={() => navigate("/profile")}
+            
+          />
+          <img
+            className="logout"
+            onClick={() => LogoutUser()}
+            src={icone}
+            alt="Icone de logout"
+          />
         </div>
       </StyleHeader>
       <StyleMain>
-        <StyleSectionPesq>
-          <BookListRead />
-          <div>
-            <h4>Filtrar por categoria:</h4>
-            <ul>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Todos
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Ação
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Guerra
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Deuses
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Romance
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Mistério
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Fantasia
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Magia
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Comédia
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Investigação
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Religião
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Luta
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Mitologia
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Sexo
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Aventura
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Estratégia
-              </button>
-              <button
-                onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
-                }}
-              >
-                Terror
-              </button>
-            </ul>
-          </div>
-          <form className="divPesquisa" onSubmit={(event) => FilInput(event)}>
-            <input
-              type="text"
-              placeholder="Pesquise um livro"
-              id="InputSearch"
-              onKeyUp={(event)=>{FilterInput(event.currentTarget.value)}}
-
-              onChange={(event) => {
-                setValue(event.target.value);
-              }
-            }
-            />
-            <button type="submit">
-              <img src={iconeLupa} alt="imagem de uma lupa" />
+        <aside className="asideDash">
+          <h4>Categorias</h4>
+          <ul>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Todos
             </button>
-          </form>
-        </StyleSectionPesq>
-
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Ação
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Guerra
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Deuses
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Romance
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Mistério
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Fantasia
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Magia
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Comédia
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Investigação
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Religião
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Luta
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Mitologia
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Sexo
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Aventura
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Estratégia
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Terror
+            </button>
+          </ul>
+        </aside>
         <section className="sectonBook">
           <Book />
         </section>
       </StyleMain>
-      <ToastContainer position="top-center" autoClose={1000} />
     </>
   );
 };

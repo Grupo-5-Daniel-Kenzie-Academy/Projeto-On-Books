@@ -9,15 +9,12 @@
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.4",
     "@react-icons/all-files": "^4.1.0",
-<<<<<<<<< Temporary merge branch 1
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
-=========
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
->>>>>>>>> Temporary merge branch 2
     "@types/axios": "^0.14.0",
     "@types/styled-components": "^5.1.26",
     "add": "^2.0.6",
@@ -26,18 +23,16 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.41.5",
+    "react-icons": "^4.7.1",
     "react-router-dom": "^6.6.1",
     "react-scripts": "^5.0.1",
     "react-toastify": "^9.1.1",
     "styled-components": "^5.3.6",
     "toast": "^0.5.4",
     "typescript": "^4.9.4",
-<<<<<<<<< Temporary merge branch 1
     "web-vitals": "^2.1.0",
     "yarn": "^1.22.19",
-=========
     "web-vitals": "^3.1.0",
->>>>>>>>> Temporary merge branch 2
     "yup": "^0.32.11"
   },
   "scripts": {
