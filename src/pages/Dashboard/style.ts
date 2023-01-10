@@ -1,148 +1,175 @@
 import styled from "styled-components";
-export const StyleMain = styled.main`
-  min-height: 100vh;
-
-  .sectonBook {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-`;
 export const StyleHeader = styled.header`
-  width: 100%;
-  min-height: 3.75rem;
-  padding: 0 1.5rem 0 1.5rem;
-  background-color: #e0dddd;
+   width: 100%;
+  min-height: 60px;
+  padding: 0 80px 0 80px;
+  background: #F9FAFB;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  @media (max-width: 21.875rem) {
-    flex-wrap: wrap;
-    padding: 0.625rem 1.5rem 0.625rem 1.5rem;
-    justify-content: center;
-    gap: 0.9375rem;
-  }
-  div {
-    display: flex;
-    gap: 0.9375rem;
-    align-items: center;
-
-    p {
-      font-weight: 400;
-      font-size: 1rem;
-      line-height: 1.1875rem;
-    }
-
-    img {
-      width: 1.875rem;
-      height: 1.875rem;
-    }
-    .foto {
-      border-radius: 50%;
-    }
-  }
-`;
-export const StyleSectionPesq = styled.section`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
-
-  gap: 30px;
-  padding-top: 50px;
-
-  padding-left: 10px;
-  padding-right: 10px;
-
-  @media (max-width: 949px) {
-    flex-direction: column-reverse;
-  }
-  div {
-    display: flex;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  
+  @media(max-width: 1020px){
+    padding: 20px;
     flex-direction: column;
+    gap: 20px;
+  }
+  img{
     width: 100%;
-    max-width: 500px;
-
-    gap: 15px;
-    h4 {
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 17px;
-    }
-
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      overflow: auto;
-      padding: 15px 5px;
-
-      //Se não gostarem descomentem 
-      grid-template-columns: repeat(9, 2fr);
-      display: grid;
-      @media (max-width: 515px) {
-        flex-wrap: nowrap;
-        overflow-y: scroll;
-      }
-
-      button {
-        min-width: 110px;
-        height: 26px;
-        border-radius: 10px;
-
-        font-weight: 500;
-        font-size: 15px;
-        line-height: 18px;
-        background: #8099da;
-        color: var(--white);
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
-        :hover {
-          background: #8066da;
-        }
-      }
-    }
+    max-width: 257px;
+    height: 48px;
+  }
+  .foto{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
   }
 
-  .divPesquisa {
+  .infUser{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    @media(max-width: 1020px){
     width: 100%;
-    max-width: 400px;
+    max-width: 436.5px;
+    justify-content: space-evenly;
+    gap: 30px;
+  }
+  }
+  .logout{
+    width: 30px;
     height: 30px;
-    background: #8099da;
+  }
+  .inputHeader{
     position: relative;
-    border-radius: 8px;
-    margin-bottom: 100px;
+    background-color: red;
+    width: 100%;
+    max-width: 436.5px;
+    height: 39px;
 
-    @media (max-width: 949px) {
-      margin-bottom: 0px;
-    }
-    input {
+    border-radius: 20px;
+
+    border: none;
+
+    input{
       width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 8px;
+      min-height: 100%;
       padding-left: 15px;
+      border-radius: 20px;
+  }
 
-      background-color: #8099da;
-    }
-
-    input::placeholder {
-      font-weight: 400;
-      font-size: 15px;
-      line-height: 18px;
-      color: #e9e9e9;
-    }
-
-    img {
-      width: 15px;
-      height: 15px;
-      right: 7px;
-      top: 7px;
+    img{
       position: absolute;
 
-      cursor: pointer;
+      top: 12px;
+      right: 20px;
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .btnLogin{
+    background-color: #22C55E;
+    color: #F9FAFB;
+    padding: 10px 20px;
+    border-radius: 8px;
+
+
+    :hover{
+       background-color:  #86EFAC;
+       color: black;
     }
   }
 `;
+export const StyleMain = styled.main`
+  min-height: 100vh;
+
+
+  display: flex;
+  
+  gap: 100px;
+  padding-top: 100px;
+
+  @media(max-width:500px){
+      flex-direction: column;
+    }
+
+
+  .asideDash{
+    width: 200px;
+    height: 550px;
+   
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-left: 50px;
+
+    gap: 15px;
+
+    position: sticky;
+    top: 5px;
+
+    @media(max-width:500px){
+      max-height: 100px;
+      width: 100%;
+
+      margin-left: 0px;
+    }
+    
+    h4{
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 29px;
+      color: #000000;
+    }
+
+    ul{
+      display: flex;
+      flex-direction: column;
+      @media(max-width:500px){
+
+        flex-direction: row;
+        overflow: auto;
+        width: 100%;
+        
+        padding: 10px;
+    }
+
+      gap: 10px;
+
+      .btnFilter{
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        color: #1F2937;
+
+         
+        border-radius: 8px;
+        background-color: white;
+
+        :hover{
+          color: white;
+          background-color:  #22C55E;
+        }
+
+
+      }
+    }
+
+  }
+
+  .sectonBook {
+    width: 100%;
+    max-width: 1000px;
+ 
+    display: flex;
+    justify-content: center;
+    
+  }
+`;
+
+

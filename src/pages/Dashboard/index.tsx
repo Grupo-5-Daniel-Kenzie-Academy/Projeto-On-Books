@@ -1,8 +1,8 @@
-import logoTitle from "../../assets/img/Logo.svg";
+import logoTitle from "../../assets/img/mewLogo.png";
 import fotoRosto from "../../assets/img/rostinho.jpeg";
-import icone from "../../assets/img/iconeLogout.svg";
+import icone from "../../assets/img/logoutIcon.svg";
 import iconeLupa from "../../assets/img/iconeLupa.svg";
-import { StyleMain, StyleHeader, StyleSectionPesq } from "./style";
+import { StyleMain, StyleHeader } from "./style";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
@@ -49,131 +49,136 @@ export const Dashboard = () => {
           <img src={logoTitle} alt="imagem de uma logo" />
         </figcaption>
 
-        <div>
-          <p>Usuario</p>
-          <img className="foto" src={fotoRosto} alt="Usuario" />
-          <img onClick={() => LogoutUser()} src={icone} alt="Icone de logout" />
+        <div className="inputHeader">
+
+        <input type="text" placeholder="Buscar por um livro..."  onKeyUp={(event)=>{FilterInput(event.currentTarget.value)}} onChange={(event) => {setValue(event.target.value)}}/>
+        <img src={iconeLupa} alt="imagem de uma lupa"  />
+        </div>
+
+        <div className="infUser">
+          <p>Alison Junho</p>
+          <img className="foto" src={fotoRosto} alt="Usuario"  />
+          <img className="logout" onClick={() => LogoutUser()} src={icone} alt="Icone de logout" />
         </div>
       </StyleHeader>
-      <StyleMain>
-        <StyleSectionPesq>
-          <BookListRead />
-          <div>
-            <h4>Filtrar por categoria:</h4>
+
+      <StyleMain> 
+          <aside className="asideDash">
+            <h4>Categorias</h4>
             <ul>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Todos
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Ação
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Guerra
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Deuses
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Romance
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Mistério
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Fantasia
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Magia
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Comédia
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Investigação
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Religião
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Luta
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Mitologia
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Sexo
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Aventura
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
               >
                 Estratégia
               </button>
-              <button
+              <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
                 }}
@@ -181,24 +186,8 @@ export const Dashboard = () => {
                 Terror
               </button>
             </ul>
-          </div>
-          <form className="divPesquisa" onSubmit={(event) => FilInput(event)}>
-            <input
-              type="text"
-              placeholder="Pesquise um livro"
-              id="InputSearch"
-              onKeyUp={(event)=>{FilterInput(event.currentTarget.value)}}
+          </aside>
 
-              onChange={(event) => {
-                setValue(event.target.value);
-              }
-            }
-            />
-            <button type="submit">
-              <img src={iconeLupa} alt="imagem de uma lupa" />
-            </button>
-          </form>
-        </StyleSectionPesq>
 
         <section className="sectonBook">
           <Book />

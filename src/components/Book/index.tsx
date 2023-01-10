@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/UserContext/AuthContext";
+import  iconHeart from '../../assets/img/iconeHeart.svg'
 /* import { Ranking } from "../Ranking"; */
 
 
@@ -15,9 +16,8 @@ export function Book() {
     <S.StyleUl>
       {filterList.map((element,index) => (
         <li key={index}>
-          <figure>
             <img className="imgBook" src={element.img} alt="" />
-          </figure>
+          
           {/* <Ranking /> */}
           <p>{element.alternative}</p>
           <div>
