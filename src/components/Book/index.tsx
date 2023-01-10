@@ -7,7 +7,7 @@ import { AuthContext } from "../../contexts/UserContext/AuthContext";
 
 
 export function Book() {
-  const { addReadBooks ,setInfBook } = useContext(DashContext);
+  const { addReadBooks ,setInfBook, getComments } = useContext(DashContext);
   const { filterList,  } = useContext(AuthContext);
 
 

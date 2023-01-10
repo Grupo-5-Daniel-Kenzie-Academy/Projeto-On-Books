@@ -1,10 +1,11 @@
-import { NewComments } from "../../components/Comments/NewComent"
+import { NewComments } from "../../components/Comments/NewComent";
 import { Link } from "react-router-dom";
 import { IoIosLogOut } from "@react-icons/all-files/io/IoIosLogOut";
+import { BookComments } from "../../components/Comments/BookComents";
 
 export function Description() {
   const item = JSON.parse(localStorage.getItem("book") || "{}");
- 
+
   return (
     <>
       <header>
@@ -20,16 +21,22 @@ export function Description() {
       <main>
         <img src={item.img} alt="livro" />
         <h2>{item.title}</h2>
-        {item.categories.map((element: string , index:string) => {
+        {item.categories.map((element: string, index: string) => {
           return <p key={index}>{element}</p>;
         })}
         <h3>{item.description}</h3>
         <button>Já li</button>
         <button>Quero ler</button>
       </main>
-      
+
       <section>
-      <NewComments/>
+        <NewComments />
+        <div>
+          <h1>Todos os Comentários:</h1>
+          <ul>
+            <BookComments />
+          </ul>
+        </div>
       </section>
     </>
   );

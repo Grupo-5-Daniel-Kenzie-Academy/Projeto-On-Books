@@ -24,10 +24,10 @@ interface iComments {
 }
 
 export interface iGetComments {
-  author: string
-  titulo: string
-  description: string
-  id: number
+  author: string,
+  titulo: string,
+  description: string,
+  id: number,
 }
 
 export interface IDashContext {
@@ -227,7 +227,7 @@ export function DashProvider({ children }: IDashProviderProps) {
   
         const response = await api.get("/comentarios");
   
-        setComments([...comments, response.data])
+        setComments(response.data)
   
         filterComments(response.data)
   
@@ -236,11 +236,13 @@ export function DashProvider({ children }: IDashProviderProps) {
       } 
     }
 
-  function filterComments(data: iGetComments) {
+  function filterComments(data: iGetComments[]) {
 
-    const filterComment = comments.filter((element) => element.titulo === data.titulo)
+    const info = JSON.parse(localStorage.getItem("book") || "{}");
 
-    setFilteredComments(filterComment)
+    const filterComment = data.filter((element) => element.titulo === info.title)
+
+    setComments(filterComment)
 
   } 
 
