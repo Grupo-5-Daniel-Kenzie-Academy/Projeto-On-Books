@@ -47,11 +47,16 @@ export function Profile() {
             <figure>
               <img src={userInfo.image} alt="" />
             </figure>
-            <div></div>
+            <div>
+              <p>Nome: {userInfo.name}</p>
+              <p>E-mail: {userInfo.email}</p>
+            </div>
           </div>
         </aside>
         <div className="ListaUls">
+          <h1>Desejo ler</h1>
           <ul></ul>
+          <h1>Já lidos</h1>
           <ul></ul>
         </div>
       </StyleMain>
