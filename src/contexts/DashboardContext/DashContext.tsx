@@ -224,7 +224,10 @@ export function DashProvider({ children }: IDashProviderProps) {
       const response = await api.post("/comentarios", data, {
         headers: {
           Authorization: `Bearer ${token}`,
+
         },
+
+        
       });
 
       (async function getComments(){
@@ -240,6 +243,7 @@ export function DashProvider({ children }: IDashProviderProps) {
           toast.error("Ops! Algo deu errado");
         } 
       })()
+      toast.success('Comentário adicionado com sucesso')
 
     } catch (error) {
       toast.error("Ops! Algo deu errado");

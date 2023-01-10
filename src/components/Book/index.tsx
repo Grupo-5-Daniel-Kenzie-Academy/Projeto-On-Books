@@ -19,29 +19,18 @@ export function Book() {
             <img className="imgBook" src={element.img} alt="" />
           
           {/* <Ranking /> */}
-          <p>{element.alternative}</p>
-          <div>
-            <Link
-              to="/description"
-              onClick={() => {setInfBook(element)
-                /* setDescriptionModal(true) */
-                //setItem(element)
-                localStorage.setItem("book", JSON.stringify(element))
-                getComments()
-              }}
-            >
-              Exibir
-            </Link>
-            <button className="ButFavorite">
-              <img
-                // src={iconHeart}
-                alt="botão de favoritar"
-                onClick={() => {
-                  addReadBooks(element);
-                }}
-              />
-             {/*  {favoritModal ? <ModalFavorit /> : null} */}
-            </button>
+          <div className="divInfoBO">
+            <p>{element.alternative}</p>
+                <Link
+                  to="/description"
+                  onClick={() => {setInfBook(element)
+                    /* setDescriptionModal(true) */
+                    //setItem(element)
+                    localStorage.setItem("book", JSON.stringify(element))
+                  }}
+                >
+                  Exibir
+                </Link>
           </div>
         </li>
       ))}
