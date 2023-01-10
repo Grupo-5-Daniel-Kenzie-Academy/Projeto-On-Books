@@ -1,27 +1,28 @@
+import { useContext } from "react";
 import { Header } from "../../components/Header";
+import { LoginModal } from "../../components/ModalLogin";
+import { DashContext } from "../../contexts/DashboardContext/DashContext";
 import * as S from "./style";
 
 export const Home = () => {
+  const {onModal,setOnModal}=useContext(DashContext)
+
   return (
     <>
       <Header
-        route1={"/login"}
-        route2={"/register"}
-        nameRoute1={"Login"}
-        nameRoute2={"Cadastro"}
+        route1={"/register"}
+        nameRoute1={"Cadastrar"}
+        nameRoute2={"Login"}
+        onclick={()=>{setOnModal(!onModal)}}
       />
       <S.Main>
         <div>
-          <S.articleInfo>
-            Em uma era onde a tecnologia é extremamente presente, é dificil
-            ficar longe do computador e do celular, e ler um bom livro acaba
-            sendo apenas um sonho em meio a rotina, então criamos a Li-Marus
-            onde recomendamos você leitor a conhecer livros e se aventurar em
-            suas páginas.
-            <span>Deixe a imaginação fluir.</span>
-          </S.articleInfo>
+         <h3><strong>Conecte-se</strong> <br/> aos livros</h3>
+         <p>Aqui você vai encontrar <br /> o melhor da literatura. </p>
         </div>
       </S.Main>
+
+      {onModal?<LoginModal/>:null}
     </>
   );
 };

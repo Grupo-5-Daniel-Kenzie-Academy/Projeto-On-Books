@@ -1,23 +1,23 @@
 import { Link } from "react-router-dom";
-import Logo from "../../assets/img/Logo.svg";
+import Logo from "../../assets/img/mewLogo.png";
 import * as S from "./style";
 
 interface iRoutes {
   route1: string;
-  route2: string;
   nameRoute1: string;
   nameRoute2: string;
+  onclick:any;
 }
 
-export function Header({ route1, route2, nameRoute1, nameRoute2 }: iRoutes) {
+export function Header({ route1, nameRoute1, nameRoute2,onclick }: iRoutes) {
   return (
     <S.Header>
       <figure>
-        <img src={Logo} alt="Li-Marus" />
+        <img src={Logo} alt="on book" />
       </figure>
       <div>
         <Link to={route1}>{nameRoute1}</Link>
-        <Link to={route2}>{nameRoute2}</Link>
+        <button className="btnLogin" onClick={onclick} >{nameRoute2}</button>
       </div>
     </S.Header>
   );

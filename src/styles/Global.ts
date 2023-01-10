@@ -28,7 +28,6 @@ export const GlobalStyle = createGlobalStyle`
   body{
     font-family: 'Roboto', sans-serif;
   }
-  
   :root{
     --grey-1: #E0DDDD;
     --grey-2: #5F5F65;
