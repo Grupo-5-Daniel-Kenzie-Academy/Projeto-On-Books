@@ -11,7 +11,7 @@ import { DashContext } from "../../contexts/DashboardContext/DashContext";
 export function Description() {
   const item = JSON.parse(localStorage.getItem("book") || "{}");
 
-  const { userInfo } = useContext(DashContext);
+  const { userInfo, addReadBooks, addNoReadBooks } = useContext(DashContext);
 
   const navigate = useNavigate();
 
@@ -64,8 +64,8 @@ export function Description() {
             <h3>{item.description}</h3>
 
             <div className="container-button">
-              <button className="btnLi">Já li</button>
-              <button>Desejo ler</button>
+              <button onClick={() => addReadBooks(item) } className="btnLi">Já li</button>
+              <button onClick={() => addNoReadBooks(item)}>Desejo ler</button>
             </div>
           </div>
         </div>

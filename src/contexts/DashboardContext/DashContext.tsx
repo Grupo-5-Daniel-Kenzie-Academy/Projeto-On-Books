@@ -96,9 +96,11 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   const [read, setRead] = useState<IBooks[]>([]);
 
-  const [wantRead, setWantRead] = useState<IBooks[]>([]);
+  const [noRead, setNoRead] = useState<IBooks[]>([]);
 
   const [allReadBook, setAllReadBook] = useState([]);
+
+  const [allNoReadBook, setAllNoReadBook] = useState([])
 
   const [library, setLibrary] = useState([]);
 
@@ -124,9 +126,21 @@ export function DashProvider({ children }: IDashProviderProps) {
     } catch {}
   }
 
+  async function noReadBooks() {
+    try {
+      const response = await api.get(`/semLer?userId=${id}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+
+      setNoRead(response.data);
+    } catch {}
+  }
+
   async function AllBooks() {
     try {
-      const response = await api.get(`/lidos`, {
+      const response = await api.get(`/lidos?userId=${id}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -134,7 +148,27 @@ export function DashProvider({ children }: IDashProviderProps) {
 
       setAllReadBook(response.data);
     } catch {}
-  }
+  } 
+
+  async function AllNoBooks() {
+    try {
+      const response = await api.get(`/semLer?userId=${id}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+
+      setAllNoReadBook(response.data);
+    } catch {}
+  } 
+
+  useEffect(() => {
+    AllBooks()
+  },[])
+
+  useEffect(() => {
+    AllNoBooks()
+  },[])
 
   async function addReadBooks(element: IBooks) {
     const teste = Math.floor(Math.random() * (10000 - 1 + 1) + 1);
@@ -145,11 +179,11 @@ export function DashProvider({ children }: IDashProviderProps) {
       title: `${element.title}`,
       userId: `${Number(id)}`,
     };
-    const names = read.map((element) => element.title);
+    const names = allReadBook.map((element) => element.title);
     const verification = names.indexOf(element.title);
 
     if (verification !== -1) {
-      RemoveReadBooks(element.id);
+      toast("Item já Adicionado na Sua Lista de Lidos")
       return null;
     }
 
@@ -161,6 +195,35 @@ export function DashProvider({ children }: IDashProviderProps) {
       });
       readBooks();
       AllBooks();
+    } catch {}
+  }
+
+
+  async function addNoReadBooks(element: IBooks) {
+    const teste = Math.floor(Math.random() * (10000 - 1 + 1) + 1);
+    let objetive = {
+      id: `${teste}`,
+      categories: `${element.categories}`,
+      img: `${element.img}`,
+      title: `${element.title}`,
+      userId: `${Number(id)}`,
+    };
+    const names = allNoReadBook.map((element) => element.title);
+    const verification = names.indexOf(element.title);
+
+    if (verification !== -1) {
+      toast("Item já Adicionado na Sua Lista de Lidos")
+      return null;
+    }
+
+    try {
+      const response = await api.post(`/semLer`, objetive, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      noReadBooks();
+      AllNoBooks();
     } catch {}
   }
 
@@ -177,6 +240,7 @@ export function DashProvider({ children }: IDashProviderProps) {
     });
     setFilterList(goFilter);
   }
+
   function FilterInput(name: string) {
     if (name === "") {
       return setFilterList(bookList);
@@ -214,6 +278,21 @@ export function DashProvider({ children }: IDashProviderProps) {
     } catch {
       toast("Item Já Adicionado no Seu Carrinho");
       window.scrollTo(0, 0);
+    }
+  }
+
+  async function RemoveNoReadBooks(ids: number) {
+    try {
+      const response = await api.delete(`/semLer/${ids}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      toast.info("Livro Removido Da Biblioteca dos Lidos 🗑️");
+      noReadBooks();
+      AllNoBooks();
+    } catch {
+      toast("Item Já Adicionado no Seu Carrinho");
     }
   }
 
@@ -321,7 +400,13 @@ export function DashProvider({ children }: IDashProviderProps) {
         setComments,
         filteredComments,
         userInfo,
-        setUserInfo
+        setUserInfo,
+        RemoveReadBooks,
+        addNoReadBooks,
+        noRead,
+        RemoveNoReadBooks,
+        AllBooks,
+        AllNoBooks
       }}
     >
       {children}

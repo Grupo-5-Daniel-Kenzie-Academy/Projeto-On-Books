@@ -93,5 +93,10 @@ export const StyleMain = styled.main`
     height: 200px;
     width: 800px;
     background-color: red;
+
+    .imgBook{
+      width: 110px;
+    height: 150px;
+    }
   }
 `;

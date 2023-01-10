@@ -1,15 +1,22 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
 import { StyleHeader, StyleMain } from "./style";
 
 import icone from "../../assets/img/logoutIcon.svg";
 import logoTitle from "../../assets/img/mewLogo.png";
 import { Link, useNavigate } from "react-router-dom";
+import { ListBooks } from "../../components/ListRead";
+import { ListNoRead } from "../../components/ListNoRead";
 
 export function Profile() {
-  const { userInfo } = useContext(DashContext);
+  const { userInfo, read, noRead, AllBooks, AllNoBooks } = useContext(DashContext);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    AllBooks()
+    AllNoBooks()
+  },[])
 
   function LogoutUser() {
     window.localStorage.clear();
@@ -55,9 +62,13 @@ export function Profile() {
         </aside>
         <div className="ListaUls">
           <h1>Desejo ler</h1>
-          <ul></ul>
+          <ul>
+           {noRead && noRead.map((element) => ListNoRead(element))}
+          </ul>
           <h1>Já lidos</h1>
-          <ul></ul>
+          <ul>
+          {read && read.map((element) => ListBooks(element))}
+          </ul>
         </div>
       </StyleMain>
     </>
