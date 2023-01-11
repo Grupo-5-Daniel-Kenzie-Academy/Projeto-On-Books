@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
 import { StyleHeader, StyleMain } from "./style";
 import { FaUserEdit } from "react-icons/fa";
@@ -73,26 +73,26 @@ export function Profile() {
           <div className="container">
             <h2>Desejo ler</h2>
             <ul>
-              {noRead.length == 0 ? (
+              {noRead.length === 0 ? (
                 <div className="containerNot">
                   <h3>Nenhum livro adicionado</h3>
                   <span>{":("}</span>
                 </div>
               ) : (
-                noRead.map((element) => ListNoRead(element))
+                noRead.map((element, index) => ListNoRead(element, index))
               )}
             </ul>
           </div>
           <div className="containerTwo">
             <h2>Já lidos</h2>
             <ul>
-              {read.length == 0 ? (
+              {read.length === 0 ? (
                 <div className="containerNotRead">
                   <h3>Nenhum livro adicionado</h3>
                   <span>{":("}</span>
                 </div>
               ) : (
-                read.map((element) => ListBooks(element))
+                read.map((element, index) => ListBooks(element, index))
               )}
             </ul>
           </div>

@@ -34,6 +34,12 @@ export const StyleHeader = styled.header`
     align-items: center;
     gap: 10px;
 
+    p {
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--gray-5);
+    }
+
     @media (max-width: 1020px) {
       width: 100%;
       max-width: 436.5px;

@@ -80,6 +80,9 @@ export interface IDashContext {
   noRead: IBooks[];
   RemoveNoReadBooks: (ids: number) => void;
   AllNoBooks: () => void;
+
+  attUser: boolean;
+  setAttUser: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IuserInfo {
@@ -93,6 +96,8 @@ export interface IuserInfo {
 export const DashContext = createContext<IDashContext>({} as IDashContext);
 
 export function DashProvider({ children }: IDashProviderProps) {
+  const [attUser, setAttUser] = useState(false);
+
   const [infBook, setInfBook] = useState<IBooks>({} as IBooks);
 
   const { bookList, setFilterList } = useContext(AuthContext);
@@ -159,7 +164,7 @@ export function DashProvider({ children }: IDashProviderProps) {
 
       setAllReadBook(response.data);
     } catch {
-      console.log('erro')
+      console.log("erro");
     }
   }
 
@@ -200,12 +205,12 @@ export function DashProvider({ children }: IDashProviderProps) {
     const verificationNoRead = namesNoRead.indexOf(element.title);
 
     if (verification !== -1) {
-      toast("Item já adicionado na sua lista de Lidos");
+      toast("Item já adicionado na sua lista de lidos");
       return null;
     }
 
-    if(verificationNoRead !== -1){
-      toast("Item já adicionado na sua lista de não lidos");
+    if (verificationNoRead !== -1) {
+      toast("Item já adicionado na sua lista de lidos");
       return null;
     }
 
@@ -242,8 +247,8 @@ export function DashProvider({ children }: IDashProviderProps) {
       return null;
     }
 
-    if(verificationRead !== -1){
-      toast("Item já existente na sua lista de não lidos")
+    if (verificationRead !== -1) {
+      toast("Item já existente na sua lista de não lidos");
       return null;
     }
 
@@ -260,7 +265,6 @@ export function DashProvider({ children }: IDashProviderProps) {
   }
 
   function Filter(name: string) {
-    
     if (name === "Todos") {
       return setFilterList(bookList);
     }
@@ -271,7 +275,6 @@ export function DashProvider({ children }: IDashProviderProps) {
       }
     });
     setFilterList(goFilter);
-   
   }
 
   function FilterInput(name: string) {
@@ -384,13 +387,13 @@ export function DashProvider({ children }: IDashProviderProps) {
             Authorization: `Bearer ${token}`,
           },
         });
+
         setUserInfo(response.data);
       } catch (error) {}
     }
-    
-    userData ()
 
-  }, [token, id])
+    userData();
+  }, [token, id, attUser]);
 
   return (
     <DashContext.Provider
@@ -422,7 +425,9 @@ export function DashProvider({ children }: IDashProviderProps) {
         noRead,
         RemoveNoReadBooks,
         AllNoBooks,
-        noReadBooks
+        noReadBooks,
+        attUser,
+        setAttUser,
       }}
     >
       {children}

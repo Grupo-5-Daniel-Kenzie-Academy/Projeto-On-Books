@@ -13,7 +13,7 @@ interface iDataEdit {
 }
 export function EditUserModal() {
   const { setOnModalEdit, onModalEdit, editUser } = useContext(AuthContext);
-  const { userInfo } = useContext(DashContext);
+  const { userInfo, attUser, setAttUser } = useContext(DashContext);
   const {
     register,
     handleSubmit,
@@ -66,7 +66,15 @@ export function EditUserModal() {
             defaultValue={userInfo.image}
             msgerror={errors.image?.message}
           />
-          <button type="submit" className="btnLogar">
+          <button
+            type="submit"
+            className="btnLogar"
+            onClick={() => {
+              setTimeout(() => {
+                setAttUser(!attUser);
+              }, 3000);
+            }}
+          >
             Editar
           </button>
         </form>

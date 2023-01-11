@@ -1,11 +1,11 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { ReactNode } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { object } from "yup";
 import { api } from "../../api/api";
 import { iResponseLogin } from "../../components/ModalLogin";
+import { DashContext } from "../DashboardContext/DashContext";
 
 export interface IAuthProviderProps {
   children: ReactNode;
@@ -174,7 +174,6 @@ export function AuthProvider({ children }: IAuthProviderProps) {
         onModal,
         setOnModal,
         editUser,
-
         onModalEdit,
         setOnModalEdit,
       }}
