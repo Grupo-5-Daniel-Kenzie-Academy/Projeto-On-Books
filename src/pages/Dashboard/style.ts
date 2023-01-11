@@ -3,7 +3,7 @@ export const StyleHeader = styled.header`
   width: 100%;
   min-height: 60px;
   padding: 0 80px 0 80px;
-  background: #f9fafb;
+  background: var(--gray-1);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,6 +32,11 @@ export const StyleHeader = styled.header`
     align-items: center;
     gap: 10px;
 
+    p {
+      font-weight: bold;
+      color: var(--gray-5);
+    }
+
     @media (max-width: 1020px) {
       width: 100%;
       max-width: 436.5px;
@@ -46,12 +51,11 @@ export const StyleHeader = styled.header`
   }
   .inputHeader {
     position: relative;
-    background-color: red;
     width: 100%;
     max-width: 436.5px;
     height: 39px;
 
-    border-radius: 20px;
+    border-radius: 12px;
 
     border: none;
 
@@ -59,7 +63,7 @@ export const StyleHeader = styled.header`
       width: 100%;
       min-height: 100%;
       padding-left: 15px;
-      border-radius: 20px;
+      border-radius: 12px;
     }
 
     img {
@@ -69,18 +73,6 @@ export const StyleHeader = styled.header`
       right: 20px;
       width: 15px;
       height: 15px;
-    }
-  }
-
-  .btnLogin {
-    background-color: #22c55e;
-    color: #f9fafb;
-    padding: 10px 20px;
-    border-radius: 8px;
-
-    :hover {
-      background-color: #86efac;
-      color: black;
     }
   }
 `;
@@ -112,8 +104,6 @@ export const StyleMain = styled.main`
     z-index: 99;
     top: 5px;
 
-    background-color: white;
-
     @media (max-width: 500px) {
       max-height: 100px;
       width: 100%;
@@ -125,7 +115,7 @@ export const StyleMain = styled.main`
       font-weight: 700;
       font-size: 24px;
       line-height: 29px;
-      color: #000000;
+      color: var(--gray-5);
     }
 
     ul {
@@ -145,14 +135,14 @@ export const StyleMain = styled.main`
         font-weight: 400;
         font-size: 20px;
         line-height: 24px;
-        color: #1f2937;
+        color: var(--gray-5);
 
         border-radius: 8px;
         background-color: white;
 
         :hover {
-          color: white;
-          background-color: #22c55e;
+          color: var(--gray-1);
+          background-color: var(--color-primary);
         }
       }
     }

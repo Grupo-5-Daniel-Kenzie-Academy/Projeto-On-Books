@@ -1,25 +1,24 @@
 import styled from "styled-components";
-export  const StyleHeader = styled.header`
+export const StyleHeader = styled.header`
   width: 100%;
   min-height: 60px;
   padding: 0 80px 0 80px;
-  background: #F9FAFB;
+  background: #f9fafb;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  @media(max-width: 584px){
+  @media (max-width: 584px) {
     padding: 20px;
     flex-direction: column;
     gap: 15px;
   }
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  
-  img{
+
+  img {
     width: 257px;
     height: 48px;
-    
   }
 
   div {
@@ -27,29 +26,29 @@ export  const StyleHeader = styled.header`
     align-items: center;
     gap: 12px;
 
-    @media(max-width: 584px){
+    @media (max-width: 584px) {
       width: 100%;
       justify-content: space-evenly;
-  }
-    a{
-      :hover{color:#22C55E}
     }
-   
+    a {
+      font-weight: bold;
+      :hover {
+        color: #22c55e;
+      }
+    }
   }
-  .btnLogin{
-    background-color: #22C55E;
-    color: #F9FAFB;
+  .btnLogin {
+    background-color: #22c55e;
+    color: #f9fafb;
     padding: 10px 20px;
     border-radius: 8px;
 
-
-    :hover{
-       background-color:  #86EFAC;
-       color: black;
+    :hover {
+      background-color: #86efac;
+      color: black;
     }
   }
-
-`
+`;
 export const StyledRegisterPage = styled.main`
   margin: 0 auto;
   width: 100%;
@@ -61,145 +60,131 @@ export const StyledRegisterPage = styled.main`
   align-items: center;
   justify-content: space-between;
 
- 
-
-
-
-    @media(max-width: 865px){
-      justify-content: center;
-        
+  @media (max-width: 865px) {
+    justify-content: center;
   }
 
-  .divText{
+  .divText {
     max-width: 700px;
-    @media(max-width: 865px){
-        display: none;
-  }
-    
+    @media (max-width: 865px) {
+      display: none;
+    }
 
-    h3{
+    h3 {
       font-weight: 700;
       font-size: 128px;
       line-height: 155px;
- 
-      strong{
-        color: #22C55E;
+
+      strong {
+        color: var(--color-primary);
       }
-      @media(max-width: 1140px){
+      @media (max-width: 1140px) {
         font-size: 100px;
-  }
-  @media(max-width: 974px){
+      }
+      @media (max-width: 974px) {
         font-size: 80px;
-  }
-  @media(max-width: 862px){
+      }
+      @media (max-width: 862px) {
         font-size: 60px;
-  }
-  @media(max-width: 750px){
+      }
+      @media (max-width: 750px) {
         font-size: 50px;
         line-height: 200%;
-  }
-  @media(max-width: 652px){
+      }
+      @media (max-width: 652px) {
         font-size: 40px;
         line-height: 200%;
-  }
+      }
     }
-    p{
+    p {
       font-weight: 700;
       font-size: 64px;
       line-height: 150%;
-      @media(max-width: 1140px){
+      @media (max-width: 1140px) {
         font-size: 50px;
-  }
-  @media(max-width: 974px){
+      }
+      @media (max-width: 974px) {
         font-size: 40px;
-  }
-  @media(max-width: 862px){
+      }
+      @media (max-width: 862px) {
         font-size: 30px;
-  }
-  @media(max-width: 652px){
+      }
+      @media (max-width: 652px) {
         font-size: 25px;
-  }
+      }
     }
   }
-  
-
-  
 `;
-export  const StyleFormRegister=styled.form`    
-        width: 100%;
-        max-width: 420px;
+export const StyleFormRegister = styled.form`
+  width: 100%;
+  max-width: 420px;
 
-        display: flex;
-        flex-direction: column;
-        gap: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
 
-        padding: 20px 40px;
-        
-        background-color: white;
-    
-        
-        border-radius: 8px;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    
+  padding: 20px 40px;
 
-    .divheader{
+  background-color: var(--gray-1);
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        h2{
-            font-weight: 700;
-            font-size: 38px;
-            line-height: 58px;
-            color: #1F2937;
-        }
-        button{
-            background-color: #22C55E;
-            color: white;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-            :hover{
-                color: #22C55E ;
-                background-color: #E5E7EB;
-            }
-        }
-
+  .divheader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h2 {
+      font-weight: 700;
+      font-size: 38px;
+      line-height: 58px;
+      color: #1f2937;
     }
+    button {
+      background-color: var(--color-primary);
+      color: white;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
 
-    form{
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
+      :hover {
+        color: var(--gray-1);
+        background-color: var(--color-primary-50);
+      }
     }
+  }
 
- .btnRegister{
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .btnRegister {
     height: 71px;
-    background: #22C55E;
+    background: var(--color-primary);
     border-radius: 8px;
-    color: white;
+    color: var(--gray-1);
 
     font-weight: 700;
     font-size: 24px;
     line-height: 29px;
 
-    :hover{
-                color: #22C55E ;
-                background-color: #E5E7EB;
-            }
- }
-  a{
-              color: #22C55E;
-              text-decoration: underline;
-            }
+    :hover {
+      background-color: var(--color-primary-50);
+    }
+  }
+  a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
 
-            h5{
-              font-weight: 700;
-              font-size: 18px;
-              line-height: 150%;
-              color: #1F2937;
+  h5 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 150%;
+    color: var(--gray-5);
 
-              text-align: center;
-            }
-`
+    text-align: center;
+  }
+`;

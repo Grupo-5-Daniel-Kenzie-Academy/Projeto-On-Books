@@ -12,17 +12,11 @@ export const Licard = styled.li`
   gap: 15px;
 
   border-radius: 8px;
-  border: 0.5px solid #d1d5db;
+  border: 0.5px solid var(--gray-3);
 
-  :hover {
-    transition: all 0.5s ease;
-    transform: scale(1.1);
+  background-color: var(--white);
 
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  button {
+    background-color: var(--white);
   }
-
-  animation: slideInUp;
-  animation-duration: 0.8s;
-
-  background: #ffffff;
 `;

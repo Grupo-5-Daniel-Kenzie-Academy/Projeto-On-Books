@@ -4,10 +4,11 @@ export const StyleHeader = styled.header`
   width: 100%;
   min-height: 60px;
   padding: 0 80px 0 80px;
-  background: #f9fafb;
+  background: var(--gray-1);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-weight: bold;
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
@@ -46,7 +47,7 @@ export const StyleHeader = styled.header`
   }
   a {
     :hover {
-      color: #22c55e;
+      color: var(--color-primary);
       text-decoration: underline;
     }
   }
@@ -67,15 +68,7 @@ export const StyleMain = styled.main`
     flex-direction: column;
     align-items: center;
 
-    margin-left: 50px;
-
-    gap: 15px;
-
-    position: sticky;
-    z-index: 99;
-    top: 5px;
-
-    background-color: white;
+    margin-left: 150px;
 
     @media (max-width: 500px) {
       max-height: 100px;
@@ -91,8 +84,8 @@ export const StyleMain = styled.main`
       width: 299px;
       height: 152px;
       box-sizing: border-box;
-      background: #f9fafb;
-      border: 1px solid #d1d5db;
+      background: var(--gray-1);
+      border: 1px solid var(--gray-3);
       border-radius: 8px;
 
       display: flex;
@@ -106,13 +99,19 @@ export const StyleMain = styled.main`
     display: flex;
     flex-direction: column;
     gap: 100px;
+    width: 100%;
+    max-width: 1000px;
   }
   ul {
     display: flex;
     gap: 20px;
     height: 300px;
-    width: 800px;
-    background-color: red;
+    max-width: 1000px;
+    width: 100%;
+    background-color: var(--gray-1);
+    border-radius: 8px;
+    align-items: center;
+    padding: 1rem;
 
     .imgBook {
       width: 110px;

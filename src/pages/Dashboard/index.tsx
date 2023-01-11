@@ -66,7 +66,7 @@ export const Dashboard = () => {
         </div>
 
         <div className="infUser">
-          <p>{userInfo?.name}</p>
+          <p>Bem vindo(a), {userInfo?.name} !</p>
           <img
             className="foto"
             src={userInfo?.image}

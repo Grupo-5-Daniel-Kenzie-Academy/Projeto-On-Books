@@ -4,10 +4,11 @@ export const StyleHeader = styled.header`
   width: 100%;
   min-height: 60px;
   padding: 0 80px 0 80px;
-  background: #f9fafb;
+  background: var(--gray-1);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-weight: bold;
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
@@ -46,7 +47,7 @@ export const StyleHeader = styled.header`
   }
   a {
     :hover {
-      color: #22c55e;
+      color: var(--color-primary);
       text-decoration: underline;
     }
   }
@@ -113,7 +114,7 @@ export const StyleMain = styled.main`
         font-weight: 700;
         font-size: 25px;
         line-height: 58px;
-        color: #1f2937;
+        color: var(--gray-5);
         height: 50px;
       }
       .divCate {
@@ -127,7 +128,7 @@ export const StyleMain = styled.main`
           font-weight: 400;
           font-size: 16px;
           line-height: 19px;
-          color: #1f2937;
+          color: var(--gray-5);
         }
       }
     }
@@ -136,13 +137,13 @@ export const StyleMain = styled.main`
       font-weight: 400;
       font-size: 16px;
       line-height: 19px;
-      color: #1f2937;
+      color: var(--gray-5);
     }
     h3 {
       font-weight: 400;
       font-size: 16px;
       line-height: 29px;
-      color: #1f2937;
+      color: var(--gray-5);
 
       text-align: justify;
     }
@@ -163,10 +164,20 @@ export const StyleMain = styled.main`
         font-size: 20px;
         line-height: 29px;
 
-        border: 0.5px solid #ffcd07;
+        border: 0.5px solid var(--color-secondary);
+        :hover {
+          background-color: var(--color-secondary);
+          color: var(--white);
+          transition: 0.3s ease;
+        }
       }
       .btnLi {
-        border: 0.5px solid #22c55e;
+        border: 0.5px solid var(--color-primary);
+        :hover {
+          background-color: var(--color-primary);
+          color: var(--white);
+          transition: 0.3s ease;
+        }
       }
     }
   }
@@ -181,15 +192,15 @@ export const StyleSecinpu = styled.section`
 
   padding: 15px;
 
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--gray-2);
   border-radius: 8px;
-  background: #f9fafb;
+  background: var(--gray-1);
 
   h2 {
     font-weight: 700;
     font-size: 27px;
     line-height: 39px;
-    color: #1f2937;
+    color: var(--gray-5);
   }
   .divTextArea {
     width: 100%;
@@ -198,7 +209,7 @@ export const StyleSecinpu = styled.section`
 
     position: relative;
 
-    border: 1px solid #6b7280;
+    border: 1px solid var(--gray-4);
     background-color: white;
     border-radius: 8px;
 
@@ -220,9 +231,15 @@ export const StyleSecinpu = styled.section`
       right: 15px;
       top: 70px;
 
-      color: white;
-      background: #22c55e;
+      font-weight: bold;
+
+      color: var(--gray-1);
+      background: var(--color-primary);
       border-radius: 8px;
+
+      :hover {
+        background-color: var(--color-primary-50);
+      }
     }
   }
 `;
@@ -237,7 +254,7 @@ export const StyleSecComents = styled.section`
     font-weight: 700;
     font-size: 32px;
     line-height: 39px;
-    color: #1f2937;
+    color: var(--gray-5);
   }
 
   ul {
@@ -254,7 +271,7 @@ export const StyleSecComents = styled.section`
     gap: 15px;
 
     padding: 30px 10px 30px 10px;
-    border-bottom: 3px solid #d1d5db;
+    border-bottom: 3px solid var(--gray-3);
 
     img {
       width: 50px;
@@ -266,7 +283,7 @@ export const StyleSecComents = styled.section`
         font-weight: 700;
         font-size: 24px;
         line-height: 29px;
-        color: #16a34a;
+        color: var(--color-primary-50);
       }
       p {
         width: 100%;
@@ -276,7 +293,7 @@ export const StyleSecComents = styled.section`
         font-size: 18px;
         line-height: 24px;
 
-        color: #1f2937;
+        color: var(--gray-5);
       }
     }
   }
