@@ -24,6 +24,7 @@ export function Profile() {
     window.localStorage.clear();
     navigate("/");
   }
+ 
 
   return (
     <>
@@ -52,27 +53,29 @@ export function Profile() {
       </StyleHeader>
       <StyleMain>
         <aside className="asideProfile">
-          <div>
             <figure>
-              <img src={userInfo.image} alt="" />
+              <img src={userInfo.image} alt="bolsominion" />
             </figure>
 
             <div className="divUserInfo">
               <p>Nome: {userInfo.name}</p>
               <p>E-mail: {userInfo.email}</p>
             </div>
-          </div>
+          
+
         </aside>
-        <div className="ListaUls">
-          <div>
+
+
+        <section className="ListaUls">
+          <div className="container">
             <h2>Desejo ler</h2>
-            <ul>{noRead && noRead.map((element) => ListNoRead(element))}</ul>
+            <ul>{noRead.length==0?<div className="containerNot"><h3>Nenhum livro adicionado</h3><span>{':('}</span></div>:noRead.map((element) => ListNoRead(element))}</ul>
           </div>
-          <div>
+          <div className="containerTwo">
             <h2>Já lidos</h2>
-            <ul>{read && read.map((element) => ListBooks(element))}</ul>
+            <ul>{read.length==0?<div className="containerNotRead"><h3>Nenhum livro adicionado</h3><span>{':('}</span></div>:read.map((element) => ListBooks(element))}</ul>
           </div>
-        </div>
+        </section>
       </StyleMain>
     </>
   );

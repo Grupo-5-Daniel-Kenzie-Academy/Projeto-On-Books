@@ -97,21 +97,28 @@ export const StyleMain = styled.main`
 
   .asideDash {
     width: 200px;
-    height: 620px;
+    max-height: 650px;
+
+    
        
     display: flex;
     flex-direction: column;
     align-items: center;
 
+    
     margin-left: 50px;
-
+    
     gap: 15px;
-
+    
     position: sticky;
     z-index: 99;
     top: 5px;
-
+    
     background-color: white;
+    
+    border: 1px solid var(--gray-3);
+    border-radius: 8px;
+   padding: 15px 0px;
 
     @media(max-width:500px){
       max-height: 120px;
