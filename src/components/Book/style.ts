@@ -31,10 +31,6 @@ export const StyleUl = styled.ul`
     border-radius: 8px;
     border: 0.5px solid var(--gray-3);
 
-    :hover {
-      transition: all 0.5s ease;
-      transform: scale(1.1);
-
    :hover{
     transition: all 0.5s ease;
     transform: scale(1.1);

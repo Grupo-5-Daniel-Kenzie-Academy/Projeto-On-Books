@@ -158,7 +158,6 @@ export function DashProvider({ children }: IDashProviderProps) {
       });
 
       setAllReadBook(response.data);
-      console.log(allReadBook)
     } catch {
       console.log('erro')
     }
@@ -261,7 +260,6 @@ export function DashProvider({ children }: IDashProviderProps) {
   }
 
   function Filter(name: string) {
-    localStorage.setItem('tokenHover', name)
     
     if (name === "Todos") {
       return setFilterList(bookList);
