@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { object } from "yup";
 import { api } from "../../api/api";
 import { iResponseLogin } from "../../components/ModalLogin";
 
@@ -56,7 +57,7 @@ export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 export function AuthProvider({ children }: IAuthProviderProps) {
   const [bookList, setBookList] = useState<iBookList[]>([] as iBookList[]);
-  const [filterList, setFilterList] = useState<iBookList[]>([] as iBookList[]);
+  const [filterList, setFilterList] = useState<iBookList[] >([] as iBookList[]);
   const navigate = useNavigate();
 
   const [onModal,setOnModal]=useState(false)

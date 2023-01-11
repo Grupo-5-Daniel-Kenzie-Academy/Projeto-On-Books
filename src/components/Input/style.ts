@@ -6,18 +6,11 @@ export const StyledFieldset = styled.fieldset`
   flex-direction: column;
   position: relative;
 
-  div{
-    background-color: red;
+  div {
     position: relative;
-
     height: 50px;
-    border: 1px solid #6B7280;
-    border-radius: 8px;
-
   }
   label {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 500;
     font-size: var(--rem-11);
     margin-bottom: 6px;
@@ -29,15 +22,14 @@ export const StyledFieldset = styled.fieldset`
     padding-left: 5px;
     padding-right: 5px;
 
-    background-color: white;
+    background-color: var(--gray-1);
 
     font-size: 16px;
     line-height: 29px;
-    color: #6B7280;
-
+    color: var(--gray-4);
   }
 
-  span{
+  span {
     color: red;
     position: absolute;
     font-size: 14px;
@@ -52,22 +44,20 @@ export const StyledFieldset = styled.fieldset`
 `;
 
 export const Input = styled.input`
-  box-sizing: border-box;
   width: 100%;
   height: 100%;
   padding-left: 12px;
 
-  border: 1px solid var(--grey-3);
-  border-radius: var(--radius-4);
+  background-color: var(--gray-1);
 
-  font-family: "Inter";
-  font-style: normal;
+  border: 1px solid var(--gray-4);
+  border-radius: var(--radius-8);
+
   font-weight: 500;
   font-size: var(--rem-09);
   margin-bottom: 6px;
-  
-  :focus{
-    border: 1px solid #22C55E;
-  }
 
+  :focus {
+    border: 1px solid var(--color-primary);
+  }
 `;
