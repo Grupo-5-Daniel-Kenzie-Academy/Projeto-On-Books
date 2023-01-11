@@ -18,73 +18,82 @@ export interface IDashProviderProps {
 }
 
 interface iComments {
-  author: string,
-  titulo: any,
-  description: any
+  author: string;
+  titulo: any;
+  description: any;
 }
 
 export interface iGetComments {
-  author: string,
-  titulo: string,
-  description: string,
-  id: number,
+  author: string;
+  titulo: string;
+  description: string;
+  id: number;
 }
 
 export interface IDashContext {
   filteredBooks: IBooks[];
+
   setCategoryFilter: React.Dispatch<React.SetStateAction<string>>;
+
   categoryFilter: string;
+
   readBooks: () => Promise<void>;
+
   addReadBooks: (element: IBooks) => void;
+
   read: IBooks[];
+
   AllBooks: () => void;
+
   library: IBooks[];
 
   favoritModal: boolean;
 
-  Filter:(name:string) => void;
-  item: {},
-  setItem:React.Dispatch<React.SetStateAction<iBookList>>
+  Filter: (name: string) => void;
+  item: {};
+  setItem: React.Dispatch<React.SetStateAction<iBookList>>;
 
-  addComments:(data: iComments) => void;
+  addComments: (data: iComments) => void;
 
   getComments: () => void;
 
-  FilterInput:(name:string)=>void;
-  
+  FilterInput: (name: string) => void;
+
   comments: iGetComments[];
 
-  setComments: React.Dispatch<React.SetStateAction<iGetComments[]>>
+  setComments: React.Dispatch<React.SetStateAction<iGetComments[]>>;
 
   filteredComments: iGetComments[];
 
-  infBook:IBooks,
+  infBook: IBooks;
 
-  setInfBook:React.Dispatch<React.SetStateAction<IBooks>>;
+  setInfBook: React.Dispatch<React.SetStateAction<IBooks>>;
 
-  userInfo: IuserInfo,
+  userInfo: IuserInfo;
 
-  setUserInfo: React.Dispatch<React.SetStateAction<IuserInfo>>
+  setUserInfo: React.Dispatch<React.SetStateAction<IuserInfo>>;
+
+  RemoveReadBooks: (ids: number) => void;
+  addNoReadBooks: (element: IBooks) => void;
+  noRead: IBooks[];
+  RemoveNoReadBooks: (ids: number) => void;
+  AllNoBooks: () => void;
 }
 
-export interface IuserInfo{
- 
-  email: string,
-  id: number,
-  image: string,
-  name: string,
-  password: string
-
-} 
-
+export interface IuserInfo {
+  email: string;
+  id: number;
+  image: string;
+  name: string;
+  password: string;
+}
 
 export const DashContext = createContext<IDashContext>({} as IDashContext);
 
 export function DashProvider({ children }: IDashProviderProps) {
+  const [infBook, setInfBook] = useState<IBooks>({} as IBooks);
 
-  const [infBook, setInfBook]= useState<IBooks>({} as IBooks)
-
-  const {bookList, setFilterList} = useContext(AuthContext)
+  const { bookList, setFilterList } = useContext(AuthContext);
 
   const token = localStorage.getItem("@Token");
 
@@ -98,9 +107,9 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   const [noRead, setNoRead] = useState<IBooks[]>([]);
 
-  const [allReadBook, setAllReadBook] = useState([]);
+  const [allReadBook, setAllReadBook] = useState<IBooks[]>([]);
 
-  const [allNoReadBook, setAllNoReadBook] = useState([])
+  const [allNoReadBook, setAllNoReadBook] = useState<IBooks[]>([]);
 
   const [library, setLibrary] = useState([]);
 
@@ -108,11 +117,11 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   const [item, setItem] = useState<iBookList>({} as iBookList);
 
-  const [comments, setComments] = useState<iGetComments[]>([])
+  const [comments, setComments] = useState<iGetComments[]>([]);
 
-  const [filteredComments, setFilteredComments] = useState<iGetComments[]>([])
+  const [filteredComments, setFilteredComments] = useState<iGetComments[]>([]);
 
-  const [userInfo, setUserInfo] = useState<IuserInfo>({} as IuserInfo)
+  const [userInfo, setUserInfo] = useState<IuserInfo>({} as IuserInfo);
 
   async function readBooks() {
     try {
@@ -148,7 +157,7 @@ export function DashProvider({ children }: IDashProviderProps) {
 
       setAllReadBook(response.data);
     } catch {}
-  } 
+  }
 
   async function AllNoBooks() {
     try {
@@ -160,15 +169,15 @@ export function DashProvider({ children }: IDashProviderProps) {
 
       setAllNoReadBook(response.data);
     } catch {}
-  } 
+  }
 
   useEffect(() => {
-    AllBooks()
-  },[])
+    AllBooks();
+  }, []);
 
   useEffect(() => {
-    AllNoBooks()
-  },[])
+    AllNoBooks();
+  }, []);
 
   async function addReadBooks(element: IBooks) {
     const teste = Math.floor(Math.random() * (10000 - 1 + 1) + 1);
@@ -179,11 +188,12 @@ export function DashProvider({ children }: IDashProviderProps) {
       title: `${element.title}`,
       userId: `${Number(id)}`,
     };
+    toast.success("Livro adicionado a lista de livros lidos");
     const names = allReadBook.map((element) => element.title);
     const verification = names.indexOf(element.title);
 
     if (verification !== -1) {
-      toast("Item já Adicionado na Sua Lista de Lidos")
+      toast("Item já Adicionado na Sua Lista de Lidos");
       return null;
     }
 
@@ -198,7 +208,6 @@ export function DashProvider({ children }: IDashProviderProps) {
     } catch {}
   }
 
-
   async function addNoReadBooks(element: IBooks) {
     const teste = Math.floor(Math.random() * (10000 - 1 + 1) + 1);
     let objetive = {
@@ -208,11 +217,12 @@ export function DashProvider({ children }: IDashProviderProps) {
       title: `${element.title}`,
       userId: `${Number(id)}`,
     };
+    toast.success("Livro adicionado a lista desejados");
     const names = allNoReadBook.map((element) => element.title);
     const verification = names.indexOf(element.title);
 
     if (verification !== -1) {
-      toast("Item já Adicionado na Sua Lista de Lidos")
+      toast("Item já Adicionado na Sua Lista de Lidos");
       return null;
     }
 
@@ -296,85 +306,66 @@ export function DashProvider({ children }: IDashProviderProps) {
     }
   }
 
-  async function addComments(data: iComments){
-    
+  async function addComments(data: iComments) {
     try {
-
       const response = await api.post("/comentarios", data, {
         headers: {
           Authorization: `Bearer ${token}`,
-
         },
-
-        
       });
 
-      (async function getComments(){
+      (async function getComments() {
         try {
-    
           const response = await api.get("/comentarios");
-    
-          setComments(response.data)
-    
-          filterComments(response.data)
-    
+
+          setComments(response.data);
+
+          filterComments(response.data);
         } catch (error) {
           toast.error("Ops! Algo deu errado");
-        } 
-      })()
-      toast.success('Comentário adicionado com sucesso')
-
+        }
+      })();
+      toast.success("Comentário adicionado com sucesso");
     } catch (error) {
       toast.error("Ops! Algo deu errado");
-    } 
+    }
   }
 
-    async function getComments(){
-      try {
-  
-        const response = await api.get("/comentarios");
-  
-        setComments(response.data)
-  
-        filterComments(response.data)
-  
-      } catch (error) {
-        toast.error("Ops! Algo deu errado");
-      } 
+  async function getComments() {
+    try {
+      const response = await api.get("/comentarios");
+
+      setComments(response.data);
+
+      filterComments(response.data);
+    } catch (error) {
+      toast.error("Ops! Algo deu errado");
     }
+  }
 
   function filterComments(data: iGetComments[]) {
-
     const info = JSON.parse(localStorage.getItem("book") || "{}");
 
-    const filterComment = data.filter((element) => element.titulo === info.title)
+    const filterComment = data.filter(
+      (element) => element.titulo === info.title
+    );
 
-    setComments(filterComment)
+    setComments(filterComment);
+  }
 
-  } 
-
-  useEffect( () => {
-
-    async function userData (){
-
+  useEffect(() => {
+    async function userData() {
       try {
-    
         const response = await api.get(`/users/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
-          }
-        })
-        setUserInfo(response.data)
-
-      } catch (error) {
-
-      } 
+          },
+        });
+        setUserInfo(response.data);
+      } catch (error) {}
     }
-    userData ()
-
-  }, [token, id])
-
-  
+    userData();
+  }, [token, id]);
 
   return (
     <DashContext.Provider
@@ -405,8 +396,7 @@ export function DashProvider({ children }: IDashProviderProps) {
         addNoReadBooks,
         noRead,
         RemoveNoReadBooks,
-        AllBooks,
-        AllNoBooks
+        AllNoBooks,
       }}
     >
       {children}

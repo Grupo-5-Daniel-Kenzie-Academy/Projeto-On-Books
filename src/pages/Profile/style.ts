@@ -83,14 +83,34 @@ export const StyleMain = styled.main`
       position: relative;
       margin-left: 0px;
     }
+    img {
+      border-radius: 100%;
+    }
+
+    .divUserInfo {
+      width: 299px;
+      height: 152px;
+      box-sizing: border-box;
+      background: #f9fafb;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
   }
   .ListaUls {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 100px;
   }
   ul {
-    height: 200px;
+    display: flex;
+    gap: 20px;
+    height: 300px;
     width: 800px;
     background-color: red;
 

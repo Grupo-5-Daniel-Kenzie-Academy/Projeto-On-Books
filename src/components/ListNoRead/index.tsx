@@ -1,14 +1,19 @@
 import React, { useContext } from "react";
-import { DashContext } from "../../contexts/DashboardContext/DashContext";
+import {
+  DashContext,
+  IBooks,
+} from "../../contexts/DashboardContext/DashContext";
 
-export function ListNoRead(element) {
-const { RemoveNoReadBooks } = useContext(DashContext)
+import { Licard } from "./style";
+
+export function ListNoRead(element: IBooks) {
+  const { RemoveNoReadBooks } = useContext(DashContext);
 
   return (
-    <li>
+    <Licard>
       <img className="imgBook" src={element.img} alt={element.title} />
       <h2>{element.title}</h2>
       <button onClick={() => RemoveNoReadBooks(element.id)}>Remover</button>
-    </li>
+    </Licard>
   );
 }

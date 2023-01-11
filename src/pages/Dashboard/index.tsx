@@ -72,7 +72,6 @@ export const Dashboard = () => {
             src={userInfo?.image}
             alt="Usuario"
             onClick={() => navigate("/profile")}
-            
           />
           <img
             className="logout"

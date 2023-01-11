@@ -9,14 +9,15 @@ import { ListBooks } from "../../components/ListRead";
 import { ListNoRead } from "../../components/ListNoRead";
 
 export function Profile() {
-  const { userInfo, read, noRead, AllBooks, AllNoBooks } = useContext(DashContext);
+  const { userInfo, read, noRead, AllBooks, AllNoBooks } =
+    useContext(DashContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    AllBooks()
-    AllNoBooks()
-  },[])
+    AllBooks();
+    AllNoBooks();
+  }, []);
 
   function LogoutUser() {
     window.localStorage.clear();
@@ -54,21 +55,22 @@ export function Profile() {
             <figure>
               <img src={userInfo.image} alt="" />
             </figure>
-            <div>
+
+            <div className="divUserInfo">
               <p>Nome: {userInfo.name}</p>
               <p>E-mail: {userInfo.email}</p>
             </div>
           </div>
         </aside>
         <div className="ListaUls">
-          <h1>Desejo ler</h1>
-          <ul>
-           {noRead && noRead.map((element) => ListNoRead(element))}
-          </ul>
-          <h1>Já lidos</h1>
-          <ul>
-          {read && read.map((element) => ListBooks(element))}
-          </ul>
+          <div>
+            <h1>Desejo ler</h1>
+            <ul>{noRead && noRead.map((element) => ListNoRead(element))}</ul>
+          </div>
+          <div>
+            <h1>Já lidos</h1>
+            <ul>{read && read.map((element) => ListBooks(element))}</ul>
+          </div>
         </div>
       </StyleMain>
     </>
