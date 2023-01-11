@@ -34,6 +34,12 @@ export const StyleHeader = styled.header`
     align-items: center;
     gap: 10px;
 
+    p {
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--gray-5);
+    }
+
     @media (max-width: 1020px) {
       width: 100%;
       max-width: 436.5px;
@@ -298,22 +304,22 @@ export const StyleSecComents = styled.section`
       }
     }
   }
-  .containerComent{
-      display: flex;
-      flex-wrap: wrap;
+  .containerComent {
+    display: flex;
+    flex-wrap: wrap;
 
-      border: 1px solid var(--gray-3);
-      justify-content: center;
-      gap: 15px;
-      background-color: var(--gray-1);
+    border: 1px solid var(--gray-3);
+    justify-content: center;
+    gap: 15px;
+    background-color: var(--gray-1);
 
-      padding: 10px 0;
+    padding: 10px 0;
 
-    h3{
+    h3 {
       text-align: center;
-        font-size: 20px;
+      font-size: 20px;
     }
-    span{
+    span {
       font-size: 25px;
       rotate: calc(90deg);
     }

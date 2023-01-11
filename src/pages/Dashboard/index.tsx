@@ -17,7 +17,7 @@ export const Dashboard = () => {
   const { readBooks, AllBooks, Filter } = useContext(DashContext);
 
   const { protectRoutes } = useContext(AuthContext);
-  
+
   const { FilterInput } = useContext(DashContext);
 
   useEffect(() => {
@@ -36,13 +36,12 @@ export const Dashboard = () => {
 
   function FilInput(event: any) {
     event.preventDefault();
-   
-    FilterInput(value)
+
+    FilterInput(value);
   }
 
-  const {userInfo} = useContext(DashContext)
+  const { userInfo } = useContext(DashContext);
 
- 
   return (
     <>
       <StyleHeader>
@@ -51,13 +50,27 @@ export const Dashboard = () => {
         </figcaption>
 
         <div className="inputHeader">
-
-        <input type="text" placeholder="Buscar por um livro..."  onKeyUp={(event)=>{FilterInput(event.currentTarget.value)}} onChange={(event) => {setValue(event.target.value)}}/>
-        <img src={iconeLupa} onClick={(event)=>{FilInput(event)}} alt="imagem de uma lupa"  />
+          <input
+            type="text"
+            placeholder="Buscar por um livro..."
+            onKeyUp={(event) => {
+              FilterInput(event.currentTarget.value);
+            }}
+            onChange={(event) => {
+              setValue(event.target.value);
+            }}
+          />
+          <img
+            src={iconeLupa}
+            onClick={(event) => {
+              FilInput(event);
+            }}
+            alt="imagem de uma lupa"
+          />
         </div>
 
         <div className="infUser">
-          <p>Bem vindo(a), {userInfo?.name} !</p>
+          <p>Olá, {userInfo?.name} </p>
           <img
             className="foto"
             src={userInfo?.image}

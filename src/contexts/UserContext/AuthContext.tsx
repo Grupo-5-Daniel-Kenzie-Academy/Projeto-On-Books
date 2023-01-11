@@ -1,12 +1,11 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { ReactNode } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { object } from "yup";
 import { api } from "../../api/api";
 import { iResponseLogin } from "../../components/ModalLogin";
-
+import { DashContext } from "../DashboardContext/DashContext";
 
 export interface IAuthProviderProps {
   children: ReactNode;
@@ -14,14 +13,18 @@ export interface IAuthProviderProps {
 interface IAuthContext {
   loginUser: (data: iData) => void;
   userRegister: (formData: iRegisterData) => void;
+  editUser: (formData: iDataEdit) => void;
   autoLogin: () => void;
   protectRoutes: () => void;
   bookList: iBookList[];
   filterList: iBookList[];
   setFilterList: React.Dispatch<React.SetStateAction<iBookList[]>>;
 
-  onModal:boolean;
-  setOnModal: React.Dispatch<React.SetStateAction<boolean>>
+  onModal: boolean;
+  setOnModal: React.Dispatch<React.SetStateAction<boolean>>;
+
+  onModalEdit: boolean;
+  setOnModalEdit: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface iData {
   email: string;
@@ -52,15 +55,21 @@ export interface iBookList {
   img: string;
   title: string;
 }
-
+interface iDataEdit {
+  name?: string;
+  email?: string;
+  image?: string;
+}
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 export function AuthProvider({ children }: IAuthProviderProps) {
   const [bookList, setBookList] = useState<iBookList[]>([] as iBookList[]);
-  const [filterList, setFilterList] = useState<iBookList[] >([] as iBookList[]);
+  const [filterList, setFilterList] = useState<iBookList[]>([] as iBookList[]);
   const navigate = useNavigate();
 
-  const [onModal,setOnModal]=useState(false)
+  const [onModal, setOnModal] = useState(false);
+
+  const [onModalEdit, setOnModalEdit] = useState(false);
 
   async function loginUser(data: iData) {
     try {
@@ -89,6 +98,25 @@ export function AuthProvider({ children }: IAuthProviderProps) {
       setTimeout(() => {
         navigate("/");
       }, 3000);
+    } catch (error) {
+      toast.error("Oops, algo deu errado...");
+    }
+  }
+
+  async function editUser(formData: iDataEdit) {
+    const token = localStorage.getItem("@Token");
+    const id = localStorage.getItem("@id");
+    console.log(id);
+    try {
+      await api.patch<iResponseData>(`/users/${id}`, formData, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+
+      toast.success("Usuario editado com sucesso!", {
+        autoClose: 3000,
+      });
     } catch (error) {
       toast.error("Oops, algo deu errado...");
     }
@@ -145,6 +173,9 @@ export function AuthProvider({ children }: IAuthProviderProps) {
         setFilterList,
         onModal,
         setOnModal,
+        editUser,
+        onModalEdit,
+        setOnModalEdit,
       }}
     >
       {children}
