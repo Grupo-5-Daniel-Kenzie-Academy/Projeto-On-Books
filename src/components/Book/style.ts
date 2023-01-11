@@ -9,13 +9,17 @@ export const StyleUl = styled.ul`
   gap: 25px;
 
   @media(max-width: 500px){
-   
-    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+
+      padding: 20px;
+      overflow: auto;
   }
   
   li {
-    width:200px;
+    min-width:200px;
     height: 280px;
+    max-width:200px;
 
     display: flex;
     flex-direction: column;
@@ -26,7 +30,6 @@ export const StyleUl = styled.ul`
 
     border-radius: 8px;
     border: 0.5px solid  #D1D5DB ;
-
 
    :hover{
     transition: all 0.5s ease;
@@ -85,6 +88,23 @@ export const StyleUl = styled.ul`
         text-overflow: ellipsis
       }
     }
+  }
+  .divError{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+       h2{
+        font-size: 30px;
+        text-align: center;
+
+        line-height: 150%;
+       }
+       span{
+        font-size: 100px;
+        transform: rotate(90deg);
+       }
+
   }
 
 

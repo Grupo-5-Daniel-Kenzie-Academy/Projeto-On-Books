@@ -68,6 +68,8 @@ export const StyleHeader = styled.header`
       right: 20px;
       width: 15px;
       height: 15px;
+
+      cursor: pointer;
     }
   }
 
@@ -92,17 +94,20 @@ export const StyleMain = styled.main`
   
   gap: 100px;
   padding-top: 100px;
-
+ 
   @media(max-width:500px){
       flex-direction: column;
+
+     
+      padding-top: 50px;
+      gap: 0px;
     }
 
 
   .asideDash{
     width: 200px;
-    height: 550px;
-   
-    
+    height: 620px;
+       
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -118,10 +123,14 @@ export const StyleMain = styled.main`
     background-color: white;
 
     @media(max-width:500px){
-      max-height: 100px;
+      max-height: 120px;
       width: 100%;
       position: relative;
       margin-left: 0px;
+
+      background: linear-gradient(90deg, rgba(249,249,249,1) 79%, rgba(219,227,222,1) 100%);
+      
+      
     }
     
     h4{
@@ -154,29 +163,37 @@ export const StyleMain = styled.main`
          
         border-radius: 8px;
         background-color: white;
+        :focus{
+          color: white;
+          background-color:  #22C55E;
+        }
 
         :hover{
           color: white;
           background-color:  #22C55E;
         }
-
-
       }
+
+
     }
+    #hover{
+          color: white;
+          background-color:  #22C55E;
+        }
 
   }
 
   .sectonBook {
     width: 100%;
     max-width: 1000px;
- 
     display: flex;
     justify-content: center;
-   
-   padding: 50px;
+    padding: 20px;
+    @media(max-width:500px){
+      padding: 20px 0px;
+}
 
-   
-    
+  
   }
 `;
 

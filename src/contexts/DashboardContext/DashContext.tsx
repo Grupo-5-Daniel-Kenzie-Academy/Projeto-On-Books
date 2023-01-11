@@ -165,10 +165,11 @@ export function DashProvider({ children }: IDashProviderProps) {
   }
 
   function Filter(name: string) {
+    localStorage.setItem('tokenHover', name)
+    
     if (name === "Todos") {
       return setFilterList(bookList);
     }
-
     const goFilter = bookList.filter((element) => {
       const bolena = newIncludes(element.categories, name);
       if (bolena) {
@@ -176,6 +177,7 @@ export function DashProvider({ children }: IDashProviderProps) {
       }
     });
     setFilterList(goFilter);
+   
   }
   function FilterInput(name: string) {
     if (name === "") {
@@ -295,6 +297,7 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   }, [token, id])
 
+ 
   
 
   return (
@@ -321,7 +324,7 @@ export function DashProvider({ children }: IDashProviderProps) {
         setComments,
         filteredComments,
         userInfo,
-        setUserInfo
+        setUserInfo,
       }}
     >
       {children}

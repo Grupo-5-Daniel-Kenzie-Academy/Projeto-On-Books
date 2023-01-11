@@ -3,18 +3,15 @@ import { useContext } from "react";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/UserContext/AuthContext";
-import  iconHeart from '../../assets/img/iconeHeart.svg'
-/* import { Ranking } from "../Ranking"; */
-
-
 export function Book() {
-  const { addReadBooks ,setInfBook, getComments } = useContext(DashContext);
+  const { setInfBook  } = useContext(DashContext);
   const { filterList,  } = useContext(AuthContext);
+ 
 
 
   return (
     <S.StyleUl>
-      {filterList.map((element,index) => (
+      {filterList.length===0?<div className="divError"><h2>Ops! Não encontramos nada na pesquisa...</h2><span>{':('}</span></div>:filterList.map((element,index) => (
         <li key={index}>
             <img className="imgBook" src={element.img} alt="" />
           

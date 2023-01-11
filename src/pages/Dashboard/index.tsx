@@ -1,5 +1,4 @@
 import logoTitle from "../../assets/img/mewLogo.png";
-import fotoRosto from "../../assets/img/rostinho.jpeg";
 import icone from "../../assets/img/logoutIcon.svg";
 import iconeLupa from "../../assets/img/iconeLupa.svg";
 import { StyleMain, StyleHeader } from "./style";
@@ -7,8 +6,6 @@ import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
 import { AuthContext } from "../../contexts/UserContext/AuthContext";
-import { ToastContainer } from "react-toastify";
-import { BookListRead } from "../../components/BookListRead";
 import { Book } from "../../components/Book";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +18,9 @@ export const Dashboard = () => {
     useContext(DashContext);
 
   const { protectRoutes } = useContext(AuthContext);
-  const { FilterInput  } = useContext(DashContext);
+  const { FilterInput } = useContext(DashContext);
+
+ 
 
   useEffect(() => {
     AllBooks();
@@ -39,12 +38,19 @@ export const Dashboard = () => {
 
   function FilInput(event: any) {
     event.preventDefault();
+
    
     FilterInput(value)
   }
 
-  const {userInfo} = useContext(DashContext)
+  function goHover(event:any){
 
+    const hoveraldo = localStorage.getItem('tokenHover')
+    console.log(event.target[0])
+ 
+
+  }
+  const {userInfo} = useContext(DashContext)
   return (
     <>
     
@@ -56,7 +62,7 @@ export const Dashboard = () => {
         <div className="inputHeader">
 
         <input type="text" placeholder="Buscar por um livro..."  onKeyUp={(event)=>{FilterInput(event.currentTarget.value)}} onChange={(event) => {setValue(event.target.value)}}/>
-        <img src={iconeLupa} alt="imagem de uma lupa"  />
+        <img src={iconeLupa} onClick={(event)=>{FilInput(event)}} alt="imagem de uma lupa"  />
         </div>
 
         <div className="infUser">
@@ -69,9 +75,10 @@ export const Dashboard = () => {
           <aside className="asideDash">
             <h4>Categorias</h4>
             <ul>
-              <button className="btnFilter"
+              <button  className="btnFilter"
                 onClick={(e) => {
-                  Filter(e.currentTarget.innerText.toString());
+                  Filter(e.currentTarget.innerText.toString())
+                  ;
                 }}
               >
                 Todos
@@ -79,7 +86,9 @@ export const Dashboard = () => {
               <button className="btnFilter"
                 onClick={(e) => {
                   Filter(e.currentTarget.innerText.toString());
+                 
                 }}
+
               >
                 Ação
               </button>
