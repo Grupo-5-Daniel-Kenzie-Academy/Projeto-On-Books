@@ -11,8 +11,10 @@ export function ListBooks(element: IBooks) {
   return (
     <Licard>
       <img className="imgBook" src={element.img} alt={element.title} />
-      <h2>{element.title}</h2>
-      <button onClick={() => RemoveReadBooks(element.id)}>Remover</button>
+      <div className="divInfoBO">
+        <p>{element.title}</p>
+        <button onClick={() => RemoveReadBooks(element.id)}>Remover</button>
+      </div>
     </Licard>
   );
 }

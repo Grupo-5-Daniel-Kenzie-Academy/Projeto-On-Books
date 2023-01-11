@@ -1,7 +1,7 @@
 import styled from "styled-components";
 export const StyleHeader = styled.header`
   width: 100%;
-  min-height: 60px;
+  min-height: 80px;
   padding: 0 80px 0 80px;
   background: var(--gray-1);
   display: flex;
@@ -33,6 +33,7 @@ export const StyleHeader = styled.header`
     gap: 10px;
 
     p {
+      font-size: 24px;
       font-weight: bold;
       color: var(--gray-5);
     }

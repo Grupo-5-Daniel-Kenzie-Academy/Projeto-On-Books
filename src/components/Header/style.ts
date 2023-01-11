@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const Header = styled.header`
   width: 100%;
-  min-height: 60px;
+  min-height: 80px;
   padding: 0 80px 0 80px;
-  background: #f9fafb;
+  background: var(--gray-1);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 24px;
 
   @media (max-width: 584px) {
     padding: 20px;
@@ -44,6 +45,7 @@ export const Header = styled.header`
     padding: 10px 20px;
     border-radius: 8px;
     font-weight: bold;
+    font-size: 18px;
 
     :hover {
       background-color: var(--color-primary-50);
