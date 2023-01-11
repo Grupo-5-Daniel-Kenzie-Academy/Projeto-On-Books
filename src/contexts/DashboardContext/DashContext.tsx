@@ -21,12 +21,15 @@ interface iComments {
   author: string;
   titulo: any;
   description: any;
+  image?:string;
+
 }
 
 export interface iGetComments {
   author: string;
   titulo: string;
   description: string;
+  image?:string;
   id: number;
 }
 

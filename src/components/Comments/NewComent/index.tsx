@@ -13,19 +13,19 @@ interface iCommentsFormValues {
 
 
 export const NewComments = () => {
-    const {addComments} = useContext(DashContext)
+    const {addComments ,userInfo} = useContext(DashContext)
     const { register, handleSubmit, reset } = useForm<iCommentsFormValues>();
 
     
     const onSubmit: SubmitHandler<iCommentsFormValues> = data => { 
         const info = JSON.parse(localStorage.getItem("book") || "{}");
-        const user = JSON.parse(localStorage.getItem("user") || "{}")
         const newData = {
-            author: user.name,
+            author: userInfo.name,
             titulo: info.title,
+            image: userInfo.image,
             description: data.description,
         }
-
+        
          
         addComments(newData)  
         reset()

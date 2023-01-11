@@ -2,7 +2,8 @@ import { useContext, useEffect } from 'react'
 import { DashContext } from '../../../contexts/DashboardContext/DashContext'
 
 export const BookComments = () => {
-    const { comments, getComments,userInfo } = useContext(DashContext)
+    const { comments, getComments } = useContext(DashContext)
+    
 
 
     useEffect(() => {
@@ -16,9 +17,9 @@ export const BookComments = () => {
         return(
 
                 <li key={index}>
-                  <img src={userInfo.image} alt="" />
+                  <img src={element.image} alt="" />
                     <div className='testeDiv'>
-                      <h4>{userInfo.name}</h4>
+                      <h4>{element.author}</h4>
                       <p>{element.description}</p>
                     </div>
                 </li>
