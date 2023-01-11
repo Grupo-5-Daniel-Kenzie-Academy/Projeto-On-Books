@@ -39,6 +39,8 @@ export interface IDashContext {
 
   readBooks: () => Promise<void>;
 
+  noReadBooks: () => Promise<void>;
+
   addReadBooks: (element: IBooks) => void;
 
   read: IBooks[];
@@ -156,7 +158,10 @@ export function DashProvider({ children }: IDashProviderProps) {
       });
 
       setAllReadBook(response.data);
-    } catch {}
+      console.log(allReadBook)
+    } catch {
+      console.log('erro')
+    }
   }
 
   async function AllNoBooks() {
@@ -188,12 +193,20 @@ export function DashProvider({ children }: IDashProviderProps) {
       title: `${element.title}`,
       userId: `${Number(id)}`,
     };
-    toast.success("Livro adicionado a lista de livros lidos");
+
     const names = allReadBook.map((element) => element.title);
     const verification = names.indexOf(element.title);
 
+    const namesNoRead = allNoReadBook.map((element) => element.title);
+    const verificationNoRead = namesNoRead.indexOf(element.title);
+
     if (verification !== -1) {
-      toast("Item já Adicionado na Sua Lista de Lidos");
+      toast("Item já adicionado na sua lista de Lidos");
+      return null;
+    }
+
+    if(verificationNoRead !== -1){
+      toast("Item já adicionado na sua lista de não lidos");
       return null;
     }
 
@@ -205,6 +218,7 @@ export function DashProvider({ children }: IDashProviderProps) {
       });
       readBooks();
       AllBooks();
+      toast.success("Livro adicionado a lista de livros lidos");
     } catch {}
   }
 
@@ -217,12 +231,20 @@ export function DashProvider({ children }: IDashProviderProps) {
       title: `${element.title}`,
       userId: `${Number(id)}`,
     };
-    toast.success("Livro adicionado a lista desejados");
+
     const names = allNoReadBook.map((element) => element.title);
     const verification = names.indexOf(element.title);
 
+    const namesRead = allReadBook.map((element) => element.title);
+    const verificationRead = namesRead.indexOf(element.title);
+
     if (verification !== -1) {
-      toast("Item já Adicionado na Sua Lista de Lidos");
+      toast("Item já adicionado na sua lista de lidos");
+      return null;
+    }
+
+    if(verificationRead !== -1){
+      toast("Item já existente na sua lista de não lidos")
       return null;
     }
 
@@ -234,6 +256,7 @@ export function DashProvider({ children }: IDashProviderProps) {
       });
       noReadBooks();
       AllNoBooks();
+      toast.success("Livro adicionado a lista desejados");
     } catch {}
   }
 
@@ -397,6 +420,7 @@ export function DashProvider({ children }: IDashProviderProps) {
         noRead,
         RemoveNoReadBooks,
         AllNoBooks,
+        noReadBooks
       }}
     >
       {children}

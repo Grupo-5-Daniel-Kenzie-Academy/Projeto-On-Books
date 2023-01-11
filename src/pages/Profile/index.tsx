@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
 import { StyleHeader, StyleMain } from "./style";
 
@@ -9,16 +9,17 @@ import { ListBooks } from "../../components/ListRead";
 import { ListNoRead } from "../../components/ListNoRead";
 
 export function Profile() {
-  const { userInfo, read, noRead, AllBooks, AllNoBooks } =
+  const { userInfo, read, noRead, readBooks, noReadBooks } =
     useContext(DashContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    AllBooks();
-    AllNoBooks();
+    readBooks();
+    noReadBooks();
+    console.log('boa')
   }, []);
-
+  
   function LogoutUser() {
     window.localStorage.clear();
     navigate("/");
