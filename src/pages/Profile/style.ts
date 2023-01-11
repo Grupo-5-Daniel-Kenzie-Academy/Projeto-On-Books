@@ -78,7 +78,7 @@ export const StyleMain = styled.main`
     width: 100%;
     max-width: 300px;
 
-    height: 380px;
+    height: 360px;
     padding: 5px;
 
     border-radius: 8px;
@@ -106,7 +106,7 @@ export const StyleMain = styled.main`
 
     .divUserInfo {
       width: 100%;
-      height: 150px;
+      height: 100px;
 
       padding: 5px;
       box-sizing: border-box;
