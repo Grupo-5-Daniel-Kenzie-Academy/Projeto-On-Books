@@ -17,9 +17,9 @@ export function Profile() {
   useEffect(() => {
     readBooks();
     noReadBooks();
-    console.log('boa')
+    console.log("boa");
   }, []);
-  
+
   function LogoutUser() {
     window.localStorage.clear();
     navigate("/");
@@ -65,11 +65,11 @@ export function Profile() {
         </aside>
         <div className="ListaUls">
           <div>
-            <h1>Desejo ler</h1>
+            <h2>Desejo ler</h2>
             <ul>{noRead && noRead.map((element) => ListNoRead(element))}</ul>
           </div>
           <div>
-            <h1>Já lidos</h1>
+            <h2>Já lidos</h2>
             <ul>{read && read.map((element) => ListBooks(element))}</ul>
           </div>
         </div>

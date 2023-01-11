@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 export const StyleHeader = styled.header`
   width: 100%;
-  min-height: 60px;
+  min-height: 80px;
   padding: 0 80px 0 80px;
   background: var(--gray-1);
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-weight: bold;
+  font-size: 24px;
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
@@ -105,13 +106,14 @@ export const StyleMain = styled.main`
   ul {
     display: flex;
     gap: 20px;
-    height: 300px;
+    height: 350px;
     max-width: 1000px;
     width: 100%;
     background-color: var(--gray-1);
     border-radius: 8px;
     align-items: center;
     padding: 1rem;
+    overflow-x: auto;
 
     .imgBook {
       width: 110px;

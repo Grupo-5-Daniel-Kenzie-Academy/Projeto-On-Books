@@ -1,9 +1,9 @@
 import styled from "styled-components";
 export const StyleHeader = styled.header`
   width: 100%;
-  min-height: 60px;
+  min-height: 80px;
   padding: 0 80px 0 80px;
-  background: #f9fafb;
+  background: var(--gray-1);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,21 +31,11 @@ export const StyleHeader = styled.header`
       justify-content: space-evenly;
     }
     a {
+      font-size: 24px;
       font-weight: bold;
       :hover {
-        color: #22c55e;
+        color: var(--color-primary);
       }
-    }
-  }
-  .btnLogin {
-    background-color: #22c55e;
-    color: #f9fafb;
-    padding: 10px 20px;
-    border-radius: 8px;
-
-    :hover {
-      background-color: #86efac;
-      color: black;
     }
   }
 `;
@@ -115,6 +105,7 @@ export const StyledRegisterPage = styled.main`
     }
   }
 `;
+
 export const StyleFormRegister = styled.form`
   width: 100%;
   max-width: 420px;
@@ -138,7 +129,7 @@ export const StyleFormRegister = styled.form`
       font-weight: 700;
       font-size: 38px;
       line-height: 58px;
-      color: #1f2937;
+      color: var(--gray-5);
     }
     button {
       background-color: var(--color-primary);
