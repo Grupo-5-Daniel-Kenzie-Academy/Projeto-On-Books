@@ -14,13 +14,11 @@ export const Dashboard = () => {
 
   const [value, setValue] = useState("");
 
-  const { readBooks, AllBooks, Filter } =
-    useContext(DashContext);
+  const { readBooks, AllBooks, Filter } = useContext(DashContext);
 
   const { protectRoutes } = useContext(AuthContext);
-  const { FilterInput } = useContext(DashContext);
-
- 
+  
+  const { FilterInput, userInfo } = useContext(DashContext);
 
   useEffect(() => {
     AllBooks();
@@ -38,7 +36,6 @@ export const Dashboard = () => {
 
   function FilInput(event: any) {
     event.preventDefault();
-
    
     FilterInput(value)
   }
@@ -53,7 +50,6 @@ export const Dashboard = () => {
   const {userInfo} = useContext(DashContext)
   return (
     <>
-    
       <StyleHeader>
         <figcaption>
           <img src={logoTitle} alt="imagem de uma logo" />
@@ -66,11 +62,22 @@ export const Dashboard = () => {
         </div>
 
         <div className="infUser">
-          <p>{userInfo?.name}</p>
-          <img className="foto" src={userInfo?.image} alt="Usuario"  />
-          <img className="logout" onClick={() => LogoutUser()} src={icone} alt="Icone de logout" />
+          <p>Bem vindo(a), {userInfo?.name} !</p>
+          <img
+            className="foto"
+            src={userInfo?.image}
+            alt="Usuario"
+            onClick={() => navigate("/profile")}
+          />
+          <img
+            className="logout"
+            onClick={() => LogoutUser()}
+            src={icone}
+            alt="Icone de logout"
+          />
         </div>
       </StyleHeader>
+
       <StyleMain> 
           <aside className="asideDash">
             <h4>Categorias</h4>
@@ -199,6 +206,150 @@ export const Dashboard = () => {
               </button>
             </ul>
           </aside>
+
+      <StyleMain>
+        <aside className="asideDash">
+          <h4>Categorias</h4>
+          <ul>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Todos
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Ação
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Guerra
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Deuses
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Romance
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Mistério
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Fantasia
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Magia
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Comédia
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Investigação
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Religião
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Luta
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Mitologia
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Sexo
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Aventura
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Estratégia
+            </button>
+            <button
+              className="btnFilter"
+              onClick={(e) => {
+                Filter(e.currentTarget.innerText.toString());
+              }}
+            >
+              Terror
+            </button>
+          </ul>
+        </aside>
+
         <section className="sectonBook">
           <Book />
         </section>
