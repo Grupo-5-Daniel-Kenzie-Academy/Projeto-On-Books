@@ -129,7 +129,7 @@ export function AuthProvider({ children }: IAuthProviderProps) {
       setBookList(response.data);
       setFilterList(response.data);
     } catch {
-      navigate("/login");
+      navigate("/");
     }
   }
 

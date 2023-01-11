@@ -11,7 +11,7 @@ export const BookComments = () => {
 
   return (
     <ul>
-    {comments.map((element, index) => {
+    {comments.length==0? <div className='containerComent'><h3>Seja o primero a comentar</h3> <span>{':)'}</span></div>:comments.map((element, index) => {
         
         return(
 
