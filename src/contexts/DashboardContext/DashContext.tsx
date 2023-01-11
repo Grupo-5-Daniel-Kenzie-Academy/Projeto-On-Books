@@ -158,7 +158,6 @@ export function DashProvider({ children }: IDashProviderProps) {
       });
 
       setAllReadBook(response.data);
-      console.log(allReadBook)
     } catch {
       console.log('erro')
     }
@@ -261,10 +260,10 @@ export function DashProvider({ children }: IDashProviderProps) {
   }
 
   function Filter(name: string) {
+    
     if (name === "Todos") {
       return setFilterList(bookList);
     }
-
     const goFilter = bookList.filter((element) => {
       const bolena = newIncludes(element.categories, name);
       if (bolena) {
@@ -272,6 +271,7 @@ export function DashProvider({ children }: IDashProviderProps) {
       }
     });
     setFilterList(goFilter);
+   
   }
 
   function FilterInput(name: string) {
@@ -387,8 +387,10 @@ export function DashProvider({ children }: IDashProviderProps) {
         setUserInfo(response.data);
       } catch (error) {}
     }
-    userData();
-  }, [token, id]);
+    
+    userData ()
+
+  }, [token, id])
 
   return (
     <DashContext.Provider
