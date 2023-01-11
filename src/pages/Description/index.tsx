@@ -1,12 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { StyleHeader, StyleMain, StyleSecComents, StyleSecinpu } from "./style";
-import fotoRosto from "../../assets/img/rostinho.jpeg";
 import icone from "../../assets/img/logoutIcon.svg";
 import logoTitle from "../../assets/img/mewLogo.png";
 import { BookComments } from "../../components/Comments/BookComents";
 import { NewComments } from "../../components/Comments/NewComent";
 import { useContext } from "react";
 import { DashContext } from "../../contexts/DashboardContext/DashContext";
+import { Ranking } from "../../components/Ranking";
 
 export function Description() {
   const item = JSON.parse(localStorage.getItem("book") || "{}");
@@ -59,7 +59,10 @@ export function Description() {
                   })}
                 </div>
               </div>
-              <span>Avaliação dos usuários</span>
+              <div className="divRanking">
+                <p>Avaliação dos usuários</p>
+                <Ranking/>
+              </div>
             </div>
             <h3>{item.description}</h3>
 

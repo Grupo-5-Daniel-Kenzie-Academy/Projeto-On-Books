@@ -6,15 +6,29 @@ interface iInputProps {
   placeholder: string;
   register: any;
   nameError: string;
-  msgerror?:string;
+  msgerror?: string;
+  defaultValue?: string;
 }
 
-function Input({ label, type, placeholder, register, nameError,msgerror }: iInputProps) {
+function Input({
+  label,
+  type,
+  placeholder,
+  register,
+  nameError,
+  msgerror,
+  defaultValue,
+}: iInputProps) {
   return (
     <S.StyledFieldset>
       <div>
         <label>{label}</label>
-        <S.Input type={type} placeholder={placeholder} {...register(nameError)} />
+        <S.Input
+          defaultValue={defaultValue}
+          type={type}
+          placeholder={placeholder}
+          {...register(nameError)}
+        />
         <span>{msgerror}</span>
       </div>
     </S.StyledFieldset>

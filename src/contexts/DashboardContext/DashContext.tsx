@@ -80,6 +80,9 @@ export interface IDashContext {
   noRead: IBooks[];
   RemoveNoReadBooks: (ids: number) => void;
   AllNoBooks: () => void;
+
+  attUser: boolean;
+  setAttUser: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IuserInfo {
@@ -93,6 +96,8 @@ export interface IuserInfo {
 export const DashContext = createContext<IDashContext>({} as IDashContext);
 
 export function DashProvider({ children }: IDashProviderProps) {
+  const [attUser, setAttUser] = useState(false);
+
   const [infBook, setInfBook] = useState<IBooks>({} as IBooks);
 
   const { bookList, setFilterList } = useContext(AuthContext);
@@ -101,7 +106,7 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   const id = localStorage.getItem("@id");
 
-  const [filteredBooks, setFilteredBooks] = useState<IBooks[]>([]);
+  const [filteredBooks] = useState<IBooks[]>([]);
 
   const [categoryFilter, setCategoryFilter] = useState<string>("todos");
 
@@ -113,15 +118,15 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   const [allNoReadBook, setAllNoReadBook] = useState<IBooks[]>([]);
 
-  const [library, setLibrary] = useState([]);
+  const [library] = useState([]);
 
-  const [favoritModal, setFavoritModal] = useState(false);
+  const [favoritModal] = useState(false);
 
   const [item, setItem] = useState<iBookList>({} as iBookList);
 
   const [comments, setComments] = useState<iGetComments[]>([]);
 
-  const [filteredComments, setFilteredComments] = useState<iGetComments[]>([]);
+  const [filteredComments] = useState<iGetComments[]>([]);
 
   const [userInfo, setUserInfo] = useState<IuserInfo>({} as IuserInfo);
 
@@ -159,7 +164,7 @@ export function DashProvider({ children }: IDashProviderProps) {
 
       setAllReadBook(response.data);
     } catch {
-      console.log('erro')
+      console.log("erro");
     }
   }
 
@@ -200,24 +205,24 @@ export function DashProvider({ children }: IDashProviderProps) {
     const verificationNoRead = namesNoRead.indexOf(element.title);
 
     if (verification !== -1) {
-      toast("Item já adicionado na sua lista de Lidos");
+      toast.warning("Item já adicionado a lista :)");
       return null;
     }
 
-    if(verificationNoRead !== -1){
-      toast("Item já adicionado na sua lista de não lidos");
+    if (verificationNoRead !== -1) {
+      toast.warning("Item já adicionado a lista :)");
       return null;
     }
 
     try {
-      const response = await api.post(`/lidos`, objetive, {
+       await api.post(`/lidos`, objetive, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
       readBooks();
       AllBooks();
-      toast.success("Livro adicionado a lista de livros lidos");
+      toast.success("Livro adicionado com sucesso");
     } catch {}
   }
 
@@ -238,29 +243,28 @@ export function DashProvider({ children }: IDashProviderProps) {
     const verificationRead = namesRead.indexOf(element.title);
 
     if (verification !== -1) {
-      toast("Item já adicionado na sua lista de lidos");
+      toast.warning("Item já adicionado a lista :)");
       return null;
     }
 
-    if(verificationRead !== -1){
-      toast("Item já existente na sua lista de não lidos")
+    if (verificationRead !== -1) {
+      toast.warning("Item já adicionado a lista :)");
       return null;
     }
 
     try {
-      const response = await api.post(`/semLer`, objetive, {
+       await api.post(`/semLer`, objetive, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
       noReadBooks();
       AllNoBooks();
-      toast.success("Livro adicionado a lista desejados");
+      toast.success("Livro adicionado com sucesso");
     } catch {}
   }
 
   function Filter(name: string) {
-    
     if (name === "Todos") {
       return setFilterList(bookList);
     }
@@ -271,7 +275,6 @@ export function DashProvider({ children }: IDashProviderProps) {
       }
     });
     setFilterList(goFilter);
-   
   }
 
   function FilterInput(name: string) {
@@ -300,38 +303,38 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   async function RemoveReadBooks(ids: number) {
     try {
-      const response = await api.delete(`/lidos/${ids}`, {
+      await api.delete(`/lidos/${ids}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      toast.info("Livro Removido Da Biblioteca dos Lidos 🗑️");
+      toast.info("Livro removido com sucesso🗑️");
       readBooks();
       AllBooks();
-    } catch {
-      toast("Item Já Adicionado no Seu Carrinho");
+    } catch (error){
+      console.log(error)
       window.scrollTo(0, 0);
     }
   }
 
   async function RemoveNoReadBooks(ids: number) {
     try {
-      const response = await api.delete(`/semLer/${ids}`, {
+       await api.delete(`/semLer/${ids}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      toast.info("Livro Removido Da Biblioteca dos Lidos 🗑️");
+      toast.info("Livro removido com sucesso🗑️");
       noReadBooks();
       AllNoBooks();
-    } catch {
-      toast("Item Já Adicionado no Seu Carrinho");
+    } catch (error){
+      console.log(error)
     }
   }
 
   async function addComments(data: iComments) {
     try {
-      const response = await api.post("/comentarios", data, {
+      await api.post("/comentarios", data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -384,13 +387,13 @@ export function DashProvider({ children }: IDashProviderProps) {
             Authorization: `Bearer ${token}`,
           },
         });
+
         setUserInfo(response.data);
       } catch (error) {}
     }
-    
-    userData ()
 
-  }, [token, id])
+    userData();
+  }, [token, id, attUser]);
 
   return (
     <DashContext.Provider
@@ -422,7 +425,9 @@ export function DashProvider({ children }: IDashProviderProps) {
         noRead,
         RemoveNoReadBooks,
         AllNoBooks,
-        noReadBooks
+        noReadBooks,
+        attUser,
+        setAttUser,
       }}
     >
       {children}

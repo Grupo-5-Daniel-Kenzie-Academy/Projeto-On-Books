@@ -24,7 +24,7 @@ export interface iUser {
   }
 export const LoginModal =()=>{
     const {setOnModal,onModal}=useContext(AuthContext)
-    const { loginUser, autoLogin } = useContext(AuthContext)
+    const { loginUser } = useContext(AuthContext)
     const { register, handleSubmit, formState: {errors} } = useForm<iData>({
     resolver: yupResolver(LoginSchema),
     mode: "onBlur"

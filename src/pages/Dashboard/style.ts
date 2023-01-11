@@ -33,7 +33,7 @@ export const StyleHeader = styled.header`
     gap: 10px;
 
     p {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: bold;
       color: var(--gray-5);
     }
@@ -86,49 +86,47 @@ export const StyleMain = styled.main`
 
   gap: 100px;
   padding-top: 100px;
- 
-  @media(max-width:500px){
-      flex-direction: column;
 
-     
-      padding-top: 50px;
-      gap: 0px;
-    }
+  @media (max-width: 500px) {
+    flex-direction: column;
+
+    padding-top: 50px;
+    gap: 0px;
+  }
 
   .asideDash {
     width: 200px;
     max-height: 650px;
 
-    
-       
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    
     margin-left: 50px;
-    
+
     gap: 15px;
-    
+
     position: sticky;
     z-index: 99;
     top: 5px;
-    
+
     background-color: white;
-    
+
     border: 1px solid var(--gray-3);
     border-radius: 8px;
-   padding: 15px 0px;
+    padding: 15px 0px;
 
-    @media(max-width:500px){
+    @media (max-width: 500px) {
       max-height: 120px;
       width: 100%;
       position: relative;
       margin-left: 0px;
 
-      background: linear-gradient(90deg, rgba(249,249,249,1) 79%, rgba(219,227,222,1) 100%);
-      
-      
+      background: linear-gradient(
+        90deg,
+        rgba(249, 249, 249, 1) 79%,
+        rgba(219, 227, 222, 1) 100%
+      );
     }
 
     h4 {
@@ -159,9 +157,9 @@ export const StyleMain = styled.main`
 
         border-radius: 8px;
         background-color: white;
-        :focus{
+        :focus {
           color: white;
-          background-color:  #22C55E;
+          background-color: #22c55e;
         }
 
         :hover {
@@ -169,14 +167,11 @@ export const StyleMain = styled.main`
           background-color: var(--color-primary);
         }
       }
-
-
     }
-    #hover{
-          color: white;
-          background-color:  #22C55E;
-        }
-
+    #hover {
+      color: white;
+      background-color: #22c55e;
+    }
   }
 
   .sectonBook {
@@ -185,8 +180,8 @@ export const StyleMain = styled.main`
     display: flex;
     justify-content: center;
     padding: 20px;
-    @media(max-width:500px){
+    @media (max-width: 500px) {
       padding: 20px 0px;
-}
+    }
   }
 `;

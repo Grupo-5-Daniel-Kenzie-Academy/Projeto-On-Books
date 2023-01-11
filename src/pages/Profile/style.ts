@@ -34,6 +34,12 @@ export const StyleHeader = styled.header`
     align-items: center;
     gap: 10px;
 
+    p {
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--gray-5);
+    }
+
     @media (max-width: 1020px) {
       width: 100%;
       max-width: 436.5px;
@@ -63,38 +69,40 @@ export const StyleMain = styled.main`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
- 
 
   padding: 10px;
 
- 
-
-  
   padding-top: 100px;
 
-  @media(max-width: 1122px){
-   
+  @media (max-width: 1122px) {
     justify-content: center;
     padding-top: 50px;
     gap: 15px;
   }
   .asideProfile {
+    position: relative;
     width: 100%;
     max-width: 300px;
 
-   
     height: 360px;
     padding: 5px;
 
     border-radius: 8px;
     border: 1px solid var(--gray-3);
 
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    
+
+    .EditButtonUser {
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      position: absolute;
+      top: 5%;
+      right: 5%;
+    }
 
     img {
       width: 200px;
@@ -116,11 +124,10 @@ export const StyleMain = styled.main`
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
-      
+
       gap: 20px;
     }
   }
-
 
   .ListaUls {
     display: flex;
@@ -128,47 +135,43 @@ export const StyleMain = styled.main`
     gap: 100px;
     width: 100%;
     max-width: 800px;
-    
+
     position: relative;
 
-    @media(max-width:1122px ){
-       
+    @media (max-width: 1122px) {
       padding-top: 20px;
       gap: 10px;
     }
 
-    .container{
-  
+    .container {
       position: relative;
     }
     .containerNot {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
- 
+
       position: absolute;
       top: 85px;
-     
+
       gap: 25px;
 
-      @media(max-width: 330px){
+      @media (max-width: 330px) {
         justify-content: center;
       }
-      h3{
+      h3 {
         text-align: center;
         font-size: 20px;
       }
-      span{
-
+      span {
         font-size: 50px;
         rotate: calc(90deg);
       }
     }
-    .containerTwo{
+    .containerTwo {
       position: relative;
     }
-    .containerNotRead{
-
+    .containerNotRead {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -176,19 +179,15 @@ export const StyleMain = styled.main`
       position: absolute;
       top: 85px;
       gap: 25px;
-     
-      
-      
 
-      @media(max-width: 330px){
+      @media (max-width: 330px) {
         justify-content: center;
       }
-      h3{
+      h3 {
         text-align: center;
         font-size: 20px;
       }
-      span{
-
+      span {
         font-size: 50px;
         rotate: calc(90deg);
       }
@@ -196,7 +195,6 @@ export const StyleMain = styled.main`
   }
 
   ul {
-    
     display: flex;
     gap: 20px;
     height: 350px;
@@ -207,9 +205,6 @@ export const StyleMain = styled.main`
     align-items: center;
     padding: 1rem;
     overflow-x: auto;
-
-  
-  
 
     .imgBook {
       width: 110px;
