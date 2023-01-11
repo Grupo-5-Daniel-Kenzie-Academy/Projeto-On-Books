@@ -4,23 +4,22 @@ export const Header = styled.header`
   width: 100%;
   min-height: 60px;
   padding: 0 80px 0 80px;
-  background: #F9FAFB;
+  background: #f9fafb;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
-  @media(max-width: 584px){
+
+  @media (max-width: 584px) {
     padding: 20px;
     flex-direction: column;
     gap: 15px;
   }
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  
-  img{
+
+  img {
     width: 257px;
     height: 48px;
-    
   }
 
   div {
@@ -28,25 +27,26 @@ export const Header = styled.header`
     align-items: center;
     gap: 12px;
 
-    @media(max-width: 584px){
+    @media (max-width: 584px) {
       width: 100%;
       justify-content: space-evenly;
-  }
-    a{
-      :hover{color:#22C55E}
     }
-   
+    a {
+      font-weight: bold;
+      :hover {
+        color: var(--color-primary);
+      }
+    }
   }
-  .btnLogin{
-    background-color: #22C55E;
-    color: #F9FAFB;
+  .btnLogin {
+    background-color: var(--color-primary);
+    color: var(--gray-1);
     padding: 10px 20px;
     border-radius: 8px;
+    font-weight: bold;
 
-
-    :hover{
-       background-color:  #86EFAC;
-       color: black;
+    :hover {
+      background-color: var(--color-primary-50);
     }
   }
 `;

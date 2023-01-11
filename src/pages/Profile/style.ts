@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 export const StyleHeader = styled.header`
   width: 100%;
   min-height: 60px;
@@ -7,6 +8,7 @@ export const StyleHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-weight: bold;
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
@@ -26,16 +28,10 @@ export const StyleHeader = styled.header`
     height: 50px;
     border-radius: 50%;
   }
-
   .infUser {
     display: flex;
     align-items: center;
     gap: 10px;
-
-    p {
-      font-weight: bold;
-      color: var(--gray-5);
-    }
 
     @media (max-width: 1020px) {
       width: 100%;
@@ -49,30 +45,10 @@ export const StyleHeader = styled.header`
     height: 30px;
     cursor: pointer;
   }
-  .inputHeader {
-    position: relative;
-    width: 100%;
-    max-width: 436.5px;
-    height: 39px;
-
-    border-radius: 12px;
-
-    border: none;
-
-    input {
-      width: 100%;
-      min-height: 100%;
-      padding-left: 15px;
-      border-radius: 12px;
-    }
-
-    img {
-      position: absolute;
-
-      top: 12px;
-      right: 20px;
-      width: 15px;
-      height: 15px;
+  a {
+    :hover {
+      color: var(--color-primary);
+      text-decoration: underline;
     }
   }
 `;
@@ -84,11 +60,7 @@ export const StyleMain = styled.main`
   gap: 100px;
   padding-top: 100px;
 
-  @media (max-width: 500px) {
-    flex-direction: column;
-  }
-
-  .asideDash {
+  .asideProfile {
     width: 200px;
     height: 550px;
 
@@ -96,13 +68,7 @@ export const StyleMain = styled.main`
     flex-direction: column;
     align-items: center;
 
-    margin-left: 50px;
-
-    gap: 15px;
-
-    position: sticky;
-    z-index: 99;
-    top: 5px;
+    margin-left: 150px;
 
     @media (max-width: 500px) {
       max-height: 100px;
@@ -110,51 +76,46 @@ export const StyleMain = styled.main`
       position: relative;
       margin-left: 0px;
     }
-
-    h4 {
-      font-weight: 700;
-      font-size: 24px;
-      line-height: 29px;
-      color: var(--gray-5);
+    img {
+      border-radius: 100%;
     }
 
-    ul {
+    .divUserInfo {
+      width: 299px;
+      height: 152px;
+      box-sizing: border-box;
+      background: var(--gray-1);
+      border: 1px solid var(--gray-3);
+      border-radius: 8px;
+
       display: flex;
       flex-direction: column;
-      @media (max-width: 500px) {
-        flex-direction: row;
-        overflow: auto;
-        width: 100%;
-
-        padding: 10px;
-      }
-
-      gap: 10px;
-
-      .btnFilter {
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 24px;
-        color: var(--gray-5);
-
-        border-radius: 8px;
-        background-color: white;
-
-        :hover {
-          color: var(--gray-1);
-          background-color: var(--color-primary);
-        }
-      }
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
     }
   }
-
-  .sectonBook {
+  .ListaUls {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
     width: 100%;
     max-width: 1000px;
-
+  }
+  ul {
     display: flex;
-    justify-content: center;
+    gap: 20px;
+    height: 300px;
+    max-width: 1000px;
+    width: 100%;
+    background-color: var(--gray-1);
+    border-radius: 8px;
+    align-items: center;
+    padding: 1rem;
 
-    padding: 50px;
+    .imgBook {
+      width: 110px;
+      height: 150px;
+    }
   }
 `;

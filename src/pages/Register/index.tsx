@@ -18,8 +18,8 @@ interface iRegisterData {
 }
 
 export const Register = () => {
-  const { userRegister } = useContext(AuthContext)
-  const {setOnModal,onModal} = useContext(AuthContext)
+  const { userRegister } = useContext(AuthContext);
+  const { setOnModal, onModal } = useContext(AuthContext);
 
   const {
     register,
@@ -44,64 +44,80 @@ export const Register = () => {
           <img src={Logo} alt="on book" />
         </figure>
         <div>
-          <Link to='/'>Inicio</Link>
+          <Link to="/">Inicio</Link>
         </div>
       </StyleHeader>
       <StyledRegisterPage>
-
-          <div className="divText">
-                <h3><strong>Conecte-se</strong> <br/> aos livros</h3>
-              <p>Aqui você vai encontrar <br /> o melhor da literatura. </p>
-          </div>     
-          <StyleFormRegister className="registerForm" onSubmit={handleSubmit(submit)}>
-            <div className="divheader">
-            <h2>Cadastra-se</h2>
-            </div>
-            <Input
-              label="Nome"
-              nameError="name"
-              placeholder="Digite seu nome aqui"
-              register={register}
-              type="text"
-              msgerror={errors.name?.message}
-            />
-            <Input
-              label="E-mail"
-              nameError="email"
-              placeholder="Digite seu email aqui"
-              register={register}
-              type="email"
-              msgerror={errors.email?.message}
-            />
-            <Input
-              label="Imagem"
-              nameError="image"
-              placeholder="Adicione um avatar"
-              register={register}
-              type="text"
-              msgerror={errors.image?.message}
-            />
-            <Input
-              label="Senha"
-              nameError="password"
-              placeholder="Digite sua senha aqui"
-              register={register}
-              type="password"
-              msgerror={errors.password?.message}
-            />
-            <Input
-              label="Confirmar senha"
-              nameError="confirmed_password"
-              placeholder="Digite sua senha novamente"
-              register={register}
-              type="password"
-              msgerror={errors.confirmed_password?.message}
-            />
-            <button className="btnRegister" type="submit">Confirmar</button>
-            <h5>Já é cadastrado? Faça o login  <Link onClick={()=>{setOnModal(!onModal)}} to='/'>Aqui</Link></h5>
-          </StyleFormRegister>
-    
-       
+        <div className="divText">
+          <h3>
+            <strong>Conecte-se</strong> <br /> aos livros
+          </h3>
+          <p>
+            Aqui você vai encontrar <br /> o melhor da literatura.{" "}
+          </p>
+        </div>
+        <StyleFormRegister
+          className="registerForm"
+          onSubmit={handleSubmit(submit)}
+        >
+          <div className="divheader">
+            <h2>Cadastre-se</h2>
+          </div>
+          <Input
+            label="Nome"
+            nameError="name"
+            placeholder="Digite seu nome aqui"
+            register={register}
+            type="text"
+            msgerror={errors.name?.message}
+          />
+          <Input
+            label="E-mail"
+            nameError="email"
+            placeholder="Digite seu email aqui"
+            register={register}
+            type="email"
+            msgerror={errors.email?.message}
+          />
+          <Input
+            label="Imagem"
+            nameError="image"
+            placeholder="Adicione um avatar"
+            register={register}
+            type="text"
+            msgerror={errors.image?.message}
+          />
+          <Input
+            label="Senha"
+            nameError="password"
+            placeholder="Digite sua senha aqui"
+            register={register}
+            type="password"
+            msgerror={errors.password?.message}
+          />
+          <Input
+            label="Confirmar senha"
+            nameError="confirmed_password"
+            placeholder="Digite sua senha novamente"
+            register={register}
+            type="password"
+            msgerror={errors.confirmed_password?.message}
+          />
+          <button className="btnRegister" type="submit">
+            Confirmar
+          </button>
+          <h5>
+            Já é cadastrado? Faça o login{" "}
+            <Link
+              onClick={() => {
+                setOnModal(!onModal);
+              }}
+              to="/"
+            >
+              Aqui
+            </Link>
+          </h5>
+        </StyleFormRegister>
       </StyledRegisterPage>
     </>
   );

@@ -1,73 +1,65 @@
 import styled from "styled-components";
 
-export  const StyleModalLogin=styled.div`
-    background-color: red;
-    position: fixed;
+export const StyleModalLogin = styled.div`
+  background-color: red;
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+
+  background: var(--gray-6);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px;
+
+  .divContainer {
     width: 100%;
-    min-height: 100vh;
-    top: 0;
-    left: 0;
-    
-    background: rgba(0, 0, 0, 0.4);
-
+    max-width: 520px;
     display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    padding: 20px 40px;
+
+    background-color: var(--gray-1);
+
+    border-radius: 8px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .divheader {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-
-    padding: 15px;
-
-    
-
-    .divContainer{
-        width: 100%;
-       max-width: 520px;
-        display: flex;
-        flex-direction: column;
-        gap: 50px;
-
-        padding: 20px 40px;
-
-        background-color: white;
-        
-        border-radius: 8px;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    h2 {
+      font-weight: 700;
+      font-size: 38px;
+      line-height: 58px;
+      color: var(--gray-5);
     }
-
-    .divheader{
-
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        h2{
-            font-weight: 700;
-            font-size: 38px;
-            line-height: 58px;
-            color: #1F2937;
-        }
-        button{
-            background-color: #22C55E;
-            color: white;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-
-            :hover{
-                color: #22C55E ;
-                background-color: #E5E7EB;
-            }
-        }
-
+    button {
+      background-color: var(--color-primary);
+      color: white;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
     }
+  }
 
-    form{
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-    }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    border-radius: 8px;
+  }
 
- .btnLogar{
+  .btnLogar {
     height: 71px;
-    background: #22C55E;
+    background: var(--color-primary);
     border-radius: 8px;
     color: white;
 
@@ -75,9 +67,9 @@ export  const StyleModalLogin=styled.div`
     font-size: 24px;
     line-height: 29px;
 
-    :hover{
-                color: #22C55E ;
-                background-color: #E5E7EB;
-            }
- }
-`
+    :hover {
+      color: var(--gray-1);
+      background-color: var(--color-primary-50);
+    }
+  }
+`;
