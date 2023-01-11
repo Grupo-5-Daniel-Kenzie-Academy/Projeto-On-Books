@@ -94,9 +94,9 @@ export const StyleMain = styled.main`
     width: 800px;
     background-color: red;
 
-    .imgBook{
+    .imgBook {
       width: 110px;
-    height: 150px;
+      height: 150px;
     }
   }
 `;
