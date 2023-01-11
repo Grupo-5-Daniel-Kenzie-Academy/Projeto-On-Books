@@ -8,13 +8,18 @@ export const StyleUl = styled.ul`
 
   gap: 25px;
 
-  @media (max-width: 500px) {
-    justify-content: center;
+  @media(max-width: 500px){
+    flex-wrap: nowrap;
+    flex-direction: row;
+
+      padding: 20px;
+      overflow: auto;
   }
 
   li {
-    width: 200px;
+    min-width:200px;
     height: 280px;
+    max-width:200px;
 
     display: flex;
     flex-direction: column;
@@ -30,9 +35,13 @@ export const StyleUl = styled.ul`
       transition: all 0.5s ease;
       transform: scale(1.1);
 
-      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    }
-
+   :hover{
+    transition: all 0.5s ease;
+    transform: scale(1.1);
+    
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+   }
+    
     animation: slideInUp;
     animation-duration: 0.8s;
 
@@ -79,5 +88,22 @@ export const StyleUl = styled.ul`
         text-overflow: ellipsis;
       }
     }
+  }
+
+  .divError{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+       h2{
+        font-size: 30px;
+        text-align: center;
+
+        line-height: 150%;
+       }
+       span{
+        font-size: 100px;
+        transform: rotate(90deg);
+       }
   }
 `;
