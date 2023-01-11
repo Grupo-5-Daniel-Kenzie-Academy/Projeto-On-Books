@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/UserContext/AuthContext";
 import { Link } from "react-router-dom";
-/* import { toast } from "react-toastify"; */
+
 
 interface iRegisterData {
   name: string;

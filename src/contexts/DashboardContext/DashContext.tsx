@@ -106,7 +106,7 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   const id = localStorage.getItem("@id");
 
-  const [filteredBooks, setFilteredBooks] = useState<IBooks[]>([]);
+  const [filteredBooks] = useState<IBooks[]>([]);
 
   const [categoryFilter, setCategoryFilter] = useState<string>("todos");
 
@@ -118,15 +118,15 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   const [allNoReadBook, setAllNoReadBook] = useState<IBooks[]>([]);
 
-  const [library, setLibrary] = useState([]);
+  const [library] = useState([]);
 
-  const [favoritModal, setFavoritModal] = useState(false);
+  const [favoritModal] = useState(false);
 
   const [item, setItem] = useState<iBookList>({} as iBookList);
 
   const [comments, setComments] = useState<iGetComments[]>([]);
 
-  const [filteredComments, setFilteredComments] = useState<iGetComments[]>([]);
+  const [filteredComments] = useState<iGetComments[]>([]);
 
   const [userInfo, setUserInfo] = useState<IuserInfo>({} as IuserInfo);
 
@@ -205,24 +205,24 @@ export function DashProvider({ children }: IDashProviderProps) {
     const verificationNoRead = namesNoRead.indexOf(element.title);
 
     if (verification !== -1) {
-      toast("Item já adicionado na sua lista de lidos");
+      toast.warning("Item já adicionado a lista :)");
       return null;
     }
 
     if (verificationNoRead !== -1) {
-      toast("Item já adicionado na sua lista de lidos");
+      toast.warning("Item já adicionado a lista :)");
       return null;
     }
 
     try {
-      const response = await api.post(`/lidos`, objetive, {
+       await api.post(`/lidos`, objetive, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
       readBooks();
       AllBooks();
-      toast.success("Livro adicionado a lista de livros lidos");
+      toast.success("Livro adicionado com sucesso");
     } catch {}
   }
 
@@ -243,24 +243,24 @@ export function DashProvider({ children }: IDashProviderProps) {
     const verificationRead = namesRead.indexOf(element.title);
 
     if (verification !== -1) {
-      toast("Item já adicionado na sua lista de lidos");
+      toast.warning("Item já adicionado a lista :)");
       return null;
     }
 
     if (verificationRead !== -1) {
-      toast("Item já existente na sua lista de não lidos");
+      toast.warning("Item já adicionado a lista :)");
       return null;
     }
 
     try {
-      const response = await api.post(`/semLer`, objetive, {
+       await api.post(`/semLer`, objetive, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
       noReadBooks();
       AllNoBooks();
-      toast.success("Livro adicionado a lista desejados");
+      toast.success("Livro adicionado com sucesso");
     } catch {}
   }
 
@@ -303,38 +303,38 @@ export function DashProvider({ children }: IDashProviderProps) {
 
   async function RemoveReadBooks(ids: number) {
     try {
-      const response = await api.delete(`/lidos/${ids}`, {
+      await api.delete(`/lidos/${ids}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      toast.info("Livro Removido Da Biblioteca dos Lidos 🗑️");
+      toast.info("Livro removido com sucesso🗑️");
       readBooks();
       AllBooks();
-    } catch {
-      toast("Item Já Adicionado no Seu Carrinho");
+    } catch (error){
+      console.log(error)
       window.scrollTo(0, 0);
     }
   }
 
   async function RemoveNoReadBooks(ids: number) {
     try {
-      const response = await api.delete(`/semLer/${ids}`, {
+       await api.delete(`/semLer/${ids}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      toast.info("Livro Removido Da Biblioteca dos Lidos 🗑️");
+      toast.info("Livro removido com sucesso🗑️");
       noReadBooks();
       AllNoBooks();
-    } catch {
-      toast("Item Já Adicionado no Seu Carrinho");
+    } catch (error){
+      console.log(error)
     }
   }
 
   async function addComments(data: iComments) {
     try {
-      const response = await api.post("/comentarios", data, {
+      await api.post("/comentarios", data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

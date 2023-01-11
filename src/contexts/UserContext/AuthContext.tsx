@@ -106,7 +106,6 @@ export function AuthProvider({ children }: IAuthProviderProps) {
   async function editUser(formData: iDataEdit) {
     const token = localStorage.getItem("@Token");
     const id = localStorage.getItem("@id");
-    console.log(id);
     try {
       await api.patch<iResponseData>(`/users/${id}`, formData, {
         headers: {
@@ -114,9 +113,12 @@ export function AuthProvider({ children }: IAuthProviderProps) {
         },
       });
 
+    setTimeout(() => {
       toast.success("Usuario editado com sucesso!", {
-        autoClose: 3000,
+        autoClose: 2000,
       });
+      
+    }, 3000);
     } catch (error) {
       toast.error("Oops, algo deu errado...");
     }
@@ -130,7 +132,7 @@ export function AuthProvider({ children }: IAuthProviderProps) {
     }
 
     try {
-      const response = await api.get<iResponseLogin>("/livros", {
+      await api.get<iResponseLogin>("/livros", {
         headers: {
           authorization: `Bearer ${token}`,
         },

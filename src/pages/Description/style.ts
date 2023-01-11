@@ -117,6 +117,8 @@ export const StyleMain = styled.main`
     .infor-one {
       display: flex;
       flex-direction: column;
+
+    
       h2 {
         font-weight: 700;
         font-size: 25px;
@@ -140,11 +142,15 @@ export const StyleMain = styled.main`
       }
     }
 
-    span {
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 19px;
-      color: var(--gray-5);
+    .divRanking{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     
+     gap: 5px;
+     
+     padding-top: 20px;
     }
     h3 {
       font-weight: 400;
