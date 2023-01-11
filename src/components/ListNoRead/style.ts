@@ -18,6 +18,8 @@ export const Licard = styled.li`
     width: 100%;
     height: 90px;
 
+    padding: 0 10px;
+
     display: flex;
     flex-direction: column;
 
@@ -40,6 +42,13 @@ export const Licard = styled.li`
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+    .btnRemove{
+      color: red;
+
+      :hover{
+        text-decoration: underline;
+      }
     }
   }
 

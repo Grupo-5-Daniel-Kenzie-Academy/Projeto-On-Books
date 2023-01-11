@@ -14,7 +14,7 @@ export function ListNoRead(element: IBooks) {
       <img className="imgBook" src={element.img} alt={element.title} />
       <div className="divInfoBO">
         <p>{element.title}</p>
-        <button onClick={() => RemoveNoReadBooks(element.id)}>Remover</button>
+        <button className="btnRemove" onClick={() => RemoveNoReadBooks(element.id)}>Remover</button>
       </div>
     </Licard>
   );
